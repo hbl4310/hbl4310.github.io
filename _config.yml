@@ -1,3 +1,30 @@
-theme: jekyll-theme-minimal
+collections:
+    authors:
+        output: true
+
+defaults:
+  - scope:
+      path: ""
+      type: "authors"
+    values:
+      layout: "author"
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+  - scope:
+      path: ""
+    values:
+      layout: "default"
+
+#theme: minimal
 title: hbl4310 homepage
 description: work in progress
+theme: jekyll-default-layout
+
+plugins:
+  - jekyll-default-layout
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
