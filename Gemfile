@@ -6,8 +6,9 @@ source "https://rubygems.org"
 gem "jekyll"
 
 # template
-gem "just-the-docs"
-gem "jekyll-default-layout"
+# gem "just-the-docs", "0.4.1"
+# gem "jekyll-default-layout"
+gem "minima"
 
 group :jekyll_plugins do 
   gem 'jekyll-sitemap'

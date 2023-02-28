@@ -3,28 +3,26 @@ collections:
         output: true
 
 defaults:
-  - scope:
-      path: ""
-      type: "authors"
-    values:
-      layout: "author"
+#  - scope:
+#      path: ""
+#      type: "authors"
+#    values:
+#      layout: "author"
   - scope:
       path: ""
       type: "posts"
     values:
       layout: "post"
   - scope:
-      path: ""
+     path: ""
     values:
       layout: "default"
 
-#theme: minimal
 title: hbl4310 homepage
 description: work in progress
-theme: jekyll-default-layout
+theme: minima
 
-plugins:
-  - jekyll-default-layout
-  - jekyll-feed
-  - jekyll-sitemap
-  - jekyll-seo-tag
+#plugins:
+#  - jekyll-feed
+#  - jekyll-sitemap
+#  - jekyll-seo-tag
