@@ -1,0 +1,17 @@
+@import "reset.css";
+@import "variables.css";
+@import "texteffects.css";
+@import "body.css"; 
+
+@import "nav.css";
+/* not sure why this cannot be above nav.css */
+@import "inputs.css";
+
+@import "grid.css";
+@import "shapes.css";
+@import "hovercard.css";
+@import "glowcard.css"; 
+
+@import "waves.css";
+
+@import "media.css";

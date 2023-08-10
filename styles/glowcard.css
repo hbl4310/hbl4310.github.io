@@ -1,0 +1,64 @@
+.glowcard {
+    --left: 0px; 
+    --top: 0px; 
+    border-radius: inherit;
+    background-color: transparent;
+    cursor: crosshair; 
+    position: relative; 
+    /* 
+    because there is no border, make height & width larger
+    though cannot match other size for some reason if using viewport units
+    i think it might be a rounding issue: border seems to round down to pixel value
+    */
+    height: calc(var(--height) + 2 * var(--border-width));
+    width: calc(var(--width) + 2 * var(--border-width));
+}
+
+.glowcard:hover > .glowcard-content,
+.glowcard:hover > .glowcard-border {
+    opacity: 1;
+}
+
+.glowcard::before,
+.glowcard > .glowcard-border {
+    border-radius: inherit; 
+    content: ""; 
+    height: 100%;
+    width: 100%; 
+    top: 0px; 
+    left: 0px;
+    opacity: 0;
+    position: absolute;
+    transition: opacity 500ms;
+}
+
+.glowcard > .glowcard-content { 
+    border-radius: inherit; 
+    background: radial-gradient(
+        clamp(min(var(--left), var(--top)), 15em, 30em) circle at 
+        calc(var(--cursor-x) * 1px - var(--left)) calc(var(--cursor-y) * 1px - var(--top)), 
+        var(--secondary), 
+        transparent 40%
+    );
+    background-color: var(--background);
+    height: calc(100% - 2 * var(--border-width)); 
+    width: calc(100% - 2 * var(--border-width)); 
+    margin: var(--border-width); 
+    position: relative; 
+    z-index: 2; 
+}
+
+.glowcard > .glowcard-border { 
+    background: radial-gradient(
+        clamp(1.67 * min(var(--left), var(--top)), 25em, 50em) circle at 
+        calc(var(--cursor-x) * 1px - var(--left)) calc(var(--cursor-y) * 1px - var(--top)), 
+        var(--accent),
+        transparent 40%
+    );
+    z-index: 1;
+}
+
+.glowcard-title {
+    padding: 10%;
+    margin: 0px; 
+}

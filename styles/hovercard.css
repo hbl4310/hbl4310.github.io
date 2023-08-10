@@ -1,0 +1,95 @@
+
+.hovercard {
+    border: var(--border-width) solid var(--primary);
+    border-radius: inherit;
+    cursor: crosshair;
+    position: relative;
+    height: var(--height);
+    width: var(--width);
+    isolation: isolate;
+}
+
+.hovercard:hover:before {
+    background-position: 100% 100%;
+    transform: scale(var(--scale-x), var(--scale-y));
+}
+
+.hovercard:hover > .hovercard-content {
+    background-position: -10% 0%;
+}
+
+.hovercard::before {
+    background: linear-gradient(
+        130deg, 
+        transparent 0% 33%, 
+        var(--secondary) 66%, 
+        var(--primary) 83.5%, 
+        var(--accent) 100%
+    );
+    background-position: 0% 0%;
+    background-size: 300% 300%;
+    content: "";
+    height: 100%;
+    width: 100%;
+    top: 0px;
+    left: 0px;
+    pointer-events: none;
+    position: absolute;
+    transition: background-position 350ms ease, transform 350ms ease;
+    z-index: 1;
+    border-radius: inherit;
+}
+
+.hovercard-content {
+    background-image: radial-gradient(
+        rgba(255, 255, 255, 0.2) 8%, 
+        transparent 8%
+    );
+    background-position: 0% 0%; 
+    background-size: 2em 2em;
+    height: 100%;
+    width: 100%;
+    position: relative; 
+    transition: background-position 350ms ease;
+    z-index: 2; 
+}
+
+.hovercard-title,
+.hovercard-subtitle {
+    margin: 0px; 
+}
+
+.hovercard-title {
+    padding: 10%; 
+}
+
+.hovercard-subtitle {
+    display: inline-block;
+    visibility: hidden;
+    padding: 0px 10%;
+    padding-top: 0px;
+    padding-bottom: 5%;
+}
+
+.hovercard:hover .hovercard-subtitle {
+    color: var(--background);
+    visibility: visible;
+}
+
+.hovercard .text-typing {
+    --blink-colour: var(--background);
+}
+
+/* create psuedo element to increase hover area to trigger effect */
+/* https://stackoverflow.com/questions/34709029/increasing-hover-area-of-css-circle */
+.hovercard .text-typing::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    /* border: 1px solid green; */
+}

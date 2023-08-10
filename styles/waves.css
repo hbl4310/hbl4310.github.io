@@ -1,0 +1,61 @@
+/* https://codepen.io/goodkatz/pen/LYPGxQz */
+
+#footer-waves {
+    /* want it to stretch from edge to edge, beyond flex box */
+    position: absolute;
+    left: 0px;
+    width: 100%;
+    margin-top: 5em;
+}
+
+.waves {
+    position: relative;
+    width: 100%;
+    height: 10em;
+    min-height: 100px;
+    max-height: 150px;
+    margin-bottom: -7px; /*Fix for safari gap*/
+}
+
+/* Animation */
+
+.parallax > use {
+    animation: move-forever 25s cubic-bezier(.55,.5,.45,.5) infinite;
+}
+.parallax > use:nth-child(1) {
+    opacity: 0.2;
+    animation-delay: -2s;
+    animation-duration: 7s;
+}
+.parallax > use:nth-child(2) {
+    opacity: 0.2;
+    animation-delay: -3s;
+    animation-duration: 10s;
+}
+.parallax > use:nth-child(3) {
+    opacity: 0.2;
+    animation-delay: -4s;
+    animation-duration: 13s;
+}
+.parallax > use:nth-child(4) {
+    opacity: 0.2;
+    animation-delay: -5s;
+    animation-duration: 20s;
+}
+
+@keyframes move-forever {
+    0% {
+        transform: translate3d(-90px, 0, 0);
+    }
+    100% {
+        transform: translate3d(85px, 0, 0);
+    }
+}
+
+/*Shrinking for mobile*/
+@media (max-width: 768px) {
+    .waves {
+        height: 40px;
+        min-height: 40px;
+    }
+}

@@ -1,0 +1,62 @@
+body {
+    /* TODO check system for default dark/light theme */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    /* height: 100dvh; */
+    margin: 0 10%;
+    /* https://stackoverflow.com/questions/6177492/most-standard-way-to-set-font-sizes-in-html-css */
+    /* font-size standardised on body to be 10/16 */
+    font-size: 62.5%; 
+    gap: 4em; 
+    /* width: auto !important; */
+    font-family: var(--ff-body);
+    /* each line is now 1.4em = 14px normally TODO is that ok? or control finer */
+    line-height: 1.4;
+    /* max-width: 800px; */
+    color: var(--text);
+    background-color: var(--background);
+    scroll-behavior: smooth;
+    text-rendering: optimizeLegibility;
+}
+
+/* header {
+} */
+
+/* footer {
+} */
+
+main {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.container {
+    width: 100%;
+}
+
+.card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0px; 
+    padding: 0px;
+    border-radius: var(--border-radius);
+    --border-width: 0.3em; 
+    --height: 95%; 
+    --width: 95%;
+}
+
+.tight-layout {
+    margin: 0px; 
+    padding: 0px; 
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+

@@ -1,0 +1,200 @@
+/*  
+types: passive, on hover/focus/active, mouse interactionsgit s
+some inspo:
+https://codepen.io/jh3y/pen/vzqVWa
+https://codepen.io/whqet/pen/mdrpaY
+*/
+
+
+/* 
+ideally, 
+to make more generic, trigger animation on data- attribute like data-text-animate="true" and change this attribute with js
+*/
+
+
+.text-magic {
+    animation: background-pan 3s linear infinite;
+    background: linear-gradient(
+        to right, 
+        var(--text), 
+        var(--primary), 
+        var(--accent), 
+        var(--text)
+    );
+    background-size: 200%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    white-space: nowrap;
+}
+
+@keyframes background-pan {
+    from {
+        background-position: 0% center;
+    }
+    to {
+        background-position: -200% center;
+    }
+}
+
+
+/* https://www.geeksforgeeks.org/how-to-create-text-reveal-effect-using-html-and-css/ */
+.text-typing {
+    --blink-colour: var(--text);
+    font-family: var(--ff-mono);
+    margin: 0px 0.1rem;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.text-typing:hover {
+    animation: typing calc(var(--text-length) * 0.1s) steps(var(--text-length),end) forwards,
+               blink 1s infinite;
+}
+
+@keyframes typing {
+    0% { width: 0% }
+    100% { width: 100% }
+}
+@keyframes blink {
+    0%, 100% {
+      border-right: 2px solid transparent;
+    }
+    50% {
+        border-right: 2px solid var(--blink-colour);
+    }
+}
+
+
+.text-hacker {
+    font-family: var(--ff-mono);
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+
+/* from https://bepatrickdavid.com/ */
+.text-strikethrough {
+    --strike-colour: var(--text);
+    --strike-width: 0.2em;
+    position: relative;
+}
+.text-strikethrough::after {
+    content: "";
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    background-color: var(--strike-colour);
+    top: 55%;
+    width: 100%;
+    height: var(--strike-width);
+    left: 0;
+    transform: translate(-101%, -50%);
+    transition: 400ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.text-strikethrough:hover::after {
+    visibility: visible;
+    opacity: 1;
+    transform: translate(0%, -50%); 
+}
+
+
+/* inspired by https://codepen.io/amit_sheen/pen/eYBgroR/261df6f09d15a179b63454bb75acc191 */
+.text-face-cursor {
+    --x0: 0; 
+    --y0: 0;
+    --shadow-colour: var(--accent); 
+    --blur: 1.5px;
+    text-shadow: 
+        /* calc(clamp(-0.5em, (var(--x0) - var(--cursor-x)) * 0.1px, 0.5em)) calc(clamp(-0.5em, (var(--y0) - var(--cursor-y)) * 0.1px, 0.5em)) 0 var(--shadow-colour); */
+        calc((var(--x0) - var(--cursor-x)) * 0.01px) calc((var(--y0) - var(--cursor-y)) * 0.01px) var(--blur) var(--shadow-colour), 
+        calc((var(--x0) - var(--cursor-x)) * 0.02px) calc((var(--y0) - var(--cursor-y)) * 0.02px) var(--blur) var(--shadow-colour),
+        calc((var(--x0) - var(--cursor-x)) * 0.03px) calc((var(--y0) - var(--cursor-y)) * 0.03px) var(--blur) var(--shadow-colour),
+        calc((var(--x0) - var(--cursor-x)) * 0.04px) calc((var(--y0) - var(--cursor-y)) * 0.04px) var(--blur) var(--shadow-colour),
+        calc((var(--x0) - var(--cursor-x)) * 0.05px) calc((var(--y0) - var(--cursor-y)) * 0.05px) var(--blur) var(--shadow-colour),
+        calc((var(--x0) - var(--cursor-x)) * 0.06px) calc((var(--y0) - var(--cursor-y)) * 0.06px) var(--blur) var(--shadow-colour);
+
+    transition: all 0.4s;
+    /* transform: 
+        translateX(calc(-0.3 * clamp(-0.5em, (var(--cursor-x) - 263) * 1px, 0.5em))) 
+        translateY(calc(-0.3 * clamp(-0.5em, (var(--cursor-y) - 188) * 1px, 0.5em)))
+        rotateX(calc(clamp(-35, 0 - (var(--cursor-y) - 188) * 0.3, 35) * 0.5deg)) 
+        rotateY(calc(clamp(-35, (var(--cursor-x) - 263) * 0.3, 35) * 0.5deg)); */
+
+}
+
+
+.text-rainbow {
+    animation: rainbow 3s infinite linear;
+}
+@keyframes rainbow {
+    0% {
+        color: #ef8f8f;
+    }
+    10% {
+        color: #efc98f;
+    }
+    20% {
+        color: #dcef8f;
+    }
+    30% {
+        color: #a3ef8f;
+    }
+    40% {
+        color: #8fefb6;
+    }
+    50% {
+        color: #8fefef;
+    }
+    60% {
+        color: #8fb6ef;
+    }
+    70% {
+        color: #a38fef;
+    }
+    80% {
+        color: #dc8fef;
+    }
+    90% {
+        color: #ef8fc9;
+    }
+    100% {
+        color: #ef8f8f;
+    }
+}
+
+
+/* https://codepen.io/zitrusfrisch/pen/kBNEag */
+.text-3d {
+    text-shadow:     0 1px 0 hsl(174,5%,80%),
+                    0 2px 0 hsl(174,5%,75%),
+                    0 3px 0 hsl(174,5%,70%),
+                    0 4px 0 hsl(174,5%,66%),
+                    0 5px 0 hsl(174,5%,64%),
+                    0 6px 0 hsl(174,5%,62%),
+                    0 7px 0 hsl(174,5%,61%),
+                    0 8px 0 hsl(174,5%,60%),
+
+                    0 0 5px rgba(0,0,0,.05),
+                0 1px 3px rgba(0,0,0,.2),
+                0 3px 5px rgba(0,0,0,.2),
+                0 5px 10px rgba(0,0,0,.2),
+                0 10px 10px rgba(0,0,0,.2),
+                0 20px 20px rgba(0,0,0,.3);
+}
+
+/* 
+TODO: 
+    Enter
+    Swapsies
+    Fading
+    Flipping
+    Karaoke
+    Filling
+    Blocks
+    Bulge
+    Perspective
+    Zipping
+    Bubbling
+    Blowing
+*/

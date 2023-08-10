@@ -1,5 +1,206 @@
----
-layout: home
-title: Home
----
-<h1>{{ "Hello world!" | downcase }}</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Mono&family=Cedarville+Cursive&family=Noto+Sans+SC&family=ZCOOL+QingKe+HuangYou&family=Ma+Shan+Zheng&display=swap"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="styles/style.css">
+    <script src="scripts/utilities.js"></script>
+    <title>hanbo.li</title>
+</head>
+
+<!-- 
+    Notes: 
+        - card elements should be interchangeable but follow some rules:
+            - each card should be self-contained
+            - left/right-box cards contain mouse hover effects and some text, maybe link to something
+            - main-box card should have some passive animation, maybe some functions of mouse position or scroll
+            - header-box card ???
+        - eventually, want to randomise card selection or have some button which loads different cards
+ -->
+
+
+<body class="theme-1">
+
+<header class="container">
+    <nav>
+        <div class="top-left-nav">
+            <!-- TODO: create animated svg logo, probably a meme -->
+            <!-- <img class="logoface" src="#" alt="logoface"> -->
+            <a href="#">
+                <h2 class="sitename text-hacker | text-3xl tight-layout">Website</h2>
+                <!-- <h2 class="sitename-chinese | text-3xl tight-layout" style="font-family:var(--ff-mono-chinese);">栗瀚博</h2> -->
+            </a>
+            <label for="theme-switch">
+                <input id="theme-switch" type="button" onclick="switchTheme()">
+                <!-- https://www.svgrepo.com/svg/10005/light-bulb -->
+                <svg class="clickable" height="100%" width="100%" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+                    xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <!-- lightbulb glowing animation applied as an animated svg filter -->
+                    <filter id="lightbulb-glow" x="-50%" y="-50%" width="200%" height="200%">
+                        <feGaussianBlur result="blurOut" stdDeviation="20" >
+                            <animate attributeName="stdDeviation" calcMode="paced" begin="0s" dur="2s" values="0;50;0;" repeatCount="indefinite"/>
+                        </feGaussianBlur>
+                        <feBlend in="SourceGraphic" in2="blurOut" />
+                    </filter>
+                    <g fill="var(--primary)">
+                        <path
+                            d="m363.9,54.2c-31.2-29.8-72.3-45.1-115.4-43-77.6,3.6-141.3,64.6-148.1,141.9-3.7,41.3 8.8,81.6 35,113.4 26.4,32.1 48,89 48,126.9 0,0-2.1,13.8 10.4,14.4h124.7c13.6-1 10.4-17 10.4-17 0-37 21.1-92.3 47.1-123.3 23.5-28 36.4-63.6 36.4-100.1-0.1-43.2-17.3-83.4-48.5-113.2zm-116.1,332.7l-24-145.9h64.5l-24,145.9h-16.5zm112.1-132.9c-28.3,33.7-50.6,91.2-51.9,132.8h-22.6l25.5-154.6c0.7-3.2-0.7-11.6-10.3-12.1h-89c-9.2,0.3-11,9-10.3,12.1l25.5,154.6h-22.7c-2.1-42.3-24.5-99.6-52.6-133.7-22.7-27.5-33.5-62.4-30.3-98.3 5.8-66.8 61-119.6 128.2-122.8 37.5-1.8 73,11.5 100,37.3 27.1,25.8 42,60.6 42,98 0.1,31.7-11.1,62.5-31.5,86.7z" 
+                            fill="var(--text)"
+                            filter="url(#lightbulb-glow)"
+                            >
+                        </path>
+                        <path
+                            d="m363.9,54.2c-31.2-29.8-72.3-45.1-115.4-43-77.6,3.6-141.3,64.6-148.1,141.9-3.7,41.3 8.8,81.6 35,113.4 26.4,32.1 48,89 48,126.9 0,0-2.1,13.8 10.4,14.4h124.7c13.6-1 10.4-17 10.4-17 0-37 21.1-92.3 47.1-123.3 23.5-28 36.4-63.6 36.4-100.1-0.1-43.2-17.3-83.4-48.5-113.2zm-116.1,332.7l-24-145.9h64.5l-24,145.9h-16.5zm112.1-132.9c-28.3,33.7-50.6,91.2-51.9,132.8h-22.6l25.5-154.6c0.7-3.2-0.7-11.6-10.3-12.1h-89c-9.2,0.3-11,9-10.3,12.1l25.5,154.6h-22.7c-2.1-42.3-24.5-99.6-52.6-133.7-22.7-27.5-33.5-62.4-30.3-98.3 5.8-66.8 61-119.6 128.2-122.8 37.5-1.8 73,11.5 100,37.3 27.1,25.8 42,60.6 42,98 0.1,31.7-11.1,62.5-31.5,86.7z"
+                            >
+                        </path>
+                        <path
+                            d="m319.7,433.9h-127.4c-5.8,0-10.4,4.7-10.4,10.4 0,5.8 4.7,10.4 10.4,10.4h9.7c4.1,26.1 26.7,46.2 54,46.2 27.3,0 49.9-20.1 54-46.2h9.7c5.8,0 10.4-4.7 10.4-10.4 5.68434e-14-5.7-4.6-10.4-10.4-10.4zm-63.7,46.2c-15,0-27.7-9.8-32.1-23.3h64.2c-4.4,13.5-17.1,23.3-32.1,23.3z"
+                            >
+                        </path>
+                    </g>
+                </svg>
+            </label>
+            <!-- TODO other icon buttons: -->
+            <!-- https://www.svgrepo.com/svg/51643/rocket-launch -->
+            <!-- https://www.svgrepo.com/svg/101623/clock -->
+            <!-- https://www.svgrepo.com/svg/163622/mouse -->
+        </div>
+        <div class="hamburger-menu">
+            <!-- TODO change input to button and wrap svg; not sure what to do with label -->
+            <input id="hamburger-accordion-input" type="checkbox" name="burger-menu">
+            <label for="hamburger-accordion-input">
+                <!-- https://www.svgrepo.com/svg/352109/hamburger -->
+                <svg class="clickable" id="hamburger-icon" width="100%" height="100%" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                    <g id="hamburger-top">
+                        <path d="M58.64 224 h394.72c34.57 0 54.62-43.9 34.82-75.88C448 83.2 359.55 32.1 256 32c-103.54.1-192 51.2-232.18 116.11C4 180.09 24.07 224 58.64 224z M384 112a16 16 0 1 1-16 16 16 16 0 0 1 16-16z M256 80a16 16 0 1 1-16 16 16 16 0 0 1 16-16z m-128 32a16 16 0 1 1-16 16 16 16 0 0 1 16-16z"></path>
+                    </g>
+                    <g id="hamburger-mid-1">
+                        <path d="M464 256H48a48 48 0 0 0 0 96h416a48 48 0 0 0 0-96z"></path>
+                    </g>
+                    <g id="hamburger-mid-2">
+                        <path d="M464 256H48a48 48 0 0 0 0 96h416a48 48 0 0 0 0-96z"></path>
+                    </g>
+                    <g id="hamburger-bot">
+                        <path d="M16 386 H32a16 16 0 0 0-16 16v16a64 64 0 0 0 64 64h352a64 64 0 0 0 64-64v-16a16 16 0 0 0-16-16z"></path>
+                    </g>
+                </svg>
+            </label>
+            <ul>
+                <li><a href="#" class="text-fade-button clickable"><h3 class="text-strikethrough | text-xl tight-layout">Writing</h5></a></li>
+                <li><a href="#" class="text-fade-button clickable"><h3 class="text-strikethrough | text-xl tight-layout">Content</h5></a></li>
+                <li><a href="#" class="text-fade-button clickable"><h3 class="text-strikethrough | text-xl tight-layout">About</h5></a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<main class="container">
+<div id="grid-wrapper">
+    <section class="card" id="header-box">
+        <h1 class="text-5xl tight-layout">
+            <em><span class="text-">Hello,</span></em> you've found my website!
+        </h1>
+    </section>
+    <section class="card" id="main-box">
+        <div id="shapes-wrapper" data-configuration="1" data-roundness="2">
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <script>
+                const shapesIntervalMs = 3141; 
+                const shapesWrapper = document.getElementById("shapes-wrapper"); 
+                setInterval(() => {
+                    shapesWrapper.dataset.configuration = rand(1, 4);
+                    shapesWrapper.dataset.roundness = rand(1, 6);
+                }, shapesIntervalMs);
+            </script>
+        </div>
+    </section>
+    <section class="card" id="left-box">
+        <div class="hovercard">
+            <div class="hovercard-content">
+                <h2 class="hovercard-title | text-2xl tight-layout">
+                    I'm not selling anything
+                </h2>
+                <div class="hovercard-subtitle">
+                    <p class="text-typing | text-base">how refreshing...</p>
+                </div>
+            </div>
+            <script>
+                // we want to keep a border, but expand the content box to cover the border on hover 
+                // border-width doesn't accommodate percentages, so need to calculate effective scaling
+                function setHovercardScaling() {
+                    for(const card of document.getElementsByClassName("hovercard")) {
+                        const compStyle = getComputedStyle(card, null), 
+                              bw = parseFloat(compStyle.getPropertyValue('border-width')), 
+                              w = parseFloat(compStyle.width),
+                              h = parseFloat(compStyle.height);
+                        // round up to cover pixel errors probably due to floating point issues
+                        card.style.setProperty("--scale-x", Math.round(100 + 2 * 100 * bw/w + 0.5)/100.0);
+                        card.style.setProperty("--scale-y", Math.round(100 + 2 * 100 * bw/h + 0.5)/100.0);
+                    }
+                }
+                window.addEventListener("DOMContentLoaded", setHovercardScaling)
+                window.addEventListener("resize", e => setHovercardScaling())
+            </script>
+        </div>
+    </section>
+    <section class="card" id="right-box">
+        <div class="glowcard">
+            <div class="glowcard-border"></div>
+            <div class="glowcard-content">
+                <h2 class="glowcard-title | text-2xl tight-layout">
+                    just horsing around
+                </h2>
+            </div>
+            <script>
+                // can't find a way to get the element top and left properties from within CSS
+                // so have to resort to filthy javascript
+                function setGlowcardRect() {
+                    for(const card of document.getElementsByClassName("glowcard")) {
+                        const rect = card.getBoundingClientRect(), 
+                              x = rect.left, 
+                              y = rect.top;
+                        card.style.setProperty("--left", `${x}px`);
+                        card.style.setProperty("--top", `${y}px`);
+                    }
+                }
+                window.addEventListener("DOMContentLoaded", setGlowcardRect)
+                window.addEventListener("resize", e => setGlowcardRect())
+            </script>
+        </div>
+    </section>
+</div>
+</main>
+
+<footer class="container">
+    <div id="footer-waves">
+        <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28"
+            preserveAspectRatio="none" shape-rendering="auto">
+            <defs>
+                <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+            </defs>
+            <g class="parallax" fill="var(--text)" >
+                <use xlink:href="#gentle-wave" x="48" y="0" />
+                <use xlink:href="#gentle-wave" x="48" y="3" />
+                <use xlink:href="#gentle-wave" x="48" y="5" />
+                <use xlink:href="#gentle-wave" x="48" y="7" />
+            </g>
+        </svg>
+    </div>
+</footer>
+
+</body>
+
+<script src="scripts/themes.js"></script>
+<script src="scripts/texteffects.js"></script>
+
+</html>

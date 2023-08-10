@@ -1,0 +1,42 @@
+/* 
+    Buttons, sliders etc
+*/
+
+/* by default, we'll style the buttons ourselves and hide the normal inputs */
+input[type="button"] {
+    display: none;
+}
+input[type="checkbox"]{
+    display: none;
+}
+
+
+.clickable {
+    cursor: pointer; 
+}
+
+
+.text-fade-button {
+    transition: opacity 0.3s ease;
+}
+
+.text-fade-button:hover {
+    opacity: 0.6;
+}
+
+
+.primary-button {
+    padding: 1em 2em;
+    color: var(--text-alt);
+    background-color: var(--primary);
+    border-radius: var(--border-radius); 
+    display: inline-block;
+    /* z-index: 2; */
+    /* white-space: nowrap; */
+    transition: transform ease 0.2s, box-shadow ease 0.2s;
+}
+
+.primary-button:hover {
+    transform: translate(0, -3px);
+    box-shadow: 0 20px 80px -10px var(--primary);
+}
