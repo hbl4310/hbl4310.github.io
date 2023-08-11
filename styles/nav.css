@@ -30,7 +30,7 @@ nav svg {
 
 .top-left-nav label {
     width: var(--fs-600);
-    translate: 0 calc(-1 * var(--fs-100));
+    translate: 0px calc(-1 * var(--fs-100));
 }
 
 
@@ -42,7 +42,7 @@ nav svg {
         /* cubic-bezier(0.6, 0.33, 0.67, 1.29); */
     display: flex;
     flex-wrap: nowrap;
-    justify-content: flex-end;
+    justify-content: end;
     align-items: center;
     flex-direction: row-reverse;
 }
@@ -55,27 +55,32 @@ nav svg {
 /* hamburger pop out menu */
 /* https://codepen.io/TheHeat/pen/kXpvBo */
 .hamburger-menu ul {
-    margin: 0;
-    padding: 0;
+    margin: 0px;
+    padding: 0px;
     list-style: none;
     display: flex;
     flex-wrap: nowrap;
     align-items: center;
 } 
 
-.hamburger-menu ul li {
-    max-height: 0;
+.hamburger-menu li {
+    max-height: 0px;
+    max-width: 0px;
     margin-left: 3em;
     overflow: hidden;
     opacity: 0;
     transition: 
-        max-height var(--transition-time) var(--transition-timing), 
+        max-height, max-width, margin var(--transition-time) var(--transition-timing), 
         opacity var(--transition-time) linear;
 }
 
 .hamburger-menu input[type="checkbox"]:checked ~ ul li {
+    overflow: visible;
     /* not specific, only needs to be large enough to fit everything */
+    /* margin-top: 0.5em;
+    margin-bottom: 0.5em; */
     max-height: 50em;
+    max-width: 50em;
     opacity: 1;
 }
 
@@ -119,4 +124,30 @@ nav svg {
 
 .hamburger-menu input[type="checkbox"]:checked + label #hamburger-mid-2 {
     transform: translateY(-3em) rotateZ(-45deg) scale(var(--x-scaling), var(--y-scaling));
+}
+
+
+/* need to leave enough horizontal space for items to expand left-ways */
+@media screen and (max-width: 750px) {
+    /* nav bar fixed on screen in mobile? */
+    /* nav {
+        position: fixed;
+        z-index: 1000;
+    } */
+
+    .hamburger-menu {
+        /* restrict width to force menu to wrap onto new line when open */
+        width: 6em;
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
+
+    .hamburger-menu ul {
+        flex-wrap: wrap;
+        justify-content: end;
+    }
+
+    .hamburger-menu input[type="checkbox"]:checked ~ ul li {
+        margin-top: 1em;
+    }
 }

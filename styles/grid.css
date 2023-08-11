@@ -1,4 +1,4 @@
-#grid-wrapper {
+.main-grid {
     display: grid;
     gap: 1em; 
     width: 100%;
@@ -28,4 +28,18 @@
 
 #right-box {
     grid-area: right;
+}
+
+@media screen and (max-width: 800px) {
+    .main-grid {
+        flex-basis: content;
+        grid-template-areas: 
+            'head'
+            'main'
+            'left'
+            'right'
+        ;
+        grid-auto-columns: auto;
+        grid-auto-rows: 1fr;
+    }
 }
