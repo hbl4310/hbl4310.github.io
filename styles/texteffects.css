@@ -41,10 +41,25 @@ to make more generic, trigger animation on data- attribute like data-text-animat
 /* https://www.geeksforgeeks.org/how-to-create-text-reveal-effect-using-html-and-css/ */
 .text-typing {
     --blink-colour: var(--text);
+    display: inline-block;
     font-family: var(--ff-mono);
     margin: 0px 0.1rem;
     white-space: nowrap;
     overflow: hidden;
+    isolation: isolate;
+}
+
+.text-typing::before {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    /* expect these properties to be overwritten */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    /* for debugging */
+    /* border: 1px solid green; */
 }
 
 .text-typing:hover {
@@ -54,7 +69,7 @@ to make more generic, trigger animation on data- attribute like data-text-animat
 
 @keyframes typing {
     0% { width: 0% }
-    100% { width: 100% }
+    100% { width: calc(var(--text-length) * 0.6em) }
 }
 @keyframes blink {
     0%, 100% {
