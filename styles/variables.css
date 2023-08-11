@@ -127,7 +127,7 @@
     --secondary-alt-1: hsl(17, 30%, 27%);
     --secondary-alt-2: hsl(17, 30%, 36%);
     --accent: hsl(19, 31%, 49%);
-    --accent-alt: hsl(19, 31%, 72%);
+    --accent-alt-1: hsl(19, 31%, 72%);
 }
 
 /* monochromatic light */
@@ -142,5 +142,5 @@
     --secondary-alt-1: hsl(209, 71%, 55%);
     --secondary-alt-2: hsl(209, 71%, 42%);
     --accent: hsl(209, 71%, 41%);
-    --accent-alt: hsl(209, 71%, 20%);
+    --accent-alt-1: hsl(209, 71%, 11%);
 }
