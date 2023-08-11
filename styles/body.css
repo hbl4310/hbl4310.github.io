@@ -18,6 +18,13 @@ body {
     text-rendering: optimizeLegibility;
 }
 
+@media screen and (max-width: 1000px) {
+    body {
+        margin: 0px 5%;
+        gap: 1.5em;
+    }
+}
+
 /* header {
 } */
 
@@ -57,10 +64,12 @@ a {
     color: inherit;
 }
 
-@media screen and (max-width: 1000px) {
-    body {
-        margin: 0px 5%;
-        gap: 1.5em;
-    }
+/* temporary class for heading card */
+.heading {
+    position: relative;
+    height: var(--height);
+    width: var(--width);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-
