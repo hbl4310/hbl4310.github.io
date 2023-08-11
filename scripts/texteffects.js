@@ -1,8 +1,22 @@
+// utilities
+function setTextValue(name, literal = true) {
+    for(const e of document.getElementsByClassName(name)) {
+        // only strings (non-literals) can be used in for :before,:after {content}
+        const x = literal ? e.textContent : `'${e.textContent}'`;
+        e.style.setProperty("--text-value", x);
+    }
+}
+
+function setTextLength(name) {
+    for(const e of document.getElementsByClassName(name)) {
+        e.style.setProperty("--text-length", e.textContent.length);
+    }
+}
+
+
 // text-typing 
 function applyTypingText() {
-    for(const e of document.getElementsByClassName("text-typing")) {
-        e.style.setProperty("--text-length", e.innerHTML.length);
-    }
+    setTextLength("text-typing");
 }
 
 
@@ -36,8 +50,8 @@ function hackerTextHover(e) {
 }
 
 function applyHackerText() {
+    setTextValue("text-hacker");
     for(const e of document.getElementsByClassName("text-hacker")) {
-        e.style.setProperty("--text-value", e.textContent);
         e.onmouseover = hackerTextHover;
     }
 }
@@ -53,8 +67,14 @@ function applyFaceCursorText() {
 }
 
 
+// text-glitch
+function applyGlitchText() {
+    setTextValue("text-glitch", false);
+}
+
 
 // apply
 applyTypingText();
 applyHackerText();
 applyFaceCursorText();
+applyGlitchText();

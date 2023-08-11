@@ -1,5 +1,5 @@
 /*  
-types: passive, on hover/focus/active, mouse interactionsgit s
+types: passive, on hover/focus/active, mouse interactions, custom activations
 some inspo:
 https://codepen.io/jh3y/pen/vzqVWa
 https://codepen.io/whqet/pen/mdrpaY
@@ -105,22 +105,21 @@ to make more generic, trigger animation on data- attribute like data-text-animat
     --y0: 0;
     --shadow-colour: var(--accent); 
     --blur: 1.5px;
+    --clamp: 420;
     text-shadow: 
         /* calc(clamp(-0.5em, (var(--x0) - var(--cursor-x)) * 0.1px, 0.5em)) calc(clamp(-0.5em, (var(--y0) - var(--cursor-y)) * 0.1px, 0.5em)) 0 var(--shadow-colour); */
-        calc((var(--x0) - var(--cursor-x)) * 0.01px) calc((var(--y0) - var(--cursor-y)) * 0.01px) var(--blur) var(--shadow-colour), 
-        calc((var(--x0) - var(--cursor-x)) * 0.02px) calc((var(--y0) - var(--cursor-y)) * 0.02px) var(--blur) var(--shadow-colour),
-        calc((var(--x0) - var(--cursor-x)) * 0.03px) calc((var(--y0) - var(--cursor-y)) * 0.03px) var(--blur) var(--shadow-colour),
-        calc((var(--x0) - var(--cursor-x)) * 0.04px) calc((var(--y0) - var(--cursor-y)) * 0.04px) var(--blur) var(--shadow-colour),
-        calc((var(--x0) - var(--cursor-x)) * 0.05px) calc((var(--y0) - var(--cursor-y)) * 0.05px) var(--blur) var(--shadow-colour),
-        calc((var(--x0) - var(--cursor-x)) * 0.06px) calc((var(--y0) - var(--cursor-y)) * 0.06px) var(--blur) var(--shadow-colour);
-
-    transition: all 0.4s;
+        calc(clamp(-1 * var(--clamp), var(--x0) - var(--cursor-x), var(--clamp)) * 0.01px) calc(clamp(-1 * var(--clamp), var(--y0) - var(--cursor-y), var(--clamp)) * 0.01px) var(--blur) var(--shadow-colour), 
+        calc(clamp(-1 * var(--clamp), var(--x0) - var(--cursor-x), var(--clamp)) * 0.02px) calc(clamp(-1 * var(--clamp), var(--y0) - var(--cursor-y), var(--clamp)) * 0.02px) var(--blur) var(--shadow-colour),
+        calc(clamp(-1 * var(--clamp), var(--x0) - var(--cursor-x), var(--clamp)) * 0.03px) calc(clamp(-1 * var(--clamp), var(--y0) - var(--cursor-y), var(--clamp)) * 0.03px) var(--blur) var(--shadow-colour),
+        calc(clamp(-1 * var(--clamp), var(--x0) - var(--cursor-x), var(--clamp)) * 0.04px) calc(clamp(-1 * var(--clamp), var(--y0) - var(--cursor-y), var(--clamp)) * 0.04px) var(--blur) var(--shadow-colour),
+        calc(clamp(-1 * var(--clamp), var(--x0) - var(--cursor-x), var(--clamp)) * 0.05px) calc(clamp(-1 * var(--clamp), var(--y0) - var(--cursor-y), var(--clamp)) * 0.05px) var(--blur) var(--shadow-colour),
+        calc(clamp(-1 * var(--clamp), var(--x0) - var(--cursor-x), var(--clamp)) * 0.06px) calc(clamp(-1 * var(--clamp), var(--y0) - var(--cursor-y), var(--clamp)) * 0.06px) var(--blur) var(--shadow-colour);
+    transition: all 0.2s;
     /* transform: 
         translateX(calc(-0.3 * clamp(-0.5em, (var(--cursor-x) - 263) * 1px, 0.5em))) 
         translateY(calc(-0.3 * clamp(-0.5em, (var(--cursor-y) - 188) * 1px, 0.5em)))
         rotateX(calc(clamp(-35, 0 - (var(--cursor-y) - 188) * 0.3, 35) * 0.5deg)) 
         rotateY(calc(clamp(-35, (var(--cursor-x) - 263) * 0.3, 35) * 0.5deg)); */
-
 }
 
 
@@ -166,22 +165,87 @@ to make more generic, trigger animation on data- attribute like data-text-animat
 
 /* https://codepen.io/zitrusfrisch/pen/kBNEag */
 .text-3d {
-    text-shadow:     0 1px 0 hsl(174,5%,80%),
-                    0 2px 0 hsl(174,5%,75%),
-                    0 3px 0 hsl(174,5%,70%),
-                    0 4px 0 hsl(174,5%,66%),
-                    0 5px 0 hsl(174,5%,64%),
-                    0 6px 0 hsl(174,5%,62%),
-                    0 7px 0 hsl(174,5%,61%),
-                    0 8px 0 hsl(174,5%,60%),
+    text-shadow:    0px 1px 0px hsl(174,5%,80%),
+                    0px 2px 0px hsl(174,5%,75%),
+                    0px 3px 0px hsl(174,5%,70%),
+                    0px 4px 0px hsl(174,5%,66%),
+                    0px 5px 0px hsl(174,5%,64%),
+                    0px 6px 0px hsl(174,5%,62%),
+                    0px 7px 0px hsl(174,5%,61%),
+                    0px 8px 0px hsl(174,5%,60%),
 
-                    0 0 5px rgba(0,0,0,.05),
-                0 1px 3px rgba(0,0,0,.2),
-                0 3px 5px rgba(0,0,0,.2),
-                0 5px 10px rgba(0,0,0,.2),
-                0 10px 10px rgba(0,0,0,.2),
-                0 20px 20px rgba(0,0,0,.3);
+                    0px 0px  5px rgba(0,0,0,.05),
+                    0px 1px  3px rgba(0,0,0,.2),
+                    0px 3px  5px rgba(0,0,0,.2),
+                    0px 5px  10px rgba(0,0,0,.2),
+                    0px 10px 10px rgba(0,0,0,.2),
+                    0px 20px 20px rgba(0,0,0,.3);
 }
+
+
+/* https://codepen.io/pgalor/pen/OeRWJQ */
+.text-glitch {
+    display: inline-block;
+    font-family: var(--ff-mono);
+    animation: glitch 1s linear infinite;
+}
+
+@keyframes glitch{
+    2%,64%{
+        transform: translate(2px,0) skew(0deg);
+    }
+    4%,60%{
+        transform: translate(-2px,0) skew(0deg);
+    }
+    62%{
+        transform: translate(0,0) skew(5deg); 
+    }
+}
+
+.text-glitch:before,
+.text-glitch:after {
+    content: var(--text-value);
+    position: absolute;
+    left: 0;
+}
+
+
+.text-glitch:before {
+    animation: glitchTop 1s linear infinite;
+    clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+}
+
+@keyframes glitchTop {
+    2%,64% {
+        transform: translate(2px, -2px);
+    }
+    4%,60% {
+        transform: translate(-2px, 2px);
+    }
+    62% {
+        transform: translate(13px, -1px) skew(-13deg);
+    }
+}
+
+.text-glitch:after {
+    animation: glitchBotom 1.5s linear infinite;
+    clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
+    -webkit-clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
+}
+
+@keyframes glitchBotom {
+    2%,64% {
+        transform: translate(-2px, 0);
+    }
+    4%,60% {
+        transform: translate(-2px, 0);
+    }
+    62% {
+        transform: translate(-22px, 5px) skew(21deg);
+    }
+} 
+
 
 /* 
 TODO: 
