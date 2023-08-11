@@ -8,6 +8,7 @@ function switchTheme(currentThemeIdx = themeIdx) {
     const newClassTheme = `theme-${currentThemeIdx + 1}`;
     let i = 0
     document.body.className = newClassTheme;
+    console.log('changing theme to', newClassTheme);
     document.body.className.replace(/(?:^|\s)theme-\d+(?!\S)/g , newClassTheme);
     themeIdx = (currentThemeIdx + 1) % maxThemes;
 }
