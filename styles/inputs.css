@@ -16,11 +16,11 @@ input[type="checkbox"]{
 }
 
 
-.text-fade-button {
+.button-fade-text {
     transition: opacity 0.3s ease;
 }
 
-.text-fade-button:hover {
+.button-fade-text:hover {
     opacity: 0.6;
 }
 
