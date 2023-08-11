@@ -134,7 +134,7 @@
         </div>
     </section>
     <section class="card" id="main-box">
-        <div id="shapes-wrapper" data-configuration="1" data-roundness="2">
+        <div class="shapes" data-configuration="1" data-roundness="2">
             <div class="shape"></div>
             <div class="shape"></div>
             <div class="shape"></div>
@@ -144,11 +144,15 @@
             <div class="shape"></div>
             <script>
                 const shapesIntervalMs = 3141; 
-                const shapesWrapper = document.getElementById("shapes-wrapper"); 
-                setInterval(() => {
-                    shapesWrapper.dataset.configuration = rand(1, 4);
-                    shapesWrapper.dataset.roundness = rand(1, 6);
-                }, shapesIntervalMs);
+                const shapesConfigs = 4;
+                const shapesRounds = 6;
+                function changeShapes() {
+                    for (const e of document.getElementsByClassName("shapes")) {
+                        e.dataset.configuration = rand(1, shapesConfigs);
+                        e.dataset.roundness = rand(1, shapesRounds);
+                    }
+                }
+                setInterval(changeShapes, shapesIntervalMs);
             </script>
         </div>
     </section>
