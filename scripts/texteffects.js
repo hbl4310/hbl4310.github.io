@@ -50,7 +50,7 @@ function switchTextEffects() {
         if (newIdx >= 0) {
             const oldTextEffect = `text-${textSwitchEffects[oldIdx]}`;
             const newTextEffect = `text-${textSwitchEffects[newIdx]}`;
-            console.log('switching text effect from', oldTextEffect, 'to', newTextEffect);
+            // console.log('switching text effect from', oldTextEffect, 'to', newTextEffect);
             e.className = e.className.replace(oldTextEffect, newTextEffect);
             const unapplyFunc = textSwitchEffectsAndFuncs[oldIdx][2];
             if (unapplyFunc) {
