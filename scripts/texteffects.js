@@ -44,6 +44,9 @@ function switchTextEffects() {
             if (textMatches && textMatches.length == 2 && textSwitchEffects.includes(textMatches[1])) {
                 oldIdx = textSwitchEffects.indexOf(textMatches[1]);
                 newIdx = rand(0, textSwitchEffects.length - 1);
+                if (newIdx == oldIdx) {
+                    newIdx = (oldIdx + 1) % textSwitchEffects.length;
+                }
                 break;
             }
         }
