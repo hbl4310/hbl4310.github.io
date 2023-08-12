@@ -144,3 +144,13 @@
     --accent: hsl(209, 71%, 41%);
     --accent-alt-1: hsl(209, 71%, 11%);
 }
+
+.tight-layout {
+    margin: 0px; 
+    padding: 0px; 
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}

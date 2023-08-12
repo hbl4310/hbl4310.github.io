@@ -42,28 +42,6 @@ main {
     width: 100%;
 }
 
-.card {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0px; 
-    padding: 0px;
-    border-radius: var(--border-radius);
-    --border-width: 0.3em; 
-    --height: 95%; 
-    --width: 95%;
-}
-
-.tight-layout {
-    margin: 0px; 
-    padding: 0px; 
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
-}
-
 /* temporary class for heading card */
 .heading {
     position: relative;
