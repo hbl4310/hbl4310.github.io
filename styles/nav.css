@@ -74,11 +74,22 @@ nav svg {
         opacity var(--transition-time) linear;
 }
 
+.hamburger-menu li:nth-child(1) {
+    transition-delay: 0.1s;
+}
+.hamburger-menu li:nth-child(2) {
+    transition-delay: 0.2s;
+}
+.hamburger-menu li:nth-child(3) {
+    transition-delay: 0.3s;
+}
+.hamburger-menu li:nth-child(4) {
+    transition-delay: 0.4s;
+}
+
 .hamburger-menu input[type="checkbox"]:checked ~ ul li {
     overflow: visible;
     /* not specific, only needs to be large enough to fit everything */
-    /* margin-top: 0.5em;
-    margin-bottom: 0.5em; */
     max-height: 50em;
     max-width: 50em;
     opacity: 1;
