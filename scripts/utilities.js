@@ -18,3 +18,15 @@ function saveCursorPosition(e) {
 }
 
 document.addEventListener('mousemove', saveCursorPosition)
+
+
+// load html into div content
+// https://stackoverflow.com/questions/17636528/how-do-i-load-an-html-page-in-a-div-using-javascript
+// might need: https://stackoverflow.com/questions/72666698/github-pages-how-to-fetch-file-in-js-from-repo
+async function fetchHtmlAsText(url) {
+    return await (await fetch(url)).text();
+}
+
+async function loadContent(div, url) {
+    div.innerHTML = await fetchHtmlAsText(url);
+}
