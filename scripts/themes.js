@@ -2,7 +2,7 @@
 
 // theme switcher
 let themeIdx = 0; 
-const maxThemes = getComputedStyle(document.body).getPropertyValue("--num-themes");
+let maxThemes = 1;
 
 function switchTheme(currentThemeIdx = themeIdx) {
     const newClassTheme = `theme-${currentThemeIdx + 1}`;
@@ -27,10 +27,11 @@ function initTheme() {
     }
 }
 
-window.addEventListener("DOMContentLoaded", initTheme);
-
-
-window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-    // light mode defaults are theme-2 and theme-4
-    Math.random() > 0.5 ? switchTheme(1) : switchTheme(3);
-});
+function applyThemes() {
+    maxThemes = getComputedStyle(document.body).getPropertyValue("--num-themes");
+    window.addEventListener("DOMContentLoaded", initTheme);
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+        // light mode defaults are theme-2 and theme-4
+        Math.random() > 0.5 ? switchTheme(1) : switchTheme(3);
+    });
+}
