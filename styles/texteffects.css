@@ -1,16 +1,10 @@
 /*  
-types: passive, on hover/focus/active, mouse interactions, custom activations
+types: passive, on hover/focus/active, mouse interactions, generic activation on data-active="true"
+TODO: maybe use aria tag instead of data-active
 some inspo:
 https://codepen.io/jh3y/pen/vzqVWa
 https://codepen.io/whqet/pen/mdrpaY
 */
-
-
-/* 
-ideally, 
-to make more generic, trigger animation on data- attribute like data-text-animate="true" and change this attribute with js
-*/
-
 
 .text-magic {
     animation: background-pan 3s linear infinite;
@@ -62,6 +56,7 @@ to make more generic, trigger animation on data- attribute like data-text-animat
     /* border: 1px solid green; */
 }
 
+.text-typing[data-active="true"],
 .text-typing:hover {
     animation: typing calc(var(--text-length) * 0.1s) steps(var(--text-length),end) forwards,
                blink 1s infinite;
@@ -107,6 +102,8 @@ to make more generic, trigger animation on data- attribute like data-text-animat
     transform: translate(-101%, -50%);
     transition: 400ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
+
+.text-strikethrough[data-active="true"]::after,
 .text-strikethrough:hover::after {
     visibility: visible;
     opacity: 1;
@@ -224,7 +221,6 @@ to make more generic, trigger animation on data- attribute like data-text-animat
     left: 0;
 }
 
-
 .text-glitch:before {
     animation: glitchTop 1s linear infinite;
     clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
@@ -262,11 +258,45 @@ to make more generic, trigger animation on data- attribute like data-text-animat
 } 
 
 
+.text-enter {
+    --transition-duration: 250ms;
+    --transition-step: 40ms;
+    border-bottom: 0.1em solid var(--text);
+    transition: border calc(var(--transition-duration) + var(--transition-step) * var(--text-length));
+}
+
+._text-enter-part {
+    display: inline-block;
+    opacity: 0;
+    transform: translate(0, -150%);
+    transition: all var(--transition-duration) calc((1 + var(--part-index)) * var(--transition-step));
+}
+
+.text-enter[data-active="true"] ._text-enter-part, 
+.text-enter:hover ._text-enter-part {
+    opacity: 1;
+    transform: translate(0, 0%);
+}
+
+
+.text-fade {
+    --transition-duration: 250ms;
+    --transition-step: 40ms;
+}
+._text-fade-part {
+    opacity: 0;
+    transition: all var(--transition-duration) calc((1 + var(--part-index)) * var(--transition-step));
+}
+.text-fade[data-active="true"] ._text-fade-part, 
+.text-fade:hover ._text-fade-part {
+    opacity: 1;
+}
+
+
+
 /* 
 TODO: 
-    Enter
     Swapsies
-    Fading
     Flipping
     Karaoke
     Filling
