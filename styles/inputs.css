@@ -12,7 +12,7 @@ input[type="checkbox"]{
 
 
 .clickable {
-    cursor: pointer; 
+    cursor: url("../assets/cartoon_hand.cur"), pointer;
 }
 
 

@@ -3,7 +3,7 @@
     --top: 0px; 
     border-radius: inherit;
     background-color: transparent;
-    cursor: crosshair; 
+    cursor: url("../assets/horse_small.png"), url("../assets/horse_small.cur"), default;
     position: relative; 
     /* 
     because there is no border, make height & width larger
