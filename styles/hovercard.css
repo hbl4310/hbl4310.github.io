@@ -9,7 +9,7 @@
     isolation: isolate;
 }
 
-.hovercard:hover:before {
+.hovercard:hover::before {
     background-position: 100% 100%;
     transform: scale(var(--scale-x), var(--scale-y));
 }

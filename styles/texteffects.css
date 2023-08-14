@@ -214,14 +214,14 @@ https://codepen.io/whqet/pen/mdrpaY
     }
 }
 
-.text-glitch:before,
-.text-glitch:after {
+.text-glitch::before,
+.text-glitch::after {
     content: var(--text-value);
     position: absolute;
     left: 0;
 }
 
-.text-glitch:before {
+.text-glitch::before {
     animation: glitchTop 1s linear infinite;
     clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
     -webkit-clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
@@ -239,7 +239,7 @@ https://codepen.io/whqet/pen/mdrpaY
     }
 }
 
-.text-glitch:after {
+.text-glitch::after {
     animation: glitchBotom 1.5s linear infinite;
     clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
     -webkit-clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
