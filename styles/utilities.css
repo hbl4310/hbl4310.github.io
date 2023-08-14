@@ -28,8 +28,8 @@
     --fs-500: 2em; 
     --fs-600: 2.5em; 
     --fs-700: 3em; 
-    --fs-800: 4em; 
-    --fs-900: 5em 
+    --fs-800: clamp(3.5em, 5vw, 5em); 
+    --fs-900: clamp(5em, 8vw, 7em);
 
     /* 
     --spacing*
