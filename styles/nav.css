@@ -36,7 +36,7 @@ nav svg {
 
 /* right hand hamburger icon, small screen */
 .hamburger-menu {
-    --transition-time: 500ms; 
+    --transition-time: 300ms; 
     --transition-timing: 
         cubic-bezier(0.68, -0.6, 0.32, 1.6);
         /* cubic-bezier(0.6, 0.33, 0.67, 1.29); */
@@ -57,6 +57,7 @@ nav svg {
 .hamburger-menu ul {
     margin: 0px;
     padding: 0px;
+    gap: 3em; 
     list-style: none;
     display: flex;
     flex-wrap: nowrap;
@@ -65,13 +66,14 @@ nav svg {
 
 .hamburger-menu li {
     max-height: 0px;
-    max-width: 0px;
-    margin-left: 3em;
-    overflow: hidden;
     opacity: 0;
     transition: 
-        max-height, max-width, margin var(--transition-time) var(--transition-timing), 
+        max-height, margin var(--transition-time) var(--transition-timing), 
         opacity var(--transition-time) linear;
+}
+
+.hamburger-menu li .text-strikethrough {
+    --strike-colour: var(--accent);
 }
 
 .hamburger-menu li:nth-child(1) {
@@ -88,7 +90,6 @@ nav svg {
 }
 
 .hamburger-menu input[type="checkbox"]:checked ~ ul li {
-    overflow: visible;
     /* not specific, only needs to be large enough to fit everything */
     max-height: 50em;
     max-width: 50em;
@@ -156,6 +157,7 @@ nav svg {
     .hamburger-menu ul {
         flex-wrap: wrap;
         justify-content: end;
+        gap: 0px;
     }
 
     .hamburger-menu input[type="checkbox"]:checked ~ ul li {
