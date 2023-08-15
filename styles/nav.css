@@ -17,6 +17,18 @@ nav svg {
     overflow: visible;
 }
 
+nav svg .lightbulb {
+    fill: var(--primary);
+}
+
+nav svg .lightbulb .lightbulb-glow {
+    fill: var(--text);
+}
+
+nav svg .rocket {
+    fill: var(--accent)
+}
+
 
 /* left hand side items */
 .top-left-nav {
