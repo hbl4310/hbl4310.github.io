@@ -41,6 +41,7 @@ https://codepen.io/whqet/pen/mdrpaY
     white-space: nowrap;
     overflow: hidden;
     isolation: isolate;
+    width: max-content;
 }
 
 .text-typing::before {
@@ -59,7 +60,7 @@ https://codepen.io/whqet/pen/mdrpaY
 .text-typing[data-active="true"],
 .text-typing:hover {
     animation: typing calc(var(--text-length) * 0.1s) steps(var(--text-length),end) forwards,
-               blink 1s infinite;
+               blink 750ms infinite;
 }
 
 @keyframes typing {
@@ -68,10 +69,10 @@ https://codepen.io/whqet/pen/mdrpaY
 }
 @keyframes blink {
     0%, 100% {
-      border-right: 2px solid transparent;
+        border-right: 0.15em solid transparent;
     }
     50% {
-        border-right: 2px solid var(--blink-colour);
+        border-right: 0.15em solid var(--blink-colour);
     }
 }
 
