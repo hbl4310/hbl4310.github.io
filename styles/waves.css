@@ -17,38 +17,51 @@
     margin-bottom: -7px; /*Fix for safari gap*/
 }
 
+.waves-parallax {
+    stroke: var(--text);
+}
+
 /* Animation */
 
 .waves-parallax > use {
-    animation: move-forever 25s cubic-bezier(.55,.5,.45,.5) infinite;
-}
-.waves-parallax > use:nth-child(1) {
     opacity: 0.2;
-    animation-delay: -2s;
-    animation-duration: 7s;
-}
-.waves-parallax > use:nth-child(2) {
-    opacity: 0.2;
-    animation-delay: -3s;
-    animation-duration: 10s;
-}
-.waves-parallax > use:nth-child(3) {
-    opacity: 0.2;
-    animation-delay: -4s;
-    animation-duration: 13s;
-}
-.waves-parallax > use:nth-child(4) {
-    opacity: 0.2;
-    animation-delay: -5s;
-    animation-duration: 20s;
+    animation: wave-move-to-right 25s cubic-bezier(.55,.5,.45,.5) infinite;
 }
 
-@keyframes move-forever {
+.waves-parallax > use:nth-child(1) {
+    animation-duration: 18s;
+    animation-delay: -2s;
+}
+.waves-parallax > use:nth-child(2) {
+    animation-name: wave-move-to-left;
+    animation-duration: 6s;
+    animation-delay: -3s;
+}
+.waves-parallax > use:nth-child(3) {
+    animation-duration: 12s;
+    animation-delay: -4s;
+}
+.waves-parallax > use:nth-child(4) {
+    animation-name: wave-move-to-left;
+    animation-duration: 9s;
+    animation-delay: -5s;
+}
+
+@keyframes wave-move-to-right {
     0% {
-        transform: translate3d(-90px, 0, 0);
+        transform: translate3d(0, 0, 0);
     }
     100% {
-        transform: translate3d(85px, 0, 0);
+        transform: translate3d(240px, 0, 0);
+    }
+}
+
+@keyframes wave-move-to-left {
+    0% {
+        transform: translate3d(240px, 0, 0);
+    }
+    100% {
+        transform: translate3d(0, 0, 0);
     }
 }
 
