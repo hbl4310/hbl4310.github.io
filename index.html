@@ -217,7 +217,7 @@
     </section>
     <section class="card" id="main-box">
         <link rel="stylesheet" href="styles/shapes.css">
-        <div class="shapes" data-configuration="1" data-roundness="2">
+        <div class="shapes" data-configuration="1" data-roundness="2" data-numshapes="4" data-numrounds="6" data-intervalms="3141">
             <div class="shape"></div>
             <div class="shape"></div>
             <div class="shape"></div>
@@ -226,16 +226,19 @@
             <div class="shape"></div>
             <div class="shape"></div>
             <script>
-                const shapesIntervalMs = 3141; 
-                const shapesConfigs = 4;
-                const shapesRounds = 6;
                 function changeShapes() {
                     for (const e of document.getElementsByClassName("shapes")) {
-                        e.dataset.configuration = rand(1, shapesConfigs);
-                        e.dataset.roundness = rand(1, shapesRounds);
+                        const data = e.dataset; 
+                        const shapesIntervalMs = data.intervalms, 
+                              shapesConfigs = data.numshapes,
+                              shapesRounds = data.numrounds;
+                        setInterval(() => {
+                            data.configuration = rand(1, shapesConfigs);
+                            data.roundness = rand(1, shapesRounds);
+                        }, shapesIntervalMs);
                     }
                 }
-                setInterval(changeShapes, shapesIntervalMs);
+                changeShapes();
             </script>
         </div>
     </section>

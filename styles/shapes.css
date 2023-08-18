@@ -5,7 +5,7 @@
     max-height: 100%;
     place-items: center;
     position: relative; 
-    --shape-border-radius: 3rem;
+    --shape-border-radius-mult: 3rem;
 }
 
 .shapes > .shape {
@@ -244,107 +244,107 @@
 
 /* different shape roundness configuration states for animation */
 .shapes[data-roundness="1"] > .shape {
-    border-radius: calc(1 * var(--shape-border-radius));
+    border-radius: calc(1 * var(--shape-border-radius-mult));
 }
 
 .shapes[data-roundness="2"] > .shape {
-    border-radius: calc(0 * var(--shape-border-radius));
+    border-radius: calc(0 * var(--shape-border-radius-mult));
 }
 
 .shapes[data-roundness="3"] > .shape {
-    border-radius: calc(5 * var(--shape-border-radius));
+    border-radius: calc(5 * var(--shape-border-radius-mult));
 }
 
 
 .shapes[data-roundness="4"] > .shape:nth-child(1) {
-    border-top-left-radius: calc(2 * var(--shape-border-radius));
+    border-top-left-radius: calc(2 * var(--shape-border-radius-mult));
 }
 
 .shapes[data-roundness="4"] > .shape:nth-child(2) {
-    border-radius: calc(3 * var(--shape-border-radius));
+    border-radius: calc(3 * var(--shape-border-radius-mult));
 }
 
 .shapes[data-roundness="4"] > .shape:nth-child(3) {
-    border-top-right-radius: calc(2 * var(--shape-border-radius));
+    border-top-right-radius: calc(2 * var(--shape-border-radius-mult));
 }
 
 .shapes[data-roundness="4"] > .shape:nth-child(4) {
-    border-top-right-radius: calc(1 * var(--shape-border-radius));
-    border-bottom-right-radius: calc(1 * var(--shape-border-radius));
+    border-top-right-radius: calc(1 * var(--shape-border-radius-mult));
+    border-bottom-right-radius: calc(1 * var(--shape-border-radius-mult));
 }
 
 .shapes[data-roundness="4"] > .shape:nth-child(5) {
-    border-bottom-left-radius: calc(2 * var(--shape-border-radius));
+    border-bottom-left-radius: calc(2 * var(--shape-border-radius-mult));
 }
 
 .shapes[data-roundness="4"] > .shape:nth-child(6) {
-    border-top-left-radius: calc(3 * var(--shape-border-radius));
+    border-top-left-radius: calc(3 * var(--shape-border-radius-mult));
 }
 
 .shapes[data-roundness="4"] > .shape:nth-child(7) {
-    border-top-left-radius: calc(1 * var(--shape-border-radius));
+    border-top-left-radius: calc(1 * var(--shape-border-radius-mult));
 }
 
 
 .shapes[data-roundness="5"] > .shape:nth-child(1) {
-    border-bottom-right-radius: calc(2 * var(--shape-border-radius));
-    border-top-left-radius: calc(2 * var(--shape-border-radius));
+    border-bottom-right-radius: calc(2 * var(--shape-border-radius-mult));
+    border-top-left-radius: calc(2 * var(--shape-border-radius-mult));
 }
 
 .shapes[data-roundness="5"] > .shape:nth-child(2) {
-    border-top-right-radius: calc(3 * var(--shape-border-radius));
-    border-bottom-right-radius: calc(3 * var(--shape-border-radius));
+    border-top-right-radius: calc(3 * var(--shape-border-radius-mult));
+    border-bottom-right-radius: calc(3 * var(--shape-border-radius-mult));
 }
 
 .shapes[data-roundness="5"] > .shape:nth-child(3) {
-    border-radius: calc(5 * var(--shape-border-radius));
+    border-radius: calc(5 * var(--shape-border-radius-mult));
 }
 
 .shapes[data-roundness="5"] > .shape:nth-child(4) {
-    border-top-left-radius: calc(2 * var(--shape-border-radius));
-    border-top-right-radius: calc(2 * var(--shape-border-radius));
-    border-bottom-left-radius: calc(2 * var(--shape-border-radius));
+    border-top-left-radius: calc(2 * var(--shape-border-radius-mult));
+    border-top-right-radius: calc(2 * var(--shape-border-radius-mult));
+    border-bottom-left-radius: calc(2 * var(--shape-border-radius-mult));
 }
 
 .shapes[data-roundness="5"] > .shape:nth-child(5) {
-    border-radius: calc(1 * var(--shape-border-radius));
+    border-radius: calc(1 * var(--shape-border-radius-mult));
 }
 
 .shapes[data-roundness="5"] > .shape:nth-child(6) {
-    border-top-right-radius: calc(5 * var(--shape-border-radius));
-    border-bottom-left-radius: calc(3 * var(--shape-border-radius));
+    border-top-right-radius: calc(5 * var(--shape-border-radius-mult));
+    border-bottom-left-radius: calc(3 * var(--shape-border-radius-mult));
 }
 
 .shapes[data-roundness="5"] > .shape:nth-child(7) {
-    border-top-left-radius: calc(2 * var(--shape-border-radius));
-    border-top-right-radius: calc(2 * var(--shape-border-radius));
+    border-top-left-radius: calc(2 * var(--shape-border-radius-mult));
+    border-top-right-radius: calc(2 * var(--shape-border-radius-mult));
 }
 
 
 .shapes[data-roundness="6"] > .shape:nth-child(1) {
-    border-top-left-radius: calc(3 * var(--shape-border-radius));
+    border-top-left-radius: calc(3 * var(--shape-border-radius-mult));
 }
 
 .shapes[data-roundness="6"] > .shape:nth-child(2) {  
-    border-top-left-radius: calc(3 * var(--shape-border-radius));
+    border-top-left-radius: calc(3 * var(--shape-border-radius-mult));
 }
 
 .shapes[data-roundness="6"] > .shape:nth-child(3) {  
-    border-top-left-radius: calc(3 * var(--shape-border-radius));
+    border-top-left-radius: calc(3 * var(--shape-border-radius-mult));
 }
 
 .shapes[data-roundness="6"] > .shape:nth-child(4) {  
-    border-top-left-radius: calc(3 * var(--shape-border-radius));
+    border-top-left-radius: calc(3 * var(--shape-border-radius-mult));
 }
 
 .shapes[data-roundness="6"] > .shape:nth-child(5) {  
-    border-top-right-radius: calc(3 * var(--shape-border-radius));
+    border-top-right-radius: calc(3 * var(--shape-border-radius-mult));
 }
 
 .shapes[data-roundness="6"] > .shape:nth-child(6) {  
-    border-top-right-radius: calc(3 * var(--shape-border-radius));
+    border-top-right-radius: calc(3 * var(--shape-border-radius-mult));
 }
 
 .shapes[data-roundness="6"] > .shape:nth-child(7) {  
-    border-top-right-radius: calc(3 * var(--shape-border-radius));
+    border-top-right-radius: calc(3 * var(--shape-border-radius-mult));
 }
