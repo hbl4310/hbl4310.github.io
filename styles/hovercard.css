@@ -2,7 +2,7 @@
 .hovercard {
     border: var(--border-width) solid var(--primary);
     border-radius: inherit;
-    cursor: crosshair;
+    cursor: help;
     position: relative;
     height: var(--height);
     width: var(--width);
