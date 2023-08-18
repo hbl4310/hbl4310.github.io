@@ -41,13 +41,3 @@ main {
 .container {
     width: 100%;
 }
-
-/* temporary class for heading card */
-.heading {
-    position: relative;
-    height: var(--height);
-    width: var(--width);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
