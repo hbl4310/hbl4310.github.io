@@ -276,19 +276,28 @@
                 </h2>
             </div>
             <script>
-                // can't find a way to get the element top and left properties from within CSS
-                // so have to resort to filthy javascript
                 function setGlowcardRect() {
                     for (const card of document.getElementsByClassName("glowcard")) {
+                        // add window.scroll{X,Y} to cover case where user refreshes window while scrolled
                         const rect = card.getBoundingClientRect(), 
-                              x = rect.left, 
-                              y = rect.top;
+                              x = rect.left + window.scrollX, 
+                              y = rect.top + window.scrollY;
                         card.style.setProperty("--left", `${x}px`);
                         card.style.setProperty("--top", `${y}px`);
                     }
                 }
+                // maintain correct relative mouse position even if user scrolls
+                function setGlowcardScrollOffset() {
+                    for (const card of document.getElementsByClassName("glowcard")) {
+                        const x = window.scrollX, 
+                              y = window.scrollY;
+                        card.style.setProperty("--scroll-x", `${x}px`);
+                        card.style.setProperty("--scroll-y", `${y}px`);
+                    }
+                }
                 window.addEventListener("DOMContentLoaded", setGlowcardRect)
                 window.addEventListener("resize", e => setGlowcardRect())
+                window.addEventListener("scroll", e => setGlowcardScrollOffset())
             </script>
         </div>
     </section>

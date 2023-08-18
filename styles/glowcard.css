@@ -1,6 +1,8 @@
 .glowcard {
     --left: 0px; 
     --top: 0px; 
+    --scroll-x: 0px; 
+    --scroll-y: 0px; 
     border-radius: inherit;
     background-color: transparent;
     cursor: url("../assets/cursors/horse_small.png"), url("../assets/cursors/horse_small.cur"), default;
@@ -12,6 +14,8 @@
     */
     height: calc(var(--height) + 2 * var(--border-width));
     width: calc(var(--width) + 2 * var(--border-width));
+    --rel-x: calc(var(--cursor-x) * 1px + var(--scroll-x) - var(--left));
+    --rel-y: calc(var(--cursor-y) * 1px + var(--scroll-y) - var(--top))
 }
 
 .glowcard:hover > .glowcard-content,
@@ -36,7 +40,7 @@
     border-radius: inherit; 
     background: radial-gradient(
         clamp(min(var(--left), var(--top)), 15em, 30em) circle at 
-        calc(var(--cursor-x) * 1px - var(--left)) calc(var(--cursor-y) * 1px - var(--top)), 
+        var(--rel-x) var(--rel-y), 
         var(--secondary), 
         transparent 40%
     );
@@ -50,8 +54,8 @@
 
 .glowcard > .glowcard-border { 
     background: radial-gradient(
-        clamp(1.67 * min(var(--left), var(--top)), 25em, 50em) circle at 
-        calc(var(--cursor-x) * 1px - var(--left)) calc(var(--cursor-y) * 1px - var(--top)), 
+        clamp(1.67 * min(var(--left), var(--top)), 25em, 75em) circle at 
+        var(--rel-x) var(--rel-y), 
         var(--accent),
         transparent 40%
     );
