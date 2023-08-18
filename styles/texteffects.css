@@ -58,6 +58,7 @@ https://codepen.io/whqet/pen/mdrpaY
 }
 
 .text-typing[data-active="true"],
+.text-typing:focus,
 .text-typing:hover {
     animation: typing calc(var(--text-length) * 0.1s) steps(var(--text-length),end) forwards,
                blink 750ms infinite;
@@ -105,6 +106,7 @@ https://codepen.io/whqet/pen/mdrpaY
 }
 
 .text-strikethrough[data-active="true"]::after,
+.text-strikethrough:focus::after,
 .text-strikethrough:hover::after {
     visibility: visible;
     opacity: 1;
@@ -274,6 +276,7 @@ https://codepen.io/whqet/pen/mdrpaY
 }
 
 .text-enter[data-active="true"] ._text-enter-part, 
+.text-enter:focus ._text-enter-part,
 .text-enter:hover ._text-enter-part {
     opacity: 1;
     transform: translate(0, 0%);
@@ -283,12 +286,14 @@ https://codepen.io/whqet/pen/mdrpaY
 .text-fade {
     --transition-duration: 250ms;
     --transition-step: 40ms;
+    border-bottom: 0.1em dotted var(--text);
 }
 ._text-fade-part {
     opacity: 0;
     transition: all var(--transition-duration) calc((1 + var(--part-index)) * var(--transition-step));
 }
 .text-fade[data-active="true"] ._text-fade-part, 
+.text-fade:focus ._text-fade-part, 
 .text-fade:hover ._text-fade-part {
     opacity: 1;
 }

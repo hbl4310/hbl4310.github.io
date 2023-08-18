@@ -33,7 +33,7 @@ function applyTextEffects() {
                 if (e.childElementCount == 0) {
                     applyFunc(e);
                 } else {
-                    console.warn(`Cannot apply ${effectClass} to ${e} due to prsence of children`)
+                    console.warn(`Cannot apply ${effectClass} to ${e} due to presence of children`)
                 }
             }
         }
@@ -131,7 +131,7 @@ function switchTextEffects() {
             if (applyFunc) {
                 applyFunc(e);
             }
-            // set data-active="true" to set off any animation, then turn it back off to engage hover trigger
+            // set data-active="true" to set off any animation, then turn it back off to engage hover trigger if applicable
             textTimers.push(setTimeout(activate, activateDelayMs, e));
             textTimers.push(setTimeout(deactivate, deactivateDelayMs, e));
         }
@@ -157,7 +157,7 @@ const hackerTextIntervalMs = 30;
 let hackerInterval = null; 
 let hackerObserver = null;  // look for data-active="true" to trigger effect
 
-function hackerTextHover(e) {
+function hackerText(e) {
     let iteration = 0; 
     const trueText = e.target.style.getPropertyValue("--text-value");
     clearInterval(hackerInterval);
@@ -180,14 +180,16 @@ function hackerTextHover(e) {
 
 function applyHackerText(e) {
     setTextValue(e);
-    e.addEventListener("mouseover", hackerTextHover);
-    hackerObserver = new MutationObserver(attrMutationCallbackCreator(hackerTextHover, "data-active", "true"));
+    e.addEventListener("mouseover", hackerText);
+    e.addEventListener("focus", hackerText);
+    hackerObserver = new MutationObserver(attrMutationCallbackCreator(hackerText, "data-active", "true"));
     hackerObserver.observe(e, { attributes: true} );
 }
 
 function unapplyHackerText(e) {
     unsetTextValue(e);
-    e.removeEventListener("mouseover", hackerTextHover, false);
+    e.removeEventListener("mouseover", hackerText, false);
+    e.removeEventListener("focus", hackerText, false);
     hackerObserver.disconnect();
 }
 
