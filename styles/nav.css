@@ -89,11 +89,13 @@ nav svg .puzzle {
 } 
 
 .hamburger-menu li {
+    visibility: hidden;
     max-height: 0px;
     opacity: 0;
     transition: 
         max-height, margin var(--transition-time) var(--transition-timing), 
-        opacity var(--transition-time) linear;
+        opacity var(--transition-time) linear,
+        visibility var(--transition-time) var(--transition-time);
 }
 
 .hamburger-menu li .text-strikethrough {
@@ -114,6 +116,7 @@ nav svg .puzzle {
 }
 
 .hamburger-menu input[type="checkbox"]:checked ~ ul li {
+    visibility: visible;
     /* not specific, only needs to be large enough to fit everything */
     max-height: 50em;
     max-width: 50em;
