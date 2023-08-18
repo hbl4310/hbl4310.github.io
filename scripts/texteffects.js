@@ -155,6 +155,7 @@ const numHackerFlips = 4;
 const hackerTextIntervalMs = 30;
 
 let hackerInterval = null; 
+let hackerObserver = null;  // look for data-active="true" to trigger effect
 
 function hackerTextHover(e) {
     let iteration = 0; 
@@ -180,11 +181,14 @@ function hackerTextHover(e) {
 function applyHackerText(e) {
     setTextValue(e);
     e.addEventListener("mouseover", hackerTextHover);
+    hackerObserver = new MutationObserver(attrMutationCallbackCreator(hackerTextHover, "data-active", "true"));
+    hackerObserver.observe(e, { attributes: true} );
 }
 
 function unapplyHackerText(e) {
     unsetTextValue(e);
     e.removeEventListener("mouseover", hackerTextHover, false);
+    hackerObserver.disconnect();
 }
 
 

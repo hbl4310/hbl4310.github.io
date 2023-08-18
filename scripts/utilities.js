@@ -30,3 +30,24 @@ async function fetchHtmlAsText(url) {
 async function loadContent(div, url) {
     div.innerHTML = await fetchHtmlAsText(url);
 }
+
+
+// generic mutation observer for catching changes in element attributes
+//     callback: function to call when relevant mutation detected
+//     attrName: data attribute to look for mutations
+//     attrTriggerValue: data attribute value to trigger callback
+function attrMutationCallbackCreator(callback, attrName, attrTriggerValue) {
+    const mutationCallback = (mutations) => {
+        for (const mutation of mutations) {
+            if (
+                mutation.type !== 'attributes' || 
+                mutation.attributeName !== attrName ||
+                mutation.target.getAttribute(attrName) !== attrTriggerValue
+            ) {
+                return;
+            } 
+            callback(mutation);
+        }
+    }
+    return mutationCallback;
+}
