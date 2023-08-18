@@ -20,6 +20,34 @@ function saveCursorPosition(e) {
 document.addEventListener('mousemove', saveCursorPosition)
 
 
+// save relative position of element to style properties; useful for calculating cursor positions relative to elements
+function createSetElementPositionCallback(className) {
+    const setElementPosition = event => {
+        for (const e of document.getElementsByClassName(className)) {
+            // add window.scroll{X,Y} to cover case where user refreshes window while scrolled
+            const rect = e.getBoundingClientRect(), 
+                  x = rect.left + window.scrollX, 
+                  y = rect.top + window.scrollY;
+            e.style.setProperty("--left", `${x}px`);
+            e.style.setProperty("--top", `${y}px`);
+        }
+    };
+    return setElementPosition;
+}
+// maintain correct relative mouse position even if user scrolls
+function createSetScrollOffsetCallback(className) {
+    const setScrollOffset = event => {
+        for (const e of document.getElementsByClassName(className)) {
+            const x = window.scrollX, 
+                  y = window.scrollY;
+            e.style.setProperty("--scroll-x", `${x}px`);
+            e.style.setProperty("--scroll-y", `${y}px`);
+        }
+    };
+    return setScrollOffset;
+}
+
+
 // load html into div content
 // https://stackoverflow.com/questions/17636528/how-do-i-load-an-html-page-in-a-div-using-javascript
 // might need: https://stackoverflow.com/questions/72666698/github-pages-how-to-fetch-file-in-js-from-repo

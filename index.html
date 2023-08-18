@@ -265,7 +265,7 @@
                     }
                 }
                 window.addEventListener("DOMContentLoaded", setHovercardScaling)
-                window.addEventListener("resize", e => setHovercardScaling())
+                window.addEventListener("resize", setHovercardScaling)
             </script>
         </div>
     </section>
@@ -279,28 +279,11 @@
                 </h2>
             </div>
             <script>
-                function setGlowcardRect() {
-                    for (const card of document.getElementsByClassName("glowcard")) {
-                        // add window.scroll{X,Y} to cover case where user refreshes window while scrolled
-                        const rect = card.getBoundingClientRect(), 
-                              x = rect.left + window.scrollX, 
-                              y = rect.top + window.scrollY;
-                        card.style.setProperty("--left", `${x}px`);
-                        card.style.setProperty("--top", `${y}px`);
-                    }
-                }
-                // maintain correct relative mouse position even if user scrolls
-                function setGlowcardScrollOffset() {
-                    for (const card of document.getElementsByClassName("glowcard")) {
-                        const x = window.scrollX, 
-                              y = window.scrollY;
-                        card.style.setProperty("--scroll-x", `${x}px`);
-                        card.style.setProperty("--scroll-y", `${y}px`);
-                    }
-                }
-                window.addEventListener("DOMContentLoaded", setGlowcardRect)
-                window.addEventListener("resize", e => setGlowcardRect())
-                window.addEventListener("scroll", e => setGlowcardScrollOffset())
+                const setGlowcardRect = createSetElementPositionCallback("glowcard"),
+                      setGlowcardScrollOffset = createSetScrollOffsetCallback("glowcard");
+                window.addEventListener("DOMContentLoaded", setGlowcardRect);
+                window.addEventListener("resize", setGlowcardRect);
+                window.addEventListener("scroll", setGlowcardScrollOffset);
             </script>
         </div>
     </section>
