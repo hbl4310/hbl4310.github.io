@@ -2,12 +2,13 @@
     Buttons, sliders etc
 */
 
-/* by default, we'll style the buttons ourselves and hide the normal inputs */
-input[type="button"] {
-    display: none;
+/* reset button styling but keep focus styling */
+button {
+  all: unset;
 }
-input[type="checkbox"]{
-    display: none;
+
+button:focus {
+  outline: revert;
 }
 
 
@@ -20,6 +21,7 @@ input[type="checkbox"]{
     transition: opacity 0.3s ease;
 }
 
+.button-fade-text:focus,
 .button-fade-text:hover {
     opacity: 0.6;
 }
@@ -36,6 +38,7 @@ input[type="checkbox"]{
     transition: transform ease 0.2s, box-shadow ease 0.2s;
 }
 
+.button-lift:focus,
 .button-lift:hover {
     transform: translate(0, -3px);
     box-shadow: 0px 20px 80px -10px var(--primary);
@@ -95,7 +98,8 @@ input[type="checkbox"]{
     transition: clip-path 500ms;
 }
 
-.button-cut:where(:hover, :focus)::after {
+.button-cut:focus::after,
+.button-cut:hover::after {
     /* shrink to bottom right corner */
     /* clip-path: polygon(
         calc(100% - var(--border-width)) calc(100% - var(--border-width)),

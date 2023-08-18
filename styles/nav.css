@@ -41,12 +41,13 @@ nav svg .puzzle {
 }
 
 .top-left-nav a {
-    margin-right: 1em;
+    margin-right: var(--gap-100);
 }
 
-.top-left-nav label {
-    width: var(--fs-600);
-    translate: 0px calc(-1 * var(--fs-100));
+.top-left-nav button {
+    width: var(--gap-600);
+    translate: 0px calc(-1 * var(--gap-100));
+    font-size: 0px;
 }
 
 
@@ -64,8 +65,15 @@ nav svg .puzzle {
 }
 
 .hamburger-menu label {
-    width: var(--fs-700);
-    margin-left: 2em;
+    width: var(--gap-700);
+    margin-left: var(--gap-500);
+    font-size: 0px;
+}
+
+.hamburger-menu input:focus-visible + label {
+    /* https://remysharp.com/til/css/focus-ring-default-styles */
+    outline: 5px auto Highlight;
+    outline: 5px auto -webkit-focus-ring-color;
 }
 
 /* hamburger pop out menu */
@@ -171,7 +179,7 @@ nav svg .puzzle {
     }
 
     .hamburger-menu label {
-        width: var(--fs-700);
+        width: var(--gap-700);
         margin-left: 0px;
     }
 

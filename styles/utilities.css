@@ -31,9 +31,16 @@
     --fs-800: clamp(3.5em, 5vw, 5em); 
     --fs-900: clamp(5em, 8vw, 7em);
 
-    /* 
-    --spacing*
-    */
+    /* match font sizes in px but in rem instead of em */
+    --gap-100: 0.625rem;
+    --gap-200: 0.78125rem;
+    --gap-300: 0.9374rem;
+    --gap-400: 1.09375rem;
+    --gap-500: 1.25rem;
+    --gap-600: 1.5626rem;
+    --gap-700: 1.875rem; 
+    --gap-800: 2.5rem;
+    --gap-900: 3.75rem;
 }
 
 /* 
@@ -145,6 +152,8 @@
     --accent-alt-1: hsl(209, 71%, 11%);
 }
 
+
+/* utilities */
 .tight-layout {
     margin: 0px; 
     padding: 0px; 
@@ -153,4 +162,15 @@
 a {
     text-decoration: none;
     color: inherit;
+}
+
+.visually-hidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
 }
