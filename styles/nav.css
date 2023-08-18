@@ -165,9 +165,14 @@ nav svg .puzzle {
 
     .hamburger-menu {
         /* restrict width to force menu to wrap onto new line when open */
-        width: 6em;
+        width: 3em;
         flex-wrap: wrap;
         flex-direction: row;
+    }
+
+    .hamburger-menu label {
+        width: var(--fs-700);
+        margin-left: 0px;
     }
 
     .hamburger-menu ul {
