@@ -9,11 +9,13 @@
     isolation: isolate;
 }
 
+.hovercard:focus::before, 
 .hovercard:hover::before {
     background-position: 100% 100%;
     transform: scale(var(--scale-x), var(--scale-y));
 }
 
+.hovercard:focus > .hovercard-content,
 .hovercard:hover > .hovercard-content {
     background-position: -10% 0%;
 }
@@ -72,6 +74,7 @@
     padding-bottom: 5%;
 }
 
+.hovercard:focus .hovercard-subtitle,
 .hovercard:hover .hovercard-subtitle {
     color: var(--background);
     visibility: visible;

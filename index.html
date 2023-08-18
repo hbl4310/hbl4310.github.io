@@ -19,9 +19,9 @@
     Notes: 
         - card elements should be interchangeable but follow some rules:
             - each card should be self-contained
-            - left/right-box cards contain mouse hover effects and some text, maybe link to something
+            - left/right-box cards contain mouse hover effects (also trigger on focus) and some text, maybe link to something??
             - main-box card should have some passive animation, maybe some functions of mouse position or scroll
-            - header-box card ???
+            - header-box card cycle through text effects, maybe replace text
         - eventually, want to randomise card selection or have some button which loads different cards
  -->
 
@@ -246,7 +246,7 @@
     </section>
     <section class="card" id="left-box">
         <link rel="stylesheet" href="styles/hovercard.css">
-        <div class="hovercard">
+        <div class="hovercard" tabindex="0">
             <div class="hovercard-content">
                 <h2 class="hovercard-title | text-2xl tight-layout">
                     What makes a dad joke?
@@ -276,7 +276,7 @@
     </section>
     <section class="card" id="right-box">
         <link rel="stylesheet" href="styles/glowcard.css">
-        <div class="glowcard">
+        <div class="glowcard" tabindex="0">
             <div class="glowcard-border"></div>
             <div class="glowcard-content">
                 <h2 class="glowcard-title | text-2xl tight-layout">

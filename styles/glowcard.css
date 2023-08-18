@@ -18,6 +18,8 @@
     --rel-y: calc(var(--cursor-y) * 1px + var(--scroll-y) - var(--top))
 }
 
+.glowcard:focus > .glowcard-content,
+.glowcard:focus > .glowcard-border,
 .glowcard:hover > .glowcard-content,
 .glowcard:hover > .glowcard-border {
     opacity: 1;
@@ -60,6 +62,15 @@
         transparent 40%
     );
     z-index: 1;
+}
+
+.glowcard:focus > .glowcard-content { 
+    background-image: url("../assets/cursors/horse_small.png");
+    background-repeat: repeat;
+}
+
+.glowcard:focus > .glowcard-border { 
+    background: var(--accent);
 }
 
 .glowcard-title {
