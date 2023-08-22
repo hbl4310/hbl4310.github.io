@@ -182,8 +182,11 @@ function applyHackerText(e) {
     setTextValue(e);
     e.addEventListener("mouseover", hackerText);
     e.addEventListener("focus", hackerText);
-    hackerObserver = new MutationObserver(attrMutationCallbackCreator(hackerText, "data-active", "true"));
-    hackerObserver.observe(e, { attributes: true} );
+    hackerObserver = attachAttrMutationObserver(e, (mutation) => {
+        if (newMutationAttrValue(mutation, "data-active", "true")) {
+            hackerText(mutation);
+        }
+    }, "data-active");
 }
 
 function unapplyHackerText(e) {

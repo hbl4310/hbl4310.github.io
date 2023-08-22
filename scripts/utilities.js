@@ -4,6 +4,26 @@ function rand(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min); 
 }
 
+function vh() {
+    return Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+}
+
+function vw() {
+    return Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+}
+
+function vmin() {
+    return Math.min(vh(), vw());
+}
+
+function vmax() {
+    return Math.max(vh(), vw());
+}
+
+function clamp(x, lower, upper) {
+    return Math.min(Math.max(x, lower), upper);
+}
+
 
 // https://dev.to/thalitadev/step-by-step-guide-pass-your-cursor-position-using-css-variables-c7b
 const cursorPos = {x: 0, y: 0}; 
@@ -60,22 +80,36 @@ async function loadContent(div, url) {
 }
 
 
-// generic mutation observer for catching changes in element attributes
-//     callback: function to call when relevant mutation detected
-//     attrName: data attribute to look for mutations
-//     attrTriggerValue: data attribute value to trigger callback
-function attrMutationCallbackCreator(callback, attrName, attrTriggerValue) {
+// generic mutation observer and helper functions for catching changes in element attributes
+function mutationLoopCallbackCreator(callback) {
     const mutationCallback = (mutations) => {
         for (const mutation of mutations) {
-            if (
-                mutation.type !== 'attributes' || 
-                mutation.attributeName !== attrName ||
-                mutation.target.getAttribute(attrName) !== attrTriggerValue
-            ) {
-                return;
-            } 
             callback(mutation);
         }
     }
     return mutationCallback;
+}
+
+function newMutationAttrValue(mutation, attrName, attrValue) {
+    return (mutation.attributeName === attrName) && (mutation.target.getAttribute(attrName) === attrValue);
+}
+
+function attachAttrMutationObserver(e, callback, attrName) {
+    observer = new MutationObserver(mutationLoopCallbackCreator(callback));
+    observer.observe(e, { attributes: true , attributeFilter : [attrName] } );
+    return observer; 
+}
+
+
+// replace hsl property value with hsla
+function addHSLAlpha(e, propertyNameRead, propertyNameSet, alpha) {
+    const style = getComputedStyle(e);
+    const hsl = style.getPropertyValue(propertyNameRead).toString();
+    let hsla = hsl;
+    if (hsl.startsWith("hsl")) {
+        const [hue, saturation, lightness] = hsl.match(/\d+/g).map(Number);
+        hsla = `hsla(${hue}, ${saturation}%, ${lightness}%, ${alpha})`;
+        e.style.setProperty(propertyNameSet, hsla)
+    }
+    return hsla;
 }
