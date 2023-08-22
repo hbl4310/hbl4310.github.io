@@ -76,12 +76,12 @@
 
 .xy-plane.step-0 {
     --num-blinks: 2;
-    animation: blink calc(var(--step-animation-duration) / var(--num-blinks));
+    animation: plane-blink calc(var(--step-animation-duration) / var(--num-blinks));
     animation-iteration-count: var(--num-blinks);
     z-index: 2;
 }
 
-@keyframes blink {
+@keyframes plane-blink {
     0%, 100% { opacity: 1 }
     50% { opacity: 0 }
 }
