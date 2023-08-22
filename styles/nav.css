@@ -132,6 +132,7 @@ nav svg .puzzle {
 #hamburger-icon {
     --x-scaling: 0.8;
     --y-scaling: 0.6;
+    --y-translate: -4rem;
 }
 
 #hamburger-top,
@@ -158,11 +159,11 @@ nav svg .puzzle {
 }
 
 .hamburger-menu input[type="checkbox"]:checked + label #hamburger-mid-1 {
-    transform: translateY(-3em) rotateZ(45deg) scale(var(--x-scaling), var(--y-scaling));
+    transform: translateY(var(--y-translate)) rotateZ(45deg) scale(var(--x-scaling), var(--y-scaling));
 }
 
 .hamburger-menu input[type="checkbox"]:checked + label #hamburger-mid-2 {
-    transform: translateY(-3em) rotateZ(-45deg) scale(var(--x-scaling), var(--y-scaling));
+    transform: translateY(var(--y-translate)) rotateZ(-45deg) scale(var(--x-scaling), var(--y-scaling));
 }
 
 
