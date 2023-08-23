@@ -14,6 +14,7 @@
     <script src="scripts/utilities.js"></script>
     <script src="scripts/themes.js"></script>
     <script src="scripts/texteffects.js"></script>
+    <script src="scripts/wildcard.js"></script>
     <title>hanbo.li</title>
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
 </head>
@@ -142,7 +143,7 @@
                     </g>
                 </svg>
             </button>
-            <button type="button" onclick="">
+            <button type="button" onclick="shuffleCards()">
                 Switch Cards
                 <!-- https://www.svgrepo.com/svg/95443/puzzle -->
                 <svg class="clickable" height="100%" width="100%" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" 
@@ -221,7 +222,8 @@
         </div>
     </section>
     <section class="card" id="main-box">
-        <link rel="stylesheet" href="styles/shapes.css">
+        <iframe src="parts/shapes.html" id="main-box-iframe" title="Main Card: Shapes" name="main-iframe" scrolling="no"></iframe>
+        <!-- <link rel="stylesheet" href="styles/shapes.css">
         <div class="shapes" data-configuration="1" data-roundness="2" data-numshapes="4" data-numrounds="6" data-intervalms="3141">
             <div class="shape"></div>
             <div class="shape"></div>
@@ -245,7 +247,7 @@
                 }
                 changeShapes();
             </script>
-        </div>
+        </div> -->
     </section>
     <section class="card" id="left-box">
         <link rel="stylesheet" href="styles/hovercard.css">
@@ -317,11 +319,12 @@
     </div>
 </footer>
 
-</body>
-
 <script>
     applyThemes();
+    postThemeToIframes();
     applyTextEffects();
 </script>
+
+</body>
 
 </html>
