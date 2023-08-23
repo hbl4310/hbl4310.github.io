@@ -1,13 +1,7 @@
 body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    margin: 0px 10%;
     /* https://stackoverflow.com/questions/6177492/most-standard-way-to-set-font-sizes-in-html-css */
     /* font-size standardised on body to be 10/16 */
     font-size: 62.5%; 
-    gap: 4em; 
     font-family: var(--ff-body);
     /* each line is now 1.4em = 14px normally TODO is that ok? or control finer */
     line-height: 1.4;
@@ -18,11 +12,26 @@ body {
     text-rendering: optimizeLegibility;
 }
 
+.column-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 0px 10%;
+    gap: 4em; 
+}
+
 @media screen and (max-width: 1000px) {
-    body {
+    .column-layout {
         margin: 0px 5%;
         gap: 1.5em;
     }
+}
+
+.center-layout {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
 }
 
 /* header {
@@ -38,6 +47,12 @@ main {
     justify-content: flex-start;
 }
 
-.container {
+/* TODO not sure if these are necessary */
+.container-wide {
     width: 100%;
 }
+
+.container-fullheight {
+    height: 100dvh;
+}
+

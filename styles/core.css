@@ -2,9 +2,4 @@
 @import "utilities.css";
 @import "texteffects.css";
 @import "inputs.css";
-
-@import "body.css"; 
-@import "nav.css";
-@import "waves.css";
-
-@import "grid.css";
+@import "layouts.css"; 

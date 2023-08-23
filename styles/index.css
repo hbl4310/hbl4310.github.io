@@ -34,6 +34,12 @@
     grid-area: main; 
 }
 
+#main-box-iframe {
+    border: none; 
+    height: 100%;
+    width: 100%;
+}
+
 #left-box {
     grid-area: left;
 }

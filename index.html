@@ -7,7 +7,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Mono&family=Cedarville+Cursive&family=Noto+Sans+SC&family=ZCOOL+QingKe+HuangYou&family=Ma+Shan+Zheng&display=swap"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/core.css">
+    <link rel="stylesheet" href="styles/nav.css">
+    <link rel="stylesheet" href="styles/footer.css">
+    <link rel="stylesheet" href="styles/index.css">
     <script src="scripts/utilities.js"></script>
     <script src="scripts/themes.js"></script>
     <script src="scripts/texteffects.js"></script>
@@ -25,9 +28,9 @@
         - eventually, want to randomise card selection or have some button which loads different cards
  -->
 
-<body class="theme-1">
+<body class="theme-1 column-layout">
 
-<header class="container">
+<header class="container-wide">
     <nav>
         <div class="top-left-nav">
             <!-- TODO: create animated svg logo, probably a meme -->
@@ -208,7 +211,7 @@
     </nav>
 </header>
 
-<main class="container">
+<main class="container-wide">
 <div class="main-grid">
     <section class="card" id="header-box">
         <div class="heading">
@@ -269,8 +272,8 @@
                         card.style.setProperty("--scale-y", Math.round(100 + 2 * 100 * bw/h + 0.5)/100.0);
                     }
                 }
-                window.addEventListener("DOMContentLoaded", setHovercardScaling)
-                window.addEventListener("resize", setHovercardScaling)
+                window.addEventListener("DOMContentLoaded", setHovercardScaling);
+                window.addEventListener("resize", setHovercardScaling);
             </script>
         </div>
     </section>
@@ -295,7 +298,7 @@
 </div>
 </main>
 
-<footer class="container">
+<footer class="container-wide">
     <div id="footer-waves">
         <svg class="waves" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 50" preserveAspectRatio="none" shape-rendering="auto">
             <defs>
