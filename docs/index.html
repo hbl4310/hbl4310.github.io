@@ -7,16 +7,16 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Mono&family=Cedarville+Cursive&family=Noto+Sans+SC&family=ZCOOL+QingKe+HuangYou&family=Ma+Shan+Zheng&display=swap"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="styles/core.css">
-    <link rel="stylesheet" href="styles/nav.css">
-    <link rel="stylesheet" href="styles/footer.css">
-    <link rel="stylesheet" href="styles/index.css">
-    <script src="scripts/utilities.js"></script>
-    <script src="scripts/themes.js"></script>
-    <script src="scripts/texteffects.js"></script>
-    <script src="scripts/wildcard.js"></script>
+    <link rel="stylesheet" href="/resources/styles/core.css">
+    <link rel="stylesheet" href="/resources/styles/nav.css">
+    <link rel="stylesheet" href="/resources/styles/footer.css">
+    <link rel="stylesheet" href="/resources/styles/index.css">
+    <script src="/resources/scripts/utilities.js"></script>
+    <script src="/resources/scripts/themes.js"></script>
+    <script src="/resources/scripts/texteffects.js"></script>
+    <script src="/resources/scripts/wildcard.js"></script>
     <title>hanbo.li</title>
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
 </head>
 
 <!-- 
@@ -222,35 +222,10 @@
         </div>
     </section>
     <section class="card" id="main-box">
-        <iframe src="parts/shapes.html" id="main-box-iframe" title="Main Card: Shapes" name="main-iframe" scrolling="no"></iframe>
-        <!-- <link rel="stylesheet" href="styles/shapes.css">
-        <div class="shapes" data-configuration="1" data-roundness="2" data-numshapes="4" data-numrounds="6" data-intervalms="3141">
-            <div class="shape"></div>
-            <div class="shape"></div>
-            <div class="shape"></div>
-            <div class="shape"></div>
-            <div class="shape"></div>
-            <div class="shape"></div>
-            <div class="shape"></div>
-            <script>
-                function changeShapes() {
-                    for (const e of document.getElementsByClassName("shapes")) {
-                        const data = e.dataset; 
-                        const shapesIntervalMs = data.intervalms, 
-                              shapesConfigs = data.numshapes,
-                              shapesRounds = data.numrounds;
-                        setInterval(() => {
-                            data.configuration = rand(1, shapesConfigs);
-                            data.roundness = rand(1, shapesRounds);
-                        }, shapesIntervalMs);
-                    }
-                }
-                changeShapes();
-            </script>
-        </div> -->
+        <iframe src="/pages/frames/shapes.html" id="main-box-iframe" title="Main Card: Shapes" name="main-iframe" scrolling="no"></iframe>
     </section>
     <section class="card" id="left-box">
-        <link rel="stylesheet" href="styles/hovercard.css">
+        <link rel="stylesheet" href="/resources/styles/hovercard.css">
         <div class="hovercard" tabindex="0">
             <div class="hovercard-content">
                 <h2 class="hovercard-title | text-2xl tight-layout">
@@ -280,7 +255,7 @@
         </div>
     </section>
     <section class="card" id="right-box">
-        <link rel="stylesheet" href="styles/glowcard.css">
+        <link rel="stylesheet" href="/resources/styles/glowcard.css">
         <div class="glowcard" tabindex="0">
             <div class="glowcard-border"></div>
             <div class="glowcard-content">

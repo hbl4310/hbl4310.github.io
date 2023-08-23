@@ -5,7 +5,7 @@
     --scroll-y: 0px; 
     border-radius: inherit;
     background-color: transparent;
-    cursor: url("../assets/cursors/horse_small.png"), url("../assets/cursors/horse_small.cur"), default;
+    cursor: url("/assets/cursors/horse_small.png"), url("/assets/cursors/horse_small.cur"), default;
     position: relative; 
     /* 
     because there is no border, make height & width larger
@@ -65,7 +65,7 @@
 }
 
 .glowcard:focus > .glowcard-content { 
-    background-image: url("../assets/cursors/horse_small.png");
+    background-image: url("/assets/cursors/horse_small.png");
     background-repeat: repeat;
 }
 
