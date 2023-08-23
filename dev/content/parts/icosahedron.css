@@ -666,40 +666,39 @@
 
 
 .construct[data-step~="16"] .triangle:nth-child(3n).step-16a {
-    animation: explode1 var(--step-animation-duration);
+    animation: implode1 var(--step-animation-duration);
     animation-fill-mode: forwards;
 }
 
 .construct[data-step~="16"] .triangle:nth-child(3n+1).step-16a {
-    animation: explode2 var(--step-animation-duration);
+    animation: implode2 var(--step-animation-duration);
     animation-delay: calc(0.2 * var(--step-animation-duration));
     animation-fill-mode: forwards;
 }
 
 .construct[data-step~="16"] .triangle:nth-child(3n+2).step-16a {
-    animation: explode3 var(--step-animation-duration);
+    animation: implode3 var(--step-animation-duration);
     animation-delay: calc(0.2 * var(--step-animation-duration));
     animation-fill-mode: forwards;
 }
 
-@keyframes explode1 {
+@keyframes implode1 {
     to {
-        transform: skew(0.5turn, 1.5turn) rotate(0turn) scale(20);
+        transform: skew(0.5turn, 1.5turn) rotate(0turn) scale(0.1) translate3d(0, 0, 0);
         opacity: 0;
     }
 }
 
-
-@keyframes explode2 {
+@keyframes implode2 {
     to {
-        transform: skew(0.5turn, 1.5turn) rotate(2turn) scale(20);
+        transform: skew(0.5turn, 1.5turn) rotate(2turn) scale(0.1) translate3d(0, 0, 0);
         opacity: 0;
     }
 }
 
-@keyframes explode3 {
+@keyframes implode3 {
     to {
-        transform: skew(1.5turn, -0.5turn) rotate(-2turn) scale(20);
+        transform: skew(1.5turn, -0.5turn) rotate(-2turn) scale(0.1) translate3d(0, 0, 0);
         opacity: 0;
     }
 }

@@ -1,0 +1,350 @@
+.shapes {
+    /* golden ratio */
+    aspect-ratio: 1.618; 
+    width: 100%;
+    max-height: 100%;
+    place-items: center;
+    position: relative; 
+    --shape-border-radius-mult: 3rem;
+}
+
+.shapes > .shape {
+    position: absolute; 
+    transition: left, top, height, width, border-radius; 
+    transition-duration: 750ms;
+    transition-timing-function: ease-in-out;
+}
+
+/* colour palettes generated from: https://coolors.co/ */
+.shapes > .shape:nth-child(1) {
+    background-color: var(--primary);
+}
+.shapes > .shape:nth-child(2) {
+    background-color: var(--secondary);
+}
+.shapes > .shape:nth-child(3) {
+    background-color: var(--accent);
+}
+.shapes > .shape:nth-child(4) {
+    background-color: var(--primary-alt-2);
+}
+.shapes > .shape:nth-child(5) {
+    background-color: var(--secondary-alt-2);
+}
+.shapes > .shape:nth-child(6) {
+    background-color: var(--accent-alt-1);
+}
+.shapes > .shape:nth-child(7) {
+    background-color: var(--text);
+}
+
+
+
+/* different shape position configuration states for animation */
+.shapes[data-configuration="1"] > .shape:nth-child(1) {  
+    left: 38.2%;
+    top: 0%;
+    height: 100%;
+    width: 61.8%;
+}
+
+.shapes[data-configuration="1"] > .shape:nth-child(2) {  
+    left: 61.8%;
+    top: 38.2%;
+    height: 61.9%;
+    width: 38.2%;
+}
+
+.shapes[data-configuration="1"] > .shape:nth-child(3) {  
+    left: 76.4%;
+    top: 61.8%;
+    height: 38.2%;
+    width: 23.6%;
+}
+
+.shapes[data-configuration="1"] > .shape:nth-child(4) {  
+    left: 19.1%;
+    top: 0%;
+    height: 40%;
+    width: 19.1%;
+}
+
+.shapes[data-configuration="1"] > .shape:nth-child(5) {  
+    left: 0%;
+    top: 0%;
+    height: 60%;
+    width: 19.1%;
+}
+
+.shapes[data-configuration="1"] > .shape:nth-child(6) {  
+    left: 19.1%;
+    top: 40%;
+    height: 60.1%;
+    width: 19.1%;
+}
+
+.shapes[data-configuration="1"] > .shape:nth-child(7) {  
+    left: 0%;
+    top: 60%;
+    height: 40.1%;
+    width: 19.1%;
+}
+
+
+.shapes[data-configuration="2"] > .shape:nth-child(1) {
+    left: 47.1%;
+    top: 0%;
+    height: 88.9%;
+    width: 19.1%;
+}
+
+.shapes[data-configuration="2"] > .shape:nth-child(2) {  
+    left: 66.2%;
+    top: 23.0%;
+    height: 67.7%;
+    width: 13.1%;
+}
+
+.shapes[data-configuration="2"] > .shape:nth-child(3) {  
+    left: 0%;
+    top: 1.3%;
+    height: 87.0%;
+    width: 9.6%;
+}
+
+.shapes[data-configuration="2"] > .shape:nth-child(4) {  
+    left: 37.2%;
+    top: 30.1%;
+    height: 64.7%;
+    width: 9.9%;
+}
+
+.shapes[data-configuration="2"] > .shape:nth-child(5) {  
+    left: 79.3%;
+    top: 51.4%;
+    height: 27.0%;
+    width: 20.7%;
+}
+
+.shapes[data-configuration="2"] > .shape:nth-child(6) {  
+    left: 9.6%;
+    top: 5.2%;
+    height: 27.2%;
+    width: 17.8%;
+}
+
+.shapes[data-configuration="2"] > .shape:nth-child(7) {  
+    left:  27.4%;
+    top: 20.9%;
+    height: 48.3%;
+    width: 9.8%;
+}
+
+
+.shapes[data-configuration="3"] > .shape:nth-child(1) {
+    left: 0%;
+    top: 17%;
+    height: 83%;
+    width: 31%;
+}
+
+.shapes[data-configuration="3"] > .shape:nth-child(2) {  
+    left: 17%;
+    top: 3%;
+    height: 53%;
+    width: 43%;
+}
+
+.shapes[data-configuration="3"] > .shape:nth-child(3) {  
+    left: 11%;
+    top: 47%;
+    height: 37%;
+    width: 89%;
+}
+
+.shapes[data-configuration="3"] > .shape:nth-child(4) {  
+    left: 37%;
+    top: 53%;
+    height: 41%;
+    width: 41%;
+}
+
+.shapes[data-configuration="3"] > .shape:nth-child(5) {   
+    left: 31%;
+    top: 0%;
+    height: 37%;
+    width: 23%;
+}
+
+.shapes[data-configuration="3"] > .shape:nth-child(6) {  
+    left: 83%;
+    top: 19%;
+    height: 37%;
+    width: 17%;
+}
+
+.shapes[data-configuration="3"] > .shape:nth-child(7) {  
+    left: 67%;
+    top: 7%;
+    height: 11%;
+    width: 7%;
+}
+
+
+.shapes[data-configuration="4"] > .shape:nth-child(1) {  
+    left: 0%;
+    top: 0%;
+    height: 100%;
+    width: 61.8%;
+}
+
+.shapes[data-configuration="4"] > .shape:nth-child(2) {  
+    left: 61.8%;
+    top: 0%;
+    height: 61.8%;
+    width: 38.2%;
+}
+
+.shapes[data-configuration="4"] > .shape:nth-child(3) {  
+    left: 76.4%;
+    top: 61.8%;
+    height: 38.3%;
+    width: 23.6%;
+}
+
+.shapes[data-configuration="4"] > .shape:nth-child(4) {  
+    left: 61.8%;
+    top: 76.4%;
+    height: 23.7%;
+    width: 14.6%;
+}
+
+.shapes[data-configuration="4"] > .shape:nth-child(5) {  
+    left: 61.8%;
+    top: 61.8%;
+    height: 14.6%;
+    width: 9%;
+}
+
+.shapes[data-configuration="4"] > .shape:nth-child(6) {  
+    left: 70.8%;
+    top: 61.8%;
+    height: 9%;
+    width: 5.6%;
+}
+
+.shapes[data-configuration="4"] > .shape:nth-child(7) {  
+    left: 72.9%;
+    top: 70.8%;
+    height: 5.6%;
+    width: 3.5%;
+}
+
+
+
+/* different shape roundness configuration states for animation */
+.shapes[data-roundness="1"] > .shape {
+    border-radius: calc(1 * var(--shape-border-radius-mult));
+}
+
+.shapes[data-roundness="2"] > .shape {
+    border-radius: calc(0 * var(--shape-border-radius-mult));
+}
+
+.shapes[data-roundness="3"] > .shape {
+    border-radius: calc(5 * var(--shape-border-radius-mult));
+}
+
+
+.shapes[data-roundness="4"] > .shape:nth-child(1) {
+    border-top-left-radius: calc(2 * var(--shape-border-radius-mult));
+}
+
+.shapes[data-roundness="4"] > .shape:nth-child(2) {
+    border-radius: calc(3 * var(--shape-border-radius-mult));
+}
+
+.shapes[data-roundness="4"] > .shape:nth-child(3) {
+    border-top-right-radius: calc(2 * var(--shape-border-radius-mult));
+}
+
+.shapes[data-roundness="4"] > .shape:nth-child(4) {
+    border-top-right-radius: calc(1 * var(--shape-border-radius-mult));
+    border-bottom-right-radius: calc(1 * var(--shape-border-radius-mult));
+}
+
+.shapes[data-roundness="4"] > .shape:nth-child(5) {
+    border-bottom-left-radius: calc(2 * var(--shape-border-radius-mult));
+}
+
+.shapes[data-roundness="4"] > .shape:nth-child(6) {
+    border-top-left-radius: calc(3 * var(--shape-border-radius-mult));
+}
+
+.shapes[data-roundness="4"] > .shape:nth-child(7) {
+    border-top-left-radius: calc(1 * var(--shape-border-radius-mult));
+}
+
+
+.shapes[data-roundness="5"] > .shape:nth-child(1) {
+    border-bottom-right-radius: calc(2 * var(--shape-border-radius-mult));
+    border-top-left-radius: calc(2 * var(--shape-border-radius-mult));
+}
+
+.shapes[data-roundness="5"] > .shape:nth-child(2) {
+    border-top-right-radius: calc(3 * var(--shape-border-radius-mult));
+    border-bottom-right-radius: calc(3 * var(--shape-border-radius-mult));
+}
+
+.shapes[data-roundness="5"] > .shape:nth-child(3) {
+    border-radius: calc(5 * var(--shape-border-radius-mult));
+}
+
+.shapes[data-roundness="5"] > .shape:nth-child(4) {
+    border-top-left-radius: calc(2 * var(--shape-border-radius-mult));
+    border-top-right-radius: calc(2 * var(--shape-border-radius-mult));
+    border-bottom-left-radius: calc(2 * var(--shape-border-radius-mult));
+}
+
+.shapes[data-roundness="5"] > .shape:nth-child(5) {
+    border-radius: calc(1 * var(--shape-border-radius-mult));
+}
+
+.shapes[data-roundness="5"] > .shape:nth-child(6) {
+    border-top-right-radius: calc(5 * var(--shape-border-radius-mult));
+    border-bottom-left-radius: calc(3 * var(--shape-border-radius-mult));
+}
+
+.shapes[data-roundness="5"] > .shape:nth-child(7) {
+    border-top-left-radius: calc(2 * var(--shape-border-radius-mult));
+    border-top-right-radius: calc(2 * var(--shape-border-radius-mult));
+}
+
+
+.shapes[data-roundness="6"] > .shape:nth-child(1) {
+    border-top-left-radius: calc(3 * var(--shape-border-radius-mult));
+}
+
+.shapes[data-roundness="6"] > .shape:nth-child(2) {  
+    border-top-left-radius: calc(3 * var(--shape-border-radius-mult));
+}
+
+.shapes[data-roundness="6"] > .shape:nth-child(3) {  
+    border-top-left-radius: calc(3 * var(--shape-border-radius-mult));
+}
+
+.shapes[data-roundness="6"] > .shape:nth-child(4) {  
+    border-top-left-radius: calc(3 * var(--shape-border-radius-mult));
+}
+
+.shapes[data-roundness="6"] > .shape:nth-child(5) {  
+    border-top-right-radius: calc(3 * var(--shape-border-radius-mult));
+}
+
+.shapes[data-roundness="6"] > .shape:nth-child(6) {  
+    border-top-right-radius: calc(3 * var(--shape-border-radius-mult));
+}
+
+.shapes[data-roundness="6"] > .shape:nth-child(7) {  
+    border-top-right-radius: calc(3 * var(--shape-border-radius-mult));
+}

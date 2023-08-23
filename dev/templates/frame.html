@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{# template for document to be displayed in an inline frame and adopts the parent document's theme #}
+
+{%- block styles %}
+    {{ super() }}
+    {%- if style is defined %}
+    <link rel="stylesheet" href="/resources/styles/{{ style }}">
+    {%- endif %}
+{%- endblock %}
+
+{%- block scripts %}
+    {{ super() }}
+    {%- if script is defined %}
+    <script src="/resources/scripts/{{ script }}"></script>
+    {%- endif %}
+{%- endblock %}
+
+{% block title -%}
+    {{ name | capitalize }}
+{%- endblock %}
+
+{%- block body %}
+<body class="theme-1 center-layout container-fullheight">
+{{ content }}
+<script>
+    listenForTheme();
+    {%- if postscript is defined %}
+    {{ postscript }}
+    {%- endif %}
+</script>
+</body>
+{%- endblock %}

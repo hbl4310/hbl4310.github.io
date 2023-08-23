@@ -1,6 +1,6 @@
 const numSteps = 16;
 const stepAnimationMs = 1300;
-const scaleR = 80, minR = 4, maxR = 15;
+const scaleR = 60, minR = 4, maxR = 15;
 let step = 0;
 let faceColourObservers = [];
 let icosahedronSizeListeners = [];
@@ -78,7 +78,3 @@ function icosahedronRun() {
         setTimeout(animateSteps, stepAnimationMs, e);
     }
 }
-
-// TODO make this a generic name?
-// create a generic unapply, like text effects
-icosahedronRun();
