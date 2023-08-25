@@ -50,17 +50,22 @@ def write_page(page, name, subdir=""):
     page_path = os.path.join(output_dir, subdir, f"{name}.html")
     with open(page_path, "w") as f: 
         f.write(page)
-    return page_path
+    return f"generated page: {page_path}"
+
+def try_copy(src, dst): 
+    if os.path.isfile(src): 
+        return f"moved resource: {shutil.copy2(src, dst)}"
+    return f"[WARN] could not locate {src} to copy to {dst}"
 
 def copy_stylehseet(path):
     if not path.endswith(".css"): 
         path += ".css"
-    return shutil.copy2(path, output_styles_dir)
+    return try_copy(path, output_styles_dir)
 
 def copy_script(path):
     if not path.endswith(".js"): 
         path += ".js"
-    return shutil.copy2(path, output_scripts_dir)
+    return try_copy(path, output_scripts_dir)
 
 def copy_resources(page, style_src, script_src): 
     styles = page.metadata.get("styles", [])
@@ -79,12 +84,12 @@ def copy_resources(page, style_src, script_src):
 
 # build pages from frontmatter objects and copy resources to docs
 # TODO may want to template .css or .js to inject config variables
-def build(files, template, src="", dst=None, handler="yaml", style_src=None, script_src=None, config={}):
+def build(files, template, src="", dst=None, style_src=None, script_src=None, config={}):
     template = templates.get_template(f"{template}.html")
     dst = src if dst is None else dst
     src = os.path.join(content_dir, src)
-    style_src = src if style_src is None else style_src
-    script_src = src if script_src is None else script_src
+    style_src = src if style_src is None else os.path.join(dev_dir, style_src)
+    script_src = src if script_src is None else os.path.join(dev_dir, script_src)
     outputs = []
     for file in get_filenames(files, src): 
         name, ext = os.path.splitext(os.path.basename(file))
