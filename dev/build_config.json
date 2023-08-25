@@ -6,8 +6,7 @@
         {
             "src": "frames",
             "files": "*.html", 
-            "template": "frame",
-            "handler": "html"
+            "template": "frame"
         }
     ]
 }

@@ -23,10 +23,11 @@ output_styles_dir = os.path.join(output_dir, "resources", "styles")
 output_scripts_dir = os.path.join(output_dir, "resources", "scripts")
 
 # utilities
+# map file type of frontmatter parser
 handlers = {
-    'yaml': YAMLHandler(),
+    '.md': YAMLHandler(),
     # look for custom HTML comment <!--- ... ---> for frontmatter
-    'html': frontmatter.default_handlers.YAMLHandler(
+    '.html': frontmatter.default_handlers.YAMLHandler(
         fm_boundary=re.compile("^(?:<!-{3,})|(?:-{3,}>)$", re.MULTILINE),
         start_delimiter="<!---",
         end_delimiter="--->",
@@ -77,8 +78,8 @@ def build(files, template, src="", dst=None, handler="yaml", style_src=None, scr
     script_src = src if script_src is None else script_src
     outputs = []
     for file in get_filenames(files, src): 
-        name = os.path.splitext(os.path.basename(file))[0]
-        page = frontmatter.load(file, handler=handlers[handler], name=name)
+        name, ext = os.path.splitext(os.path.basename(file))
+        page = frontmatter.load(file, handler=handlers[ext], name=name)
         render = template.render(content=page.content, config=config, **page.metadata)
         outputs.append(write_page(render, name, dst))
         outputs.extend(copy_resources(page, style_src, script_src))
