@@ -34,12 +34,6 @@ body {
     align-items: center;
 }
 
-/* header {
-} */
-
-/* footer {
-} */
-
 main {
     display: flex;
     flex-direction: column; 
