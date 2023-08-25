@@ -1,12 +1,12 @@
-/* https://codepen.io/goodkatz/pen/LYPGxQz */
-
-#footer-waves {
+.footer-absolute {
     /* want it to stretch from edge to edge, beyond flex box */
     position: absolute;
     left: 0px;
     width: 100%;
     margin-top: 5em;
 }
+
+/* https://codepen.io/goodkatz/pen/LYPGxQz */
 
 .waves {
     position: relative;
