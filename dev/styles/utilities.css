@@ -1,0 +1,176 @@
+/* 
+    global variables and utility classes
+*/
+
+:root {
+    --cursor-x: 0; 
+    --cursor-y: 0; 
+    --num-themes: 4;
+
+    /* standardise buttons, cards, etc */
+    --border-radius: 6px;
+
+    --ff-body: "Roboto", sans-serif; 
+    --ff-mono: "Roboto Mono", monospace;
+    --ff-cursive: "Cedarville Cursive", cursive;
+    --ff-body-chinese: 'Noto Sans SC', sans-serif;
+    --ff-mono-chinese: "ZCOOL QingKe HuangYou", sans-serif;  /* aren't all chinese fonts mono?*/
+    --ff-cursive-chinese: "Ma Shan Zheng", cursive;
+
+    --fw-regular: 400;
+    --fw-semi-bold: 500;
+    --fw-bold: 700;
+
+    --fs-100: 1em; 
+    --fs-200: 1.25em; 
+    --fs-300: 1.5em; 
+    --fs-400: 1.75em; 
+    --fs-500: 2em; 
+    --fs-600: 2.5em; 
+    --fs-700: 3em; 
+    --fs-800: clamp(3.5em, 5vw, 5em); 
+    --fs-900: clamp(5em, 8vw, 7em);
+
+    /* match font sizes in px but in rem instead of em */
+    --gap-100: 0.625rem;
+    --gap-200: 0.78125rem;
+    --gap-300: 0.9374rem;
+    --gap-400: 1.09375rem;
+    --gap-500: 1.25rem;
+    --gap-600: 1.5626rem;
+    --gap-700: 1.875rem; 
+    --gap-800: 2.5rem;
+    --gap-900: 3.75rem;
+}
+
+/* 
+    text sizes 
+*/
+.text-xs {
+    font-size: var(--fs-100);
+    line-height: 1em;
+}
+.text-sm {
+    font-size: var(--fs-200);
+    line-height: 1.2em;
+}
+.text-body {
+    font-size: var(--fs-300);
+    line-height: 1.4em;
+}
+.text-lg {
+    font-size: var(--fs-400);
+    line-height: 1.6em;
+}
+.text-xl {
+    font-size: var(--fs-500);
+    line-height: 1;
+}
+.text-2xl {
+    font-size: var(--fs-600);
+    line-height: 1;
+}
+.text-3xl {
+    font-size: var(--fs-700);
+    line-height: 1;
+}
+.text-4xl {
+    font-size: var(--fs-800);
+    line-height: 1;
+}
+.text-5xl {
+    font-size: var(--fs-900);
+    line-height: 1;
+}
+
+
+/* 
+    themes
+        - class applied to the body
+        - if adding a new theme, follow 'theme-n' naming convention and increment
+        - update the --num-themes variabel in :root
+        - can use https://realtimecolors.com/ to find new themes
+            - add *-alt-* variations by changing luminance value
+*/
+/* dark theme */
+.theme-1 {
+    --text: hsl(97, 74%, 91%);
+    --text-alt: hsl(97, 74%, 9%);
+    --background: hsl(95, 76%, 5%);
+    --primary: hsl(187, 75%, 66%);
+    --primary-alt-1: hsl(187, 75%, 44%);
+    --primary-alt-2: hsl(187, 75%, 22%);
+    --secondary: hsl(277, 74%, 12%);
+    --secondary-alt-1: hsl(277, 74%, 30%);
+    --secondary-alt-2: hsl(277, 74%, 75%);
+    --accent: hsl(7, 75%, 52%);
+    --accent-alt-1: hsl(7, 75%, 26%);
+}
+
+/* light theme */
+.theme-2 {
+    --text: hsl(193, 92%, 10%);
+    --text-alt: hsl(193, 92%, 90%);
+    --background: hsl(192, 94%, 94%);
+    --primary: hsl(13, 93%, 29%);
+    --primary-alt-1: hsl(13, 93%, 45%);
+    --primary-alt-2: hsl(13, 93%, 74%);
+    --secondary: hsl(74, 94%, 87%);
+    --secondary-alt-1: hsl(74, 94%, 44%);
+    --secondary-alt-2: hsl(74, 94%, 22%);
+    --accent: hsl(13, 93%, 47%);
+    --accent-alt-1: hsl(13, 93%, 23%);
+}
+
+/* monochromatic dark */
+.theme-3 {
+    --text: hsl(20, 29%, 94%);
+    --text-alt: hsl(20, 29%, 6%);
+    --background: hsl(20, 27%, 2%);
+    --primary: hsl(19, 100%, 67%);
+    --primary-alt-1: hsl(19, 100%, 51%);
+    --primary-alt-2: hsl(19, 100%, 35%);
+    --secondary: hsl(17, 30%, 18%);
+    --secondary-alt-1: hsl(17, 30%, 27%);
+    --secondary-alt-2: hsl(17, 30%, 36%);
+    --accent: hsl(19, 31%, 49%);
+    --accent-alt-1: hsl(19, 31%, 72%);
+}
+
+/* monochromatic light */
+.theme-4 {
+    --text: hsl(210, 70%, 4%);
+    --text-alt: hsl(210, 70%, 96%);
+    --background: hsl(208, 72%, 93%);
+    --primary: hsl(209, 71%, 68%);
+    --primary-alt-1: hsl(209, 71%, 34%);
+    --primary-alt-2: hsl(209, 71%, 17%);
+    --secondary: hsl(209, 71%, 81%);
+    --secondary-alt-1: hsl(209, 71%, 55%);
+    --secondary-alt-2: hsl(209, 71%, 42%);
+    --accent: hsl(209, 71%, 41%);
+    --accent-alt-1: hsl(209, 71%, 11%);
+}
+
+
+/* utilities */
+.tight-layout {
+    margin: 0px; 
+    padding: 0px; 
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.visually-hidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}

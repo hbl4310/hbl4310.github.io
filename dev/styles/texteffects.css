@@ -1,0 +1,315 @@
+/*  
+types: passive, on hover/focus/active, mouse interactions, generic activation on data-active="true"
+TODO: maybe use aria tag instead of data-active
+some inspo:
+https://codepen.io/jh3y/pen/vzqVWa
+https://codepen.io/whqet/pen/mdrpaY
+*/
+
+.text-magic {
+    animation: background-pan 3s linear infinite;
+    background: linear-gradient(
+        to right, 
+        var(--text), 
+        var(--primary), 
+        var(--accent), 
+        var(--text)
+    );
+    background-size: 200%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    white-space: nowrap;
+}
+
+@keyframes background-pan {
+    from {
+        background-position: 0% center;
+    }
+    to {
+        background-position: -200% center;
+    }
+}
+
+
+/* https://www.geeksforgeeks.org/how-to-create-text-reveal-effect-using-html-and-css/ */
+.text-typing {
+    --blink-colour: var(--text);
+    display: inline-block;
+    font-family: var(--ff-mono);
+    margin: 0px 0.1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    isolation: isolate;
+    width: max-content;
+}
+
+.text-typing::before {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    /* expect these properties to be overwritten */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    /* for debugging */
+    /* border: 1px solid green; */
+}
+
+.text-typing[data-active="true"],
+.text-typing:focus,
+.text-typing:hover {
+    animation: typing calc(var(--text-length) * 0.1s) steps(var(--text-length),end) forwards,
+               blink 750ms infinite;
+}
+
+@keyframes typing {
+    0% { width: 0% }
+    100% { width: calc(var(--text-length) * 0.6em) }
+}
+@keyframes blink {
+    0%, 100% {
+        border-right: 0.15em solid transparent;
+    }
+    50% {
+        border-right: 0.15em solid var(--blink-colour);
+    }
+}
+
+
+.text-hacker {
+    font-family: var(--ff-mono);
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+
+/* from https://bepatrickdavid.com/ */
+.text-strikethrough {
+    --strike-colour: var(--text);
+    --strike-width: 0.2em;
+    position: relative;
+}
+.text-strikethrough::after {
+    content: "";
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    background-color: var(--strike-colour);
+    top: 55%;
+    width: 100%;
+    height: var(--strike-width);
+    left: 0;
+    transform: translate(-101%, -50%);
+    transition: 400ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.text-strikethrough[data-active="true"]::after,
+.text-strikethrough:focus::after,
+.text-strikethrough:hover::after {
+    visibility: visible;
+    opacity: 1;
+    transform: translate(0%, -50%); 
+}
+
+
+/* inspired by https://codepen.io/amit_sheen/pen/eYBgroR/261df6f09d15a179b63454bb75acc191 */
+.text-face-cursor {
+    --x0: 0; 
+    --y0: 0;
+    --shadow-colour: var(--accent); 
+    --blur: 1.5px;
+    --clamp: 420;
+    text-shadow: 
+        /* calc(clamp(-0.5em, (var(--x0) - var(--cursor-x)) * 0.1px, 0.5em)) calc(clamp(-0.5em, (var(--y0) - var(--cursor-y)) * 0.1px, 0.5em)) 0 var(--shadow-colour); */
+        calc(clamp(-1 * var(--clamp), var(--x0) - var(--cursor-x), var(--clamp)) * 0.01px) calc(clamp(-1 * var(--clamp), var(--y0) - var(--cursor-y), var(--clamp)) * 0.01px) var(--blur) var(--shadow-colour), 
+        calc(clamp(-1 * var(--clamp), var(--x0) - var(--cursor-x), var(--clamp)) * 0.02px) calc(clamp(-1 * var(--clamp), var(--y0) - var(--cursor-y), var(--clamp)) * 0.02px) var(--blur) var(--shadow-colour),
+        calc(clamp(-1 * var(--clamp), var(--x0) - var(--cursor-x), var(--clamp)) * 0.03px) calc(clamp(-1 * var(--clamp), var(--y0) - var(--cursor-y), var(--clamp)) * 0.03px) var(--blur) var(--shadow-colour),
+        calc(clamp(-1 * var(--clamp), var(--x0) - var(--cursor-x), var(--clamp)) * 0.04px) calc(clamp(-1 * var(--clamp), var(--y0) - var(--cursor-y), var(--clamp)) * 0.04px) var(--blur) var(--shadow-colour),
+        calc(clamp(-1 * var(--clamp), var(--x0) - var(--cursor-x), var(--clamp)) * 0.05px) calc(clamp(-1 * var(--clamp), var(--y0) - var(--cursor-y), var(--clamp)) * 0.05px) var(--blur) var(--shadow-colour),
+        calc(clamp(-1 * var(--clamp), var(--x0) - var(--cursor-x), var(--clamp)) * 0.06px) calc(clamp(-1 * var(--clamp), var(--y0) - var(--cursor-y), var(--clamp)) * 0.06px) var(--blur) var(--shadow-colour);
+    transition: all 0.2s;
+    /* transform: 
+        translateX(calc(-0.3 * clamp(-0.5em, (var(--cursor-x) - 263) * 1px, 0.5em))) 
+        translateY(calc(-0.3 * clamp(-0.5em, (var(--cursor-y) - 188) * 1px, 0.5em)))
+        rotateX(calc(clamp(-35, 0 - (var(--cursor-y) - 188) * 0.3, 35) * 0.5deg)) 
+        rotateY(calc(clamp(-35, (var(--cursor-x) - 263) * 0.3, 35) * 0.5deg)); */
+}
+
+
+.text-rainbow {
+    animation: rainbow 3s infinite linear;
+}
+@keyframes rainbow {
+    0% {
+        color: #ef8f8f;
+    }
+    10% {
+        color: #efc98f;
+    }
+    20% {
+        color: #dcef8f;
+    }
+    30% {
+        color: #a3ef8f;
+    }
+    40% {
+        color: #8fefb6;
+    }
+    50% {
+        color: #8fefef;
+    }
+    60% {
+        color: #8fb6ef;
+    }
+    70% {
+        color: #a38fef;
+    }
+    80% {
+        color: #dc8fef;
+    }
+    90% {
+        color: #ef8fc9;
+    }
+    100% {
+        color: #ef8f8f;
+    }
+}
+
+
+/* https://codepen.io/zitrusfrisch/pen/kBNEag */
+.text-3d {
+    text-shadow:    0px 1px 0px hsl(174,5%,80%),
+                    0px 2px 0px hsl(174,5%,75%),
+                    0px 3px 0px hsl(174,5%,70%),
+                    0px 4px 0px hsl(174,5%,66%),
+                    0px 5px 0px hsl(174,5%,64%),
+                    0px 6px 0px hsl(174,5%,62%),
+                    0px 7px 0px hsl(174,5%,61%),
+                    0px 8px 0px hsl(174,5%,60%),
+
+                    0px 0px  5px rgba(0,0,0,.05),
+                    0px 1px  3px rgba(0,0,0,.2),
+                    0px 3px  5px rgba(0,0,0,.2),
+                    0px 5px  10px rgba(0,0,0,.2),
+                    0px 10px 10px rgba(0,0,0,.2),
+                    0px 20px 20px rgba(0,0,0,.3);
+}
+
+
+/* https://codepen.io/pgalor/pen/OeRWJQ */
+.text-glitch {
+    display: inline-block;
+    font-family: var(--ff-mono);
+    animation: glitch 1s linear infinite;
+}
+
+@keyframes glitch{
+    2%,64%{
+        transform: translate(2px,0) skew(0deg);
+    }
+    4%,60%{
+        transform: translate(-2px,0) skew(0deg);
+    }
+    62%{
+        transform: translate(0,0) skew(5deg); 
+    }
+}
+
+.text-glitch::before,
+.text-glitch::after {
+    content: var(--text-value);
+    position: absolute;
+    left: 0;
+}
+
+.text-glitch::before {
+    animation: glitchTop 1s linear infinite;
+    clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+}
+
+@keyframes glitchTop {
+    2%,64% {
+        transform: translate(2px, -2px);
+    }
+    4%,60% {
+        transform: translate(-2px, 2px);
+    }
+    62% {
+        transform: translate(13px, -1px) skew(-13deg);
+    }
+}
+
+.text-glitch::after {
+    animation: glitchBotom 1.5s linear infinite;
+    clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
+    -webkit-clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
+}
+
+@keyframes glitchBotom {
+    2%,64% {
+        transform: translate(-2px, 0);
+    }
+    4%,60% {
+        transform: translate(-2px, 0);
+    }
+    62% {
+        transform: translate(-22px, 5px) skew(21deg);
+    }
+} 
+
+
+.text-enter {
+    --transition-duration: 250ms;
+    --transition-step: 40ms;
+    border-bottom: 0.1em solid var(--text);
+    transition: border calc(var(--transition-duration) + var(--transition-step) * var(--text-length));
+}
+
+._text-enter-part {
+    display: inline-block;
+    opacity: 0;
+    transform: translate(0, -150%);
+    transition: all var(--transition-duration) calc((1 + var(--part-index)) * var(--transition-step));
+}
+
+.text-enter[data-active="true"] ._text-enter-part, 
+.text-enter:focus ._text-enter-part,
+.text-enter:hover ._text-enter-part {
+    opacity: 1;
+    transform: translate(0, 0%);
+}
+
+
+.text-fade {
+    --transition-duration: 250ms;
+    --transition-step: 40ms;
+    border-bottom: 0.1em dotted var(--text);
+}
+._text-fade-part {
+    opacity: 0;
+    transition: all var(--transition-duration) calc((1 + var(--part-index)) * var(--transition-step));
+}
+.text-fade[data-active="true"] ._text-fade-part, 
+.text-fade:focus ._text-fade-part, 
+.text-fade:hover ._text-fade-part {
+    opacity: 1;
+}
+
+
+
+/* 
+TODO: 
+    Swapsies
+    Flipping
+    Karaoke
+    Filling
+    Blocks
+    Bulge
+    Perspective
+    Zipping
+    Bubbling
+    Blowing
+*/

@@ -1,0 +1,73 @@
+.card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0px; 
+    padding: 0px;
+    border-radius: var(--border-radius);
+    --border-width: 0.3em; 
+    --height: 95%; 
+    --width: 95%;
+}
+
+.main-grid {
+    display: grid;
+    gap: 1em; 
+    width: 100%;
+    /* don't want height of grid to be dynamic */
+    height: 75dvh;
+    grid-template-areas: 
+        'head head main'
+        'left right main'
+    ;
+    grid-auto-columns: 23% 23% 1fr;
+    grid-auto-rows: 60% 1fr;
+}
+
+#header-box {
+    grid-area: head;
+    /* temporary */
+    text-align: center;
+}
+
+#main-box {
+    grid-area: main; 
+}
+
+#main-box-iframe {
+    border: none; 
+    height: 100%;
+    width: 100%;
+}
+
+#left-box {
+    grid-area: left;
+}
+
+#right-box {
+    grid-area: right;
+}
+
+@media screen and (max-width: 800px) {
+    .main-grid {
+        flex-basis: content;
+        grid-template-areas: 
+            'head'
+            'main'
+            'left'
+            'right'
+        ;
+        grid-auto-columns: auto;
+        grid-auto-rows: 1fr;
+    }
+}
+
+/* temporary class for heading card */
+.heading {
+    position: relative;
+    height: var(--height);
+    width: var(--width);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

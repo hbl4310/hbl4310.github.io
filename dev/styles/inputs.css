@@ -1,0 +1,121 @@
+/* 
+    Buttons, sliders etc
+*/
+
+/* reset button styling but keep focus styling */
+button {
+  all: unset;
+}
+
+button:focus {
+  outline: revert;
+}
+
+
+.clickable {
+    cursor: url("/assets/cursors/cartoon_hand.cur"), pointer;
+}
+
+
+.button-fade-text {
+    transition: opacity 0.3s ease;
+}
+
+.button-fade-text:focus,
+.button-fade-text:hover {
+    opacity: 0.6;
+}
+
+
+.button-lift {
+    padding: 1em 2em;
+    color: var(--text-alt);
+    background-color: var(--primary);
+    border-radius: var(--border-radius); 
+    display: inline-block;
+    /* z-index: 2; */
+    /* white-space: nowrap; */
+    transition: transform ease 0.2s, box-shadow ease 0.2s;
+}
+
+.button-lift:focus,
+.button-lift:hover {
+    transform: translate(0, -3px);
+    box-shadow: 0px 20px 80px -10px var(--primary);
+}
+
+
+/* https://www.youtube.com/watch?v=aW6qEAQSctY */
+.button-cut {
+    --button-background: var(--primary);
+    --button-border-color: linear-gradient(to bottom right, var(--text), var(--accent));
+    --border-width: 0.2em;
+    --cut-size: 1.5em; 
+
+    /* sqrt(2) - 1 = 0.4142... */
+    --new-cut-size: calc(var(--cut-size) + 0.414 * var(--border-width));
+
+    position: relative; 
+    isolation: isolate;
+    display: inline-grid;
+    font-size: var(--fs-700);
+    padding: 0.5em 1.5em;
+    border: 0; 
+    background: var(--button-background);
+    clip-path: polygon(
+        0 0,
+        calc(100% - var(--cut-size)) 0%, 
+        100% var(--cut-size), 
+        100% 100%, 
+        var(--cut-size) 100%, 
+        0% calc(100% - var(--cut-size))
+    );
+}
+
+.button-cut::before,
+.button-cut::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+}
+
+.button-cut::before {
+    background: var(--button-border-color);
+    z-index: -2;
+}
+
+.button-cut::after {
+    background: var(--button-background); 
+    z-index: -1;
+    clip-path: polygon(
+        var(--border-width) var(--border-width),
+        calc(100% - var(--new-cut-size)) var(--border-width), 
+        calc(100% - var(--border-width)) var(--new-cut-size), 
+        calc(100% - var(--border-width)) calc(100% - var(--border-width)), 
+        var(--new-cut-size) calc(100% - var(--border-width)), 
+        var(--border-width) calc(100% - var(--new-cut-size))
+    );
+    transition: clip-path 500ms;
+}
+
+.button-cut:focus::after,
+.button-cut:hover::after {
+    /* shrink to bottom right corner */
+    /* clip-path: polygon(
+        calc(100% - var(--border-width)) calc(100% - var(--border-width)),
+        calc(100% - var(--border-width)) calc(100% - var(--border-width)), 
+        calc(100% - var(--border-width)) calc(100% - var(--border-width)), 
+        calc(100% - var(--border-width)) calc(100% - var(--border-width)), 
+        calc(100% - var(--border-width)) calc(100% - var(--border-width)), 
+        calc(100% - var(--border-width)) calc(100% - var(--border-width))
+    ); */
+    /* swipe right */
+    clip-path: polygon(
+        calc(100% - var(--new-cut-size)) var(--border-width),
+        calc(100% - var(--new-cut-size)) var(--border-width), 
+        calc(100% - var(--border-width)) var(--new-cut-size), 
+        calc(100% - var(--border-width)) calc(100% - var(--border-width)), 
+        calc(100% - var(--border-width)) calc(100% - var(--border-width)), 
+        calc(100% - var(--border-width)) var(--new-cut-size)
+    );
+}

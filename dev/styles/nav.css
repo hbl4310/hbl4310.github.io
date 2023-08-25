@@ -1,0 +1,202 @@
+/* 
+    Navigation elements and menu items
+ */
+
+nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    /* keep things on a single line */
+    flex-wrap: nowrap;
+    width: 100%;
+    padding: 2em 0;
+}
+
+/* so that svg animations aren't clipped at border */
+nav svg {
+    overflow: visible;
+}
+
+nav svg .lightbulb {
+    fill: var(--primary);
+}
+
+nav svg .lightbulb-glow {
+    fill: var(--text);
+}
+
+nav svg .rocket {
+    fill: var(--accent);
+}
+
+nav svg .puzzle {
+    fill: var(--secondary-alt-1);
+}
+
+
+/* left hand side items */
+.top-left-nav {
+    display: flex;
+    align-items: flex-start;
+}
+
+.top-left-nav a {
+    margin-right: var(--gap-100);
+}
+
+.top-left-nav button {
+    width: var(--gap-600);
+    translate: 0px calc(-1 * var(--gap-100));
+    font-size: 0px;
+}
+
+
+/* right hand hamburger icon, small screen */
+.hamburger-menu {
+    --transition-time: 300ms; 
+    --transition-timing: 
+        cubic-bezier(0.68, -0.6, 0.32, 1.6);
+        /* cubic-bezier(0.6, 0.33, 0.67, 1.29); */
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: end;
+    align-items: center;
+    flex-direction: row-reverse;
+}
+
+.hamburger-menu label {
+    width: var(--gap-700);
+    margin-left: var(--gap-500);
+    font-size: 0px;
+}
+
+.hamburger-menu input:focus-visible + label {
+    /* https://remysharp.com/til/css/focus-ring-default-styles */
+    outline: 5px auto Highlight;
+    outline: 5px auto -webkit-focus-ring-color;
+}
+
+/* hamburger pop out menu */
+/* https://codepen.io/TheHeat/pen/kXpvBo */
+.hamburger-menu ul {
+    margin: 0px;
+    padding: 0px;
+    gap: 3em; 
+    list-style: none;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+} 
+
+.hamburger-menu li {
+    visibility: hidden;
+    max-height: 0px;
+    opacity: 0;
+    transition: 
+        max-height, margin var(--transition-time) var(--transition-timing), 
+        opacity var(--transition-time) linear,
+        visibility var(--transition-time) var(--transition-time);
+    /* seems like this isn't supported yet */
+    /* transition-delay: calc(attr(data-index) * 100ms);    */
+}
+
+.hamburger-menu li .text-strikethrough {
+    --strike-colour: var(--accent);
+}
+
+/* TODO at the moment, this is embedded in html but could probably be templated into css */
+/* .hamburger-menu li:nth-child(1) {
+    transition-delay: 0.1s;
+}
+.hamburger-menu li:nth-child(2) {
+    transition-delay: 0.2s;
+}
+.hamburger-menu li:nth-child(3) {
+    transition-delay: 0.3s;
+}
+.hamburger-menu li:nth-child(4) {
+    transition-delay: 0.4s;
+} */
+
+.hamburger-menu input[type="checkbox"]:checked ~ ul li {
+    visibility: visible;
+    /* not specific, only needs to be large enough to fit everything */
+    max-height: 50em;
+    max-width: 50em;
+    opacity: 1;
+}
+
+
+/* animation on click
+   e.g. 
+        https://codepen.io/vikramcodes/pen/mdVxNby
+        https://codepen.io/Danilo06/pen/PoNNvGm
+*/
+.hamburger-icon {
+    --x-scaling: 0.8;
+    --y-scaling: 0.6;
+    --y-translate: -4rem;
+}
+
+.hamburger-top,
+.hamburger-bot {
+    fill: var(--text);
+    transition: all var(--transition-time) linear;
+}
+
+.hamburger-mid-1,
+.hamburger-mid-2 {
+    fill: var(--primary);
+    transition: all var(--transition-time) var(--transition-timing); 
+}
+
+.hamburger-menu input[type="checkbox"]:checked + label .hamburger-top,
+.hamburger-menu input[type="checkbox"]:checked + label .hamburger-bot {
+    opacity: 0;
+}
+
+.hamburger-menu input[type="checkbox"]:checked + label .hamburger-mid-1,
+.hamburger-menu input[type="checkbox"]:checked + label .hamburger-mid-2 {
+    fill: var(--text);
+    transform-origin: 50% 59%;
+}
+
+.hamburger-menu input[type="checkbox"]:checked + label .hamburger-mid-1 {
+    transform: translateY(var(--y-translate)) rotateZ(45deg) scale(var(--x-scaling), var(--y-scaling));
+}
+
+.hamburger-menu input[type="checkbox"]:checked + label .hamburger-mid-2 {
+    transform: translateY(var(--y-translate)) rotateZ(-45deg) scale(var(--x-scaling), var(--y-scaling));
+}
+
+
+/* need to leave enough horizontal space for items to expand left-ways */
+@media screen and (max-width: 750px) {
+    /* nav bar fixed on screen in mobile? */
+    /* nav {
+        position: fixed;
+        z-index: 1000;
+    } */
+
+    .hamburger-menu {
+        /* restrict width to force menu to wrap onto new line when open */
+        width: 3em;
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
+
+    .hamburger-menu label {
+        width: var(--gap-700);
+        margin-left: 0px;
+    }
+
+    .hamburger-menu ul {
+        flex-wrap: wrap;
+        justify-content: end;
+        gap: 0px;
+    }
+
+    .hamburger-menu input[type="checkbox"]:checked ~ ul li {
+        margin-top: 1em;
+    }
+}

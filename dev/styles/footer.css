@@ -1,0 +1,74 @@
+.footer-absolute {
+    /* want it to stretch from edge to edge, beyond flex box */
+    position: absolute;
+    left: 0px;
+    width: 100%;
+    margin-top: 5em;
+}
+
+/* https://codepen.io/goodkatz/pen/LYPGxQz */
+
+.waves {
+    position: relative;
+    width: 100%;
+    height: 10em;
+    min-height: 100px;
+    max-height: 150px;
+    margin-bottom: -7px; /*Fix for safari gap*/
+}
+
+.waves-parallax {
+    stroke: var(--text);
+}
+
+/* Animation */
+
+.waves-parallax > use {
+    opacity: 0.2;
+    animation: wave-move-to-right 25s cubic-bezier(.55,.5,.45,.5) infinite;
+}
+
+.waves-parallax > use:nth-child(1) {
+    animation-duration: 18s;
+    animation-delay: -2s;
+}
+.waves-parallax > use:nth-child(2) {
+    animation-name: wave-move-to-left;
+    animation-duration: 6s;
+    animation-delay: -3s;
+}
+.waves-parallax > use:nth-child(3) {
+    animation-duration: 12s;
+    animation-delay: -4s;
+}
+.waves-parallax > use:nth-child(4) {
+    animation-name: wave-move-to-left;
+    animation-duration: 9s;
+    animation-delay: -5s;
+}
+
+@keyframes wave-move-to-right {
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+    100% {
+        transform: translate3d(240px, 0, 0);
+    }
+}
+
+@keyframes wave-move-to-left {
+    0% {
+        transform: translate3d(240px, 0, 0);
+    }
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+/*Shrinking for mobile*/
+@media (max-width: 768px) {
+    .waves {
+        height: 40px;
+        min-height: 40px;
+    }
+}
