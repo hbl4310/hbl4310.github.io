@@ -17,10 +17,19 @@ content_dir = os.path.join(dev_dir, "content")
 templates_dir = os.path.join(dev_dir, "templates")
 components_dir = os.path.join(dev_dir, "components")
 templates = Environment(loader=FileSystemLoader([templates_dir, components_dir]))
+config_filename = "build_config.json"
+config_file = os.path.join(dev_dir, config_filename)
 
 output_dir = os.path.relpath(os.path.join(root_dir, "docs"), root_dir)
 output_styles_dir = os.path.join(output_dir, "resources", "styles")
 output_scripts_dir = os.path.join(output_dir, "resources", "scripts")
+
+def get_config():
+    with open(config_file, "r") as f:
+        build_config = json.load(f)
+        config = build_config["config"]
+        builds = build_config["builds"]
+    return config, builds
 
 # utilities
 # map file type of frontmatter parser
@@ -92,15 +101,13 @@ if __name__=="__main__":
     # logger = logging.getLogger(__name__)
     # logger.setLevel(logging.DEBUG)
 
-
-    with open(os.path.join(dev_dir, "build_config.json"), "r") as f:
-        build_config = json.load(f)
-        config = build_config["config"]
-        builds = build_config["builds"]
-
-    # nav = templates.get_template('header/nav_basic.html'); render = nav.render(config=config); write_page(render, "test")
+    config, builds = get_config()
 
     for args in builds: 
         print('Build args:', args)
         for output in build(config=config, **args):
-            print('    ', output)
+            print('\t'+output)
+
+    # nav = templates.get_template('header/nav_basic.html')
+    # render = nav.render(config=config)
+    # write_page(render, "test")
