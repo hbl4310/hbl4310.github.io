@@ -1,0 +1,9 @@
+{% extends "header/nav.html" %}
+
+{%- block interactions %}
+{%- filter indent(width=8) %}
+{% include "header/themeswitch.html" %}
+{% include "header/textswitch.html" %}
+{% include "header/frameswitch.html" %}
+{%- endfilter %}
+{%- endblock %}

@@ -1,0 +1,29 @@
+<nav>
+    <div class="top-left-nav">
+        <h1 class="sitename | text-3xl tight-layout">
+            <a href="#" class="text-hacker">hanbo.li</a>
+            <!-- <a href="#" class="text-hacker" style="font-family:var(--ff-mono-chinese);">栗瀚博</a> -->
+        </h1>
+        {%- block interactions -%}
+        {%- endblock %}
+    </div>
+    <div class="hamburger-menu">
+        <input class="visually-hidden" id="hamburger-accordion-input" type="checkbox" name="burger-menu">
+        <label for="hamburger-accordion-input" class="clickable">
+            Navigation Menu
+            {% filter indent(width=12) %}{% include "hamburger.svg" %}{% endfilter %}
+        </label>
+        <!-- If adding new items, check media query screen width still makes sense in nav.css -->
+        <ul>
+            {%- for item in config["nav_list"] %}
+            <li>
+                <h2 data-index="{{ loop.index }}" class="text-xl tight-layout">
+                    <a href="/{{ item }}" class="button-fade-text clickable text-strikethrough">
+                        {{ item | capitalize }}
+                    </a>
+                </h2>
+            </li>
+            {%- endfor %}
+        </ul>
+    </div>
+</nav>
