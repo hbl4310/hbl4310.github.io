@@ -1,0 +1,13 @@
+{
+    "config": {
+        "nav_list": ["writing", "projects", "photos", "about"]
+    },
+    "builds": [
+        {
+            "src": "frames",
+            "files": "*.html", 
+            "template": "frame",
+            "handler": "html"
+        }
+    ]
+}

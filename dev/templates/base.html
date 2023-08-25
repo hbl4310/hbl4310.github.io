@@ -1,23 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+{%- set head = namespace(styles=["core"], scripts=[]) %}
+{%- block head scoped %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    {%- block styles -%}
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Mono&family=Cedarville+Cursive&family=Noto+Sans+SC&family=ZCOOL+QingKe+HuangYou&family=Ma+Shan+Zheng&display=swap"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/resources/styles/core.css">
-    {%- endblock %}
-    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
-    {%- block scripts -%}
+    {%- for _style in head.styles %}
+    <link rel="stylesheet" href="/resources/styles/{{ _style }}{% if not _style.endswith('.css') %}.css{% endif %}">
+    {%- endfor %}
     <script src="/resources/scripts/utilities.js"></script>
     <script src="/resources/scripts/themes.js"></script>
     <script src="/resources/scripts/texteffects.js"></script>
-    {%- endblock %}
-    <title>{% block title required %}{% endblock %}</title>
+    {%- for _script in head.scripts %}
+    <script src="/resources/scripts/{{ _script }}{% if not _script.endswith('.js') %}.js{% endif %}"></script>
+    {%- endfor %}
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+    <title>{% block title required %}{% endblock title %}</title>
 </head>
+{%- endblock head %}
 {%- block body required %}
 {%- endblock %}
 </html>
