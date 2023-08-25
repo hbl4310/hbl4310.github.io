@@ -45,7 +45,7 @@ function applyThemes() {
 
 // iframe functionality
 function postTheme(iframe) {
-    console.log("Posting theme to iframe");
+    // console.log("Posting theme to iframe");
     iframe.contentWindow.postMessage(getTheme(), "*");
 }
 
