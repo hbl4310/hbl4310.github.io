@@ -1,0 +1,69 @@
+<!-- https://www.svgrepo.com/svg/51643/rocket-launch -->
+<svg height="100%" width="100%" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- flames from https://codepen.io/PaulLeBeau/pen/EQoraz -->
+    <defs>
+        <filter id="flames" filterUnits="objectBoundingBox" x="0%" y="-100%" width="100%" height="300%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="1" result="noise" stitchTiles="stitch"/>
+            <feOffset dy="0" result="off1">
+                <animate attributeType="XML" attributeName="dy" from="-300" to="0" dur="3s" repeatCount="indefinite" /> 
+            </feOffset>
+            <feOffset in="noise" dy="60" result="off2">
+                <animate attributeType="XML" attributeName="dy" from="0" to="300" dur="3s" repeatCount="indefinite" /> 
+            </feOffset>
+            <feMerge result="scrolling-noise">
+                <feMergeNode in="off1"/>
+                <feMergeNode in="off2"/>
+            </feMerge>
+            <feComponentTransfer result="brighter-noise">
+                <feFuncA type="gamma" amplitude="1" exponent="1"/>
+            </feComponentTransfer>
+            <feComposite in="SourceGraphic" in2="brighter-noise" operator="in" result="gradient-noise"/>
+            <feComponentTransfer result="threshhold">
+                <feFuncA type="discrete" tableValues="0 1"/>
+            </feComponentTransfer>
+            <feFlood flood-color="var(--accent)" result="flood1"/>
+            <feComposite in2="threshhold" in="flood1" operator="in" result="flood1-threshhold"/>
+            <feFlood flood-color="var(--primary)" result="flood2"/>
+            <feComponentTransfer in="SourceGraphic" result="exponent-gradient">
+                <feFuncA type="gamma" exponent="3"/>
+            </feComponentTransfer>
+            <feComposite in="flood2" in2="exponent-gradient" operator="in" result="flood2-gradient"/>
+            <feComposite in2="threshhold" in="flood2-gradient" operator="in" result="flood2-gradient-threshhold"/>
+            <feMerge>
+                <feMergeNode in="flood1-threshhold"/>
+                <feMergeNode in="flood2-gradient-threshhold"/>
+            </feMerge>
+        </filter>
+        <!-- too processor heavy -->
+        <filter id="flame-blur">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="7" />
+            <feMerge>
+            <feMergeNode/>
+            <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+        <linearGradient id="flame-grad" x1="0" y1="0" x2="0" y2="1" color-interpolation="linearRGB">
+            <stop offset="0" stop-color="#fff" stop-opacity="1"/>
+            <stop offset="1" stop-color="#fff" stop-opacity="0.4"/>
+        </linearGradient>
+        <radialGradient id="fade" cx="0.5" cy="0" r="1" color-interpolation="sRGB">
+            <stop offset="0.5" stop-color="#fff"/>
+            <stop offset="0.7" stop-color="#000"/>
+        </radialGradient>
+        <mask id="flame-shape" maskContentUnits = "objectBoundingBox">
+            <circle cx="0.5" cy="0.28" r="0.28" fill="white"/>
+            <!-- <polygon points="0.22,0.70, 0.35,0, 0.65,0, 0.78,0.70" fill="url(#fade)"/> -->
+            <!-- <polygon points="0.22,0.70, 0.2,0, 0.8,0, 0.78,0.70" fill="url(#fade)"/> -->
+            <polygon points="0.22,0.3, 0.26,1, 0.74,1, 0.78,0.3" fill="url(#fade)"/>
+        </mask>
+    </defs>
+    <g class="rocket-flames">
+        <rect x="76" y="375" width="360" height="300" fill="url(#flame-grad)" filter="url(#flames)" mask="url(#flame-shape)"/>
+    </g>
+    <g class="rocket">
+        <path
+            d="m350.3,255.1c7.9-87.6-22.7-176.9-86.9-241.1-3.9-3.9-10.8-3.9-14.7,0-64.2,64.2-94.8,153.4-86.9,241.1-22.2,23.9-34.4,54.7-34.4,87.5 0,33.1 12.6,64.6 35.5,88.6 5.6,5.9 19.9,3.2 17.6-9.8-1.2-6.8-2.7-13.4-2.7-19.9 0-16.2 4.9-31.6 14-44.6 1.5,0.8 3.2,1.3 5,1.3h118.5c1.8,0 3.5-0.5 5-1.3 9.1,13 14,28.4 14,44.6 0,6.5-1.7,13-2.7,19.9-2.1,14.4 12.9,14.9 17.6,9.8 22.8-24.1 35.5-55.5 35.5-88.6-0.1-32.8-12.2-63.7-34.4-87.5zm-94.3-218.7c18.6,20 33.8,42.5 45.6,66.4h-91.1c11.7-24 26.9-46.4 45.5-66.4zm-98,351c-6.4-13.9-9.7-29.1-9.7-44.8 0-21.2 6.1-41.5 17.5-58.9 0.1,0.8 11,42.5 15.2,53.2-12.5,14.4-20.4,31.8-23,50.5zm150.4-50.1h-104.8c-29.4-69-29.1-146.1-2.4-213.8h109.6c26.7,67.7 27,144.8-2.4,213.8zm22.7-.4c5.8-14.9 15.1-52.6 15.2-53.2 11.4,17.3 17.5,37.6 17.5,58.9 0,15.7-3.4,30.9-9.7,44.8-2.7-18.7-10.6-36.1-23-50.5z">
+        </path>
+    </g>
+</svg>

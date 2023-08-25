@@ -1,0 +1,14 @@
+<svg class="waves" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 50" preserveAspectRatio="none" shape-rendering="auto">
+    <defs>
+        <path id="wave1" d="M-240 25 c 40 20 80 20 120 0 s 80 -20 120 0 s 80 20 120 0 s 80 -20 120 0 v25h-480z"></path>
+        <path id="wave2" d="M-240 25 c 20 -12 40 -12 60 0 s 40 12 60 0 s 40 -12 60 0 s 40 12 60 0 s 40 -12 60 0 s 40 12 60 0 s 40 -12 60 0 s 40 12 60 0 v25h-480z"></path>
+        <path id="wave3" d="M-240 25 c 8 -6 20 -12 24 0 s 16 6 24 0 s 20 -12 24 0 s 16 6 24 0 s 20 -12 24 0 s 16 6 24 0 s 20 -12 24 0 s 16 6 24 0 s 20 -12 24 0 s 16 6 24 0 s 20 -12 24 0 16 6 24 0 s 20 -12 24 0 s 16 6 24 0 s 20 -12 24 0 s 16 6 24 0 s 20 -12 24 0 s 16 6 24 0 s 20 -12 24 0 s 16 6 24 0 v25h-480z"></path>
+        <path id="wave4" d="M-240 22 c 5 0  10  11 15  11 c 5 0  10 -16 15 -16c 5 0  10  21 15  21c 5 0  10 -26 15 -26c 5 0  10  31 15  31c 5 0  10 -36 15 -36c 5 0  10  41 15  41c 5 0  10 -46 15 -46c 5 0  10  46 15  46c 5 0  10 -41 15 -41c 5 0  10  36 15  36c 5 0  10 -31 15 -31c 5 0  10  26 15  26c 5 0  10 -21 15 -21c 5 0  10  16 15  16c 5 0  10 -11 15 -11c 5 0  10  11 15  11c 5 0  10 -16 15 -16c 5 0  10  21 15  21c 5 0  10 -26 15 -26c 5 0  10  31 15  31c 5 0  10 -36 15 -36c 5 0  10  41 15  41c 5 0  10 -46 15 -46c 5 0  10  46 15  46c 5 0  10 -41 15 -41c 5 0  10  36 15  36c 5 0  10 -31 15 -31c 5 0  10  26 15  26c 5 0  10 -21 15 -21c 5 0  10  16 15  16c 5 0  10 -11 15 -11"></path>
+    </defs>
+    <g class="waves-parallax">
+        <use xlink:href="#wave1" y="0"/>
+        <use xlink:href="#wave2" y="4"/>
+        <use xlink:href="#wave3" y="12"/>
+        <use xlink:href="#wave4" y="0" vector-effect="non-scaling-stroke" fill="none" stroke-width="1"/>
+    </g>
+</svg>
