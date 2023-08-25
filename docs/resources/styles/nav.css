@@ -96,13 +96,16 @@ nav svg .puzzle {
         max-height, margin var(--transition-time) var(--transition-timing), 
         opacity var(--transition-time) linear,
         visibility var(--transition-time) var(--transition-time);
+    /* seems like this isn't supported yet */
+    /* transition-delay: calc(attr(data-index) * 100ms);    */
 }
 
 .hamburger-menu li .text-strikethrough {
     --strike-colour: var(--accent);
 }
 
-.hamburger-menu li:nth-child(1) {
+/* TODO at the moment, this is embedded in html but could probably be templated into css */
+/* .hamburger-menu li:nth-child(1) {
     transition-delay: 0.1s;
 }
 .hamburger-menu li:nth-child(2) {
@@ -113,7 +116,7 @@ nav svg .puzzle {
 }
 .hamburger-menu li:nth-child(4) {
     transition-delay: 0.4s;
-}
+} */
 
 .hamburger-menu input[type="checkbox"]:checked ~ ul li {
     visibility: visible;

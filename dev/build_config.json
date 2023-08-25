@@ -1,8 +1,15 @@
 {
     "config": {
+        "sitename": "hanbo.li",
         "nav_list": ["writing", "projects", "photos", "about"]
     },
     "builds": [
+        {
+            "files": "index.html",
+            "template": "index",
+            "style_src": "styles",
+            "script_src": "scripts"
+        },
         {
             "src": "frames",
             "files": "*.html", 

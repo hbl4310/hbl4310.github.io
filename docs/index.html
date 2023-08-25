@@ -15,27 +15,13 @@
     <script src="/resources/scripts/themes.js"></script>
     <script src="/resources/scripts/texteffects.js"></script>
     <script src="/resources/scripts/wildcard.js"></script>
-    <title>hanbo.li</title>
     <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+    <title>hanbo.li</title>
 </head>
-
-<!-- 
-    Notes: 
-        - card elements should be interchangeable but follow some rules:
-            - each card should be self-contained
-            - left/right-box cards contain mouse hover effects (also trigger on focus) and some text, maybe link to something??
-            - main-box card should have some passive animation, maybe some functions of mouse position or scroll
-            - header-box card cycle through text effects, maybe replace text
-        - eventually, want to randomise card selection or have some button which loads different cards
- -->
-
 <body class="theme-1 column-layout">
-
 <header class="container-wide">
     <nav>
         <div class="top-left-nav">
-            <!-- TODO: create animated svg logo, probably a meme -->
-            <!-- <img class="logoface" src="#" alt="logoface"> -->
             <h1 class="sitename | text-3xl tight-layout">
                 <a href="#" class="text-hacker">hanbo.li</a>
                 <!-- <a href="#" class="text-hacker" style="font-family:var(--ff-mono-chinese);">栗瀚博</a> -->
@@ -144,7 +130,7 @@
                 </svg>
             </button>
             <button type="button" class="clickable" onclick="switchFrames()">
-                Switch Cards
+                Switch Frames
                 <!-- https://www.svgrepo.com/svg/95443/puzzle -->
                 <svg height="100%" width="100%" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" 
                     xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -179,30 +165,30 @@
             </label>
             <!-- If adding new items, add transition delay and check media query screen width still makes sense in nav.css -->
             <ul>
-                <li>
+                <li style="transition-delay:100ms;">
                     <h2 class="text-xl tight-layout">
-                        <a href="#" class="button-fade-text clickable text-strikethrough">
+                        <a href="/writing" class="button-fade-text clickable text-strikethrough">
                             Writing
                         </a>
                     </h2>
                 </li>
-                <li>
+                <li style="transition-delay:200ms;">
                     <h2 class="text-xl tight-layout">
-                        <a href="#" class="button-fade-text clickable text-strikethrough">
+                        <a href="/projects" class="button-fade-text clickable text-strikethrough">
                             Projects
                         </a>
                     </h2>
                 </li>
-                <li>
+                <li style="transition-delay:300ms;">
                     <h2 class="text-xl tight-layout">
-                        <a href="#" class="button-fade-text clickable text-strikethrough">
+                        <a href="/photos" class="button-fade-text clickable text-strikethrough">
                             Photos
                         </a>
                     </h2>
                 </li>
-                <li>
+                <li style="transition-delay:400ms;">
                     <h2 class="text-xl tight-layout">
-                        <a href="#" class="button-fade-text clickable text-strikethrough">
+                        <a href="/about" class="button-fade-text clickable text-strikethrough">
                             About
                         </a>
                     </h2>
@@ -301,5 +287,4 @@
 </script>
 
 </body>
-
 </html>

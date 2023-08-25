@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{# template for index page #}
+
+{% block head %}
+{{- head.styles.extend(styles) | default("", True) }}
+{{- head.scripts.extend(scripts) | default("", True) }}
+{{- super() }}
+{%- endblock %}
+
+{% block title %}{{ config["sitename"] }}{% endblock %}
+
+{% block body %}
+<body class="theme-1 column-layout">
+<header class="container-wide">
+    {% filter indent(width=4) %}{% include "header/nav_index.html" %}{% endfilter %}
+</header>
+
+<main class="container-wide">
+{{ content }}
+</main>
+
+{% include "footer.html" %}
+
+<script>
+{%- for ps in postscripts %}
+    {{ ps.strip() }}();
+{%- endfor %}
+</script>
+
+</body>
+{%- endblock %}

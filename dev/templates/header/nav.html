@@ -16,8 +16,8 @@
         <!-- If adding new items, check media query screen width still makes sense in nav.css -->
         <ul>
             {%- for item in config["nav_list"] %}
-            <li>
-                <h2 data-index="{{ loop.index }}" class="text-xl tight-layout">
+            <li style="transition-delay:{{ loop.index * 100 }}ms;">
+                <h2 class="text-xl tight-layout">
                     <a href="/{{ item }}" class="button-fade-text clickable text-strikethrough">
                         {{ item | capitalize }}
                     </a>
