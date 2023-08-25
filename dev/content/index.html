@@ -1,0 +1,65 @@
+<!---
+styles: ["nav", "footer", "index"]
+scripts: ["wildcard"]
+postscripts: ["applyThemes", "postThemeToIframes", "applyTextEffects"]
+--->
+<div class="main-grid">
+    <section class="card" id="header-box">
+        <div class="heading">
+            <h1 class="text-4xl tight-layout">
+                <em><span class="text-switch text-face-cursor">Hello,</span></em> you've found my website!
+            </h1>
+        </div>
+    </section>
+    <section class="card" id="main-box">
+        <iframe src="/frames/shapes.html" id="main-box-iframe" title="Main Card: Shapes" name="main-iframe" scrolling="no"></iframe>
+    </section>
+    <section class="card" id="left-box">
+        <link rel="stylesheet" href="/resources/styles/hovercard.css">
+        <div class="hovercard" tabindex="0">
+            <div class="hovercard-content">
+                <h2 class="hovercard-title | text-2xl tight-layout">
+                    What makes a dad joke?
+                </h2>
+                <div class="hovercard-subtitle">
+                    <p class="text-typing | text-body">When it's apparent.</p>
+                </div>
+            </div>
+            <script>
+                // we want to keep a border, but expand the content box to cover the border on hover 
+                // border-width doesn't accommodate percentages, so need to calculate effective scaling
+                function setHovercardScaling() {
+                    for (const card of document.getElementsByClassName("hovercard")) {
+                        const compStyle = getComputedStyle(card, null), 
+                              bw = parseFloat(compStyle.getPropertyValue('border-width')), 
+                              w = parseFloat(compStyle.width),
+                              h = parseFloat(compStyle.height);
+                        // round up to cover pixel errors probably due to floating point issues
+                        card.style.setProperty("--scale-x", Math.round(100 + 2 * 100 * bw/w + 0.5)/100.0);
+                        card.style.setProperty("--scale-y", Math.round(100 + 2 * 100 * bw/h + 0.5)/100.0);
+                    }
+                }
+                window.addEventListener("DOMContentLoaded", setHovercardScaling);
+                window.addEventListener("resize", setHovercardScaling);
+            </script>
+        </div>
+    </section>
+    <section class="card" id="right-box">
+        <link rel="stylesheet" href="/resources/styles/glowcard.css">
+        <div class="glowcard" tabindex="0">
+            <div class="glowcard-border"></div>
+            <div class="glowcard-content">
+                <h2 class="glowcard-title | text-2xl tight-layout">
+                    just horsing around
+                </h2>
+            </div>
+            <script>
+                const setGlowcardRect = createSetElementPositionCallback("glowcard"),
+                      setGlowcardScrollOffset = createSetScrollOffsetCallback("glowcard");
+                window.addEventListener("DOMContentLoaded", setGlowcardRect);
+                window.addEventListener("resize", setGlowcardRect);
+                window.addEventListener("scroll", setGlowcardScrollOffset);
+            </script>
+        </div>
+    </section>
+</div>
