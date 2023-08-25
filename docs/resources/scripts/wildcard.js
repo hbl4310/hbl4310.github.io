@@ -1,12 +1,12 @@
-const cardsPath = "/pages/frames";
+const cardsPath = "/frames";
 const cards = ["shapes", "icosahedron"];
 const numCards = cards.length;
 let cardIndex = 0;
 
 const frameIds = ["main-box-iframe"];
 
-function shuffleCards() {
-    // TODO randomise cards on start up 
+function switchFrames() {
+    // TODO randomise frames on start up 
     cardIndex = (cardIndex + 1) % numCards;
     const cardName = cards[cardIndex];
     const cardPath = `${cardsPath}/${cardName}.html`;
@@ -15,7 +15,7 @@ function shuffleCards() {
         const iframe = document.getElementById(frameId);
         iframe.src = cardPath;
         iframe.title = `Main Card: ${cardTitle}`;
-        // iframe.name = `main-iframe-${Date.now()}`;  // prevent caching the iframe?
+        iframe.name = `main-iframe-${Date.now()}`;  // prevent caching the iframe?
         postTheme(iframe);
     }
 }
