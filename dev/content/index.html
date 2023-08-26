@@ -1,7 +1,7 @@
 <!---
 styles: ["nav", "footer", "index"]
 scripts: ["wildcard"]
-postscripts: ["applyThemes", "postThemeToIframes", "applyTextEffects"]
+postscripts: ["applyThemes", "applyTextEffects", "handleFrames"]
 --->
 <div class="main-grid">
     <section class="card" id="header-box">
@@ -12,7 +12,9 @@ postscripts: ["applyThemes", "postThemeToIframes", "applyTextEffects"]
         </div>
     </section>
     <section class="card" id="main-box">
-        <iframe src="/frames/shapes.html" id="main-box-iframe" title="Main Card: Shapes" name="main-iframe" scrolling="no"></iframe>
+        <!-- TODO make loading placeholder more exciting -->
+        <div class="container-full center-layout | text-lg" id="main-box-iframe-loading">Loading...</div>
+        <iframe src="/frames/shapes.html" class="container-full" id="main-box-iframe" title="Main Frame: Shapes" name="main-iframe" scrolling="no"></iframe>
     </section>
     <section class="card" id="left-box">
         <link rel="stylesheet" href="/resources/styles/hovercard.css">

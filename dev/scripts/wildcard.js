@@ -1,21 +1,58 @@
-const cardsPath = "/frames";
-const cards = ["shapes", "icosahedron"];
-const numCards = cards.length;
-let cardIndex = 0;
+// TODO put consts in some config
+const framesPath = "/frames";
+const frames = ["shapes", "icosahedron"];
+const numFrames = frames.length;
+let frameIndex = 0;
 
 const frameIds = ["main-box-iframe"];
 
+function getLoadingElement(frameId) {
+    const loadingId = `${frameId}-loading`;
+    return document.getElementById(loadingId);
+}
+
+function isLoading(iframe) {
+    iframe.style.display = "none";
+    const loading = getLoadingElement(iframe.id);
+    if (loading !== null) {
+        loading.style.display = "flex";
+    };
+}
+
+function isLoaded(iframe) {
+    const loading = getLoadingElement(iframe.id);
+    if (loading !== null) {
+        loading.style.display = "none";
+    };
+    iframe.style.display = "block";
+}
+
 function switchFrames() {
-    // TODO randomise frames on start up 
-    cardIndex = (cardIndex + 1) % numCards;
-    const cardName = cards[cardIndex];
-    const cardPath = `${cardsPath}/${cardName}.html`;
-    const cardTitle = `${cardName.charAt(0).toUpperCase()}${cardName.slice(1)}`
+    frameIndex = (frameIndex + 1) % numFrames;
+    const frameName = frames[frameIndex];
+    const framePath = `${framesPath}/${frameName}.html`;
+    const frameTitle = `${frameName.charAt(0).toUpperCase()}${frameName.slice(1)}`
     for (const frameId of frameIds) {
         const iframe = document.getElementById(frameId);
-        iframe.src = cardPath;
-        iframe.title = `Main Card: ${cardTitle}`;
+        isLoading(iframe);
+        iframe.src = framePath;
+        iframe.title = `Main Frame: ${frameTitle}`;
         iframe.name = `main-iframe-${Date.now()}`;  // prevent caching the iframe?
         postTheme(iframe);
+    }
+}
+
+function handleFrames() {
+    for (const frameId of frameIds) {
+        const iframe = document.getElementById(frameId);
+        // if theme changes (body class changes), update iframe
+        attachAttrMutationObserver(document.body, (mutation) => {
+            postTheme(iframe);
+        }, "class");
+        // on load, hide loading placeholder, communicate theme, show iframe
+        iframe.addEventListener('load', (e) => {
+            postTheme(e.target);
+            isLoaded(e.target);
+        });
     }
 }
