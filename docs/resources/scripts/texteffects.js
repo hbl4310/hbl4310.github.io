@@ -22,7 +22,6 @@ function getEffectClass(effectName) {
 }
 
 // apply all effects which require js
-// TODO check that text effect only applies to childless elements; e.childElementCount == 0
 function applyTextEffects() {
     for (const effect of textEffectsAndFuncs) {
         const [effectName, applyFunc, unapplyFunc] = effect;

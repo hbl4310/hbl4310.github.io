@@ -14,7 +14,7 @@
     <script src="/resources/scripts/utilities.js"></script>
     <script src="/resources/scripts/themes.js"></script>
     <script src="/resources/scripts/texteffects.js"></script>
-    <script src="/resources/scripts/wildcard.js"></script>
+    <script src="/resources/scripts/frames.js"></script>
     <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
     <title>hanbo.li</title>
 </head>
@@ -163,7 +163,7 @@
                     </g>
                 </svg>
             </label>
-            <!-- If adding new items, add transition delay and check media query screen width still makes sense in nav.css -->
+            <!-- If adding new items, check media query screen width still makes sense in nav.css -->
             <ul>
                 <li style="transition-delay:100ms;">
                     <h2 class="text-xl tight-layout">
@@ -208,7 +208,9 @@
         </div>
     </section>
     <section class="card" id="main-box">
-        <iframe src="/frames/shapes.html" id="main-box-iframe" title="Main Card: Shapes" name="main-iframe" scrolling="no"></iframe>
+        <!-- TODO make loading placeholder more exciting -->
+        <div class="container-full center-layout | text-lg" id="main-box-iframe-loading">Loading...</div>
+        <iframe src="/frames/shapes.html" class="container-full" id="main-box-iframe" title="Main Frame: Shapes" name="main-iframe" scrolling="no"></iframe>
     </section>
     <section class="card" id="left-box">
         <link rel="stylesheet" href="/resources/styles/hovercard.css">
@@ -282,8 +284,8 @@
 
 <script>
     applyThemes();
-    postThemeToIframes();
     applyTextEffects();
+    handleFrames();
 </script>
 
 </body>

@@ -2,7 +2,7 @@ const themePattern = /(?:^|\s)theme-\d+(?!\S)/g;
 
 // theme switcher
 let themeIdx = 0; 
-let maxThemes = 1;
+let maxThemes = 1;  // this is updated to --num-themes value from :root
 
 function getTheme() {
     return document.body.className.match(themePattern)[0];
@@ -43,24 +43,10 @@ function applyThemes() {
 }
 
 
-// iframe functionality
+// theme communication functionality
 function postTheme(iframe) {
     // console.log("Posting theme to iframe");
     iframe.contentWindow.postMessage(getTheme(), "*");
-}
-
-function postThemeToIframes() {
-    for (const frameId of frameIds) {
-        const iframe = document.getElementById(frameId);
-        // if theme changes, update iframe
-        attachAttrMutationObserver(document.body, (mutation) => {
-            postTheme(iframe);
-        }, "class");
-        // if iframe changes, update theme
-        iframe.addEventListener("load", () => {
-            postTheme(iframe)
-        });
-    }
 }
 
 function listenForTheme() {

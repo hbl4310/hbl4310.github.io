@@ -26,7 +26,6 @@
 
 #header-box {
     grid-area: head;
-    /* temporary */
     text-align: center;
 }
 
@@ -36,8 +35,7 @@
 
 #main-box-iframe {
     border: none; 
-    height: 100%;
-    width: 100%;
+    display: none;
 }
 
 #left-box {
