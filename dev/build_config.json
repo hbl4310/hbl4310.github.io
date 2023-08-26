@@ -27,8 +27,7 @@
             "src": "frames",
             "files": "*.html", 
             "template": "frame",
-            "style_src": "frames",
-            "script_src": "frames"
+            "common_src": true
         }
     ]
 }

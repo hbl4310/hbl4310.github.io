@@ -49,29 +49,41 @@ handlers = {
 def get_filenames(files, src):
     return glob(os.path.join(src, files))
 
+def walk_output_dir():
+    files = []
+    for (dirpath, dirnames, filenames) in os.walk(output_dir):
+        files.extend([os.path.join(dirpath, x) for x in filenames])
+    return files
+
 def check_path(path, throw_error = False): 
     dir = os.path.dirname(path)
     if os.path.exists(path): 
         return True
     if throw_error: 
         raise NotADirectoryError(path)
+    print("[INFO] creating directory:", dir)
     os.makedirs(dir)
     return False
 
+# all src paths should be subpaths of dev_dir
+def check_src_path(src):
+    if not src.startswith(dev_dir):
+        return os.path.join(content_dir, src)
+    return src
+
 def write_page(page, name, subdir=""):
     page_path = os.path.join(output_dir, subdir, f"{name}.html")
-    msg = ""
-    if not check_path(page_path): 
-        msg += "created directory and "
     with open(page_path, "w") as f: 
         f.write(page)
-    msg += f"generated page: {page_path}"
-    return msg
+    print("[INFO] generated page:", page_path)
+    return page_path
 
 def try_copy(src, dst): 
     if os.path.isfile(src): 
-        return f"moved resource: {shutil.copy2(src, dst)}"
-    return f"[WARN] could not locate {src} to copy to {dst}"
+        print(f"[INFO] copying {src} to {dst}")
+        return shutil.copy2(src, dst)
+    print(f"[WARN] could not locate {src} to copy to {dst}")
+    return ""
 
 def copy_stylehseet(path):
     if not path.endswith(".css"): 
@@ -85,8 +97,10 @@ def copy_script(path):
 
 def copy_page_resources(page, style_src, script_src): 
     styles = page.metadata.get("styles", [])
+    styles.extend(page.metadata.get("extra_styles", []))
     styles.append(page.get("style", None))
     scripts = page.metadata.get("scripts", [])
+    scripts.extend(page.metadata.get("extra_scripts", []))
     scripts.append(page.get("script", None))
     resources = []
     for style in styles: 
@@ -107,10 +121,16 @@ def copy_includes(includes):
 
 # build pages from frontmatter objects and copy resources to docs
 # TODO may want to template .css or .js to inject config variables
-def build(files, template, src="", dst=None, style_src=styles_dir, script_src=scripts_dir, config={}):
+def build(files, template, src="", dst=None, common_src=False, style_src=styles_dir, script_src=scripts_dir, config={}):
     template = templates.get_template(f"{template}.html")
     dst = src if dst is None else dst
-    src = os.path.join(content_dir, src)
+    src = check_src_path(src)
+    if common_src:
+        style_src = src
+        script_src = src
+    else: 
+        style_src = check_src_path(style_src)
+        script_src = check_src_path(script_src)
     outputs = []
     for file in get_filenames(files, src): 
         name, ext = os.path.splitext(os.path.basename(file))
@@ -119,6 +139,19 @@ def build(files, template, src="", dst=None, style_src=styles_dir, script_src=sc
         outputs.append(write_page(render, name, dst))
         outputs.extend(copy_page_resources(page, style_src, script_src))
     return outputs
+
+def compare_output_files(old, new):
+    oldset = set(old)
+    newset = set(new)
+    print("[INFO] unchanged files:")
+    for f in oldset.difference(newset):
+        print("\t"+f)
+    print("[INFO] new files:")
+    for f in newset.difference(oldset):
+        print("\t"+f)
+    print("[INFO] modified files:")
+    for f in newset.intersection(oldset):
+        print("\t"+f)
 
 
 if __name__=="__main__":
@@ -129,15 +162,18 @@ if __name__=="__main__":
 
     config, includes, builds = get_config()
 
-    print("Moving global resources:")
-    for output in copy_includes(includes):
-        print("\t"+output)
+    # TODO clear out old files 
+    existing_output_files = walk_output_dir()
+    new_output_files = []
+    
+    print("[INFO] Moving global resources:")
+    new_output_files.extend(copy_includes(includes))
 
     for args in builds: 
-        print("Build args:", args)
-        for output in build(config=config, **args):
-            print("\t"+output)
+        print("[INFO] Build args:", args)
+        new_output_files.extend(build(config=config, **args))
 
+    compare_output_files(existing_output_files, new_output_files)
     # nav = templates.get_template('header/nav_basic.html')
     # render = nav.render(config=config)
     # write_page(render, "test")
