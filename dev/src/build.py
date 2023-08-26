@@ -1,12 +1,15 @@
-import os, shutil
+import os, sys, shutil
 from glob import glob
 import json
+import logging
 import argparse
 from jinja2 import Environment, FileSystemLoader
 import frontmatter
 from frontmatter.default_handlers import YAMLHandler
 import re
 import cmarkgfm
+
+logger = logging.getLogger(__file__)
 
 # config
 src_dir = os.path.dirname(os.path.realpath(__file__))
@@ -35,6 +38,14 @@ def get_config():
     return config, includes, builds
 
 # utilities
+# https://betterstack.com/community/guides/logging/how-to-start-logging-with-python/
+def logger_setup(logger):
+    stdout = logging.StreamHandler(stream=sys.stdout)
+    fmt = logging.Formatter("%(asctime)s [%(levelname)s] %(filename)s:%(lineno)s >> %(message)s")
+    stdout.setFormatter(fmt)
+    logger.addHandler(stdout)
+    return logger
+
 # map file type of frontmatter parser
 handlers = {
     '.md': YAMLHandler(),
@@ -61,7 +72,7 @@ def check_path(path, throw_error = False):
         return True
     if throw_error: 
         raise NotADirectoryError(path)
-    print("[INFO] creating directory:", dir)
+    logger.debug("creating directory: "+dir)
     os.makedirs(dir)
     return False
 
@@ -75,14 +86,14 @@ def write_page(page, name, subdir=""):
     page_path = os.path.join(output_dir, subdir, f"{name}.html")
     with open(page_path, "w") as f: 
         f.write(page)
-    print("[INFO] generated page:", page_path)
+    logger.debug("generated page: "+page_path)
     return page_path
 
 def try_copy(src, dst): 
     if os.path.isfile(src): 
-        print(f"[INFO] copying {src} to {dst}")
+        logger.debug(f"copying {src} to {dst}")
         return shutil.copy2(src, dst)
-    print(f"[WARN] could not locate {src} to copy to {dst}")
+    logger.warning(f"could not locate {src} to copy to {dst}")
     return ""
 
 def copy_stylehseet(path):
@@ -143,37 +154,39 @@ def build(files, template, src="", dst=None, common_src=False, style_src=styles_
 def compare_output_files(old, new):
     oldset = set(old)
     newset = set(new)
-    print("[INFO] unchanged files:")
-    for f in oldset.difference(newset):
-        print("\t"+f)
-    print("[INFO] new files:")
-    for f in newset.difference(oldset):
-        print("\t"+f)
-    print("[INFO] modified files:")
-    for f in newset.intersection(oldset):
-        print("\t"+f)
+    unchanged = oldset.difference(newset)
+    logger.info(f"{len(unchanged)} unchanged files")
+    for f in unchanged: 
+        logger.debug(f)
+    newfiles = newset.difference(oldset)
+    logger.info(f"{len(newfiles)} new files")
+    for f in newfiles: 
+        logger.debug(f)
+    modified = newset.intersection(oldset)
+    logger.info(f"{len(modified)} modified files")
+    for f in modified: 
+        logger.debug(f)
 
 
 if __name__=="__main__":
-    # https://docs.python.org/3/howto/logging.html#logging-advanced-tutorial
-    # import logging
-    # logger = logging.getLogger(__name__)
+    logger_setup(logger)
+    logger.setLevel(logging.INFO)
     # logger.setLevel(logging.DEBUG)
 
     config, includes, builds = get_config()
 
-    # TODO clear out old files 
     existing_output_files = walk_output_dir()
     new_output_files = []
     
-    print("[INFO] Moving global resources:")
+    logger.debug("moving global resources")
     new_output_files.extend(copy_includes(includes))
 
     for args in builds: 
-        print("[INFO] Build args:", args)
+        logger.info(f"build args: {args}")
         new_output_files.extend(build(config=config, **args))
 
     compare_output_files(existing_output_files, new_output_files)
     # nav = templates.get_template('header/nav_basic.html')
     # render = nav.render(config=config)
     # write_page(render, "test")
+
