@@ -3,17 +3,32 @@
         "sitename": "hanbo.li",
         "nav_list": ["writing", "projects", "photos", "about"]
     },
+    "includes": {
+        "styles": [
+            "core",
+            "reset",
+            "utilities", 
+            "texteffects", 
+            "inputs", 
+            "layouts"
+        ],
+        "scripts": [
+            "utilities", 
+            "themes", 
+            "texteffects"
+        ]
+    },
     "builds": [
         {
             "files": "index.html",
-            "template": "index",
-            "style_src": "styles",
-            "script_src": "scripts"
+            "template": "index"
         },
         {
             "src": "frames",
             "files": "*.html", 
-            "template": "frame"
+            "template": "frame",
+            "style_src": "frames",
+            "script_src": "frames"
         }
     ]
 }

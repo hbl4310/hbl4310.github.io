@@ -14,6 +14,8 @@ root_dir = os.path.abspath(os.path.join(src_dir, "../.."))
 os.chdir(root_dir)
 dev_dir = os.path.relpath(os.path.join(root_dir, "dev"), root_dir)
 content_dir = os.path.join(dev_dir, "content")
+styles_dir = os.path.join(dev_dir, "styles")
+scripts_dir = os.path.join(dev_dir, "scripts")
 templates_dir = os.path.join(dev_dir, "templates")
 components_dir = os.path.join(dev_dir, "components")
 templates = Environment(loader=FileSystemLoader([templates_dir, components_dir]))
@@ -28,8 +30,9 @@ def get_config():
     with open(config_file, "r") as f:
         build_config = json.load(f)
         config = build_config["config"]
+        includes = build_config["includes"]
         builds = build_config["builds"]
-    return config, builds
+    return config, includes, builds
 
 # utilities
 # map file type of frontmatter parser
@@ -46,11 +49,24 @@ handlers = {
 def get_filenames(files, src):
     return glob(os.path.join(src, files))
 
+def check_path(path, throw_error = False): 
+    dir = os.path.dirname(path)
+    if os.path.exists(path): 
+        return True
+    if throw_error: 
+        raise NotADirectoryError(path)
+    os.makedirs(dir)
+    return False
+
 def write_page(page, name, subdir=""):
     page_path = os.path.join(output_dir, subdir, f"{name}.html")
+    msg = ""
+    if not check_path(page_path): 
+        msg += "created directory and "
     with open(page_path, "w") as f: 
         f.write(page)
-    return f"generated page: {page_path}"
+    msg += f"generated page: {page_path}"
+    return msg
 
 def try_copy(src, dst): 
     if os.path.isfile(src): 
@@ -67,7 +83,7 @@ def copy_script(path):
         path += ".js"
     return try_copy(path, output_scripts_dir)
 
-def copy_resources(page, style_src, script_src): 
+def copy_page_resources(page, style_src, script_src): 
     styles = page.metadata.get("styles", [])
     styles.append(page.get("style", None))
     scripts = page.metadata.get("scripts", [])
@@ -81,22 +97,27 @@ def copy_resources(page, style_src, script_src):
             resources.append(copy_script(os.path.join(script_src, script)))
     return resources
 
+def copy_includes(includes):
+    outputs = []
+    for style in includes["styles"]:
+        outputs.append(copy_stylehseet(os.path.join(styles_dir, style)))
+    for script in includes["scripts"]:
+        outputs.append(copy_script(os.path.join(scripts_dir, script)))
+    return outputs
 
 # build pages from frontmatter objects and copy resources to docs
 # TODO may want to template .css or .js to inject config variables
-def build(files, template, src="", dst=None, style_src=None, script_src=None, config={}):
+def build(files, template, src="", dst=None, style_src=styles_dir, script_src=scripts_dir, config={}):
     template = templates.get_template(f"{template}.html")
     dst = src if dst is None else dst
     src = os.path.join(content_dir, src)
-    style_src = src if style_src is None else os.path.join(dev_dir, style_src)
-    script_src = src if script_src is None else os.path.join(dev_dir, script_src)
     outputs = []
     for file in get_filenames(files, src): 
         name, ext = os.path.splitext(os.path.basename(file))
         page = frontmatter.load(file, handler=handlers[ext], name=name)
         render = template.render(content=page.content, config=config, **page.metadata)
         outputs.append(write_page(render, name, dst))
-        outputs.extend(copy_resources(page, style_src, script_src))
+        outputs.extend(copy_page_resources(page, style_src, script_src))
     return outputs
 
 
@@ -106,12 +127,16 @@ if __name__=="__main__":
     # logger = logging.getLogger(__name__)
     # logger.setLevel(logging.DEBUG)
 
-    config, builds = get_config()
+    config, includes, builds = get_config()
+
+    print("Moving global resources:")
+    for output in copy_includes(includes):
+        print("\t"+output)
 
     for args in builds: 
-        print('Build args:', args)
+        print("Build args:", args)
         for output in build(config=config, **args):
-            print('\t'+output)
+            print("\t"+output)
 
     # nav = templates.get_template('header/nav_basic.html')
     # render = nav.render(config=config)
