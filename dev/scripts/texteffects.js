@@ -153,8 +153,8 @@ const numHackerChars = hackerChars.length;
 const numHackerFlips = 4; 
 const hackerTextIntervalMs = 30;
 
-let hackerInterval = null; 
-let hackerObserver = null;  // look for data-active="true" to trigger effect
+let hackerInterval; 
+let hackerObserver;  // look for data-active="true" to trigger effect
 
 function hackerText(e) {
     let iteration = 0; 
