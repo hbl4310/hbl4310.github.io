@@ -150,7 +150,8 @@ function getPerlinColours(canvas) {
 }
 
 function getParticleNoise(p) {
-    return perlinNoise(p.x/99, p.y/99);
+    // should be p.x / a * (1 << PERLIN_BASE)
+    return perlinNoise(p.x/99, p.y/99, p.z/99);
 }
 
 function setup(canvas) {
@@ -161,8 +162,10 @@ function setup(canvas) {
 function draw(ctx, lineColours) {
     const numColours = lineColours.length;
     if (frame == 0) {
+        // take a random slice of the perlin texture cube
+        const z = rand(0, a-1);
         for (let i = 0; i < numPerlinParticles; i++) {
-            perlinParticles[i] = {x: rand(0, a-1), y: rand(0, a-1)};
+            perlinParticles[i] = {x: rand(0, a-1), y: rand(0, a-1), z: z};
             perlinParticleColours[i] = Math.floor(numColours * getParticleNoise(perlinParticles[i]));
         }
     }
@@ -213,7 +216,9 @@ function refreshFlow(canvas) {
     clearTimeout(flowTimeout);
     clearCanvas(canvas);
     frame = 0;
+    perlinParticles = [];
+    perlinParticleColours = [];
     _runFlow(canvas);
 }
 
-// TODO: handle resize, handle theme change
+// TODO: handle resize --> change a, numParticles, .css height/width

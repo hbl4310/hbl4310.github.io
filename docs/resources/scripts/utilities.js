@@ -92,6 +92,7 @@ function attachAttrMutationObserver(e, callback, attrName) {
 // extract hsl values for manipulation in js 
 const inParentheses = /\(([^)]+)\)/;
 function extractHSL(hslString) {
-    const [hue, saturation, lightness] = hslString.match(inParentheses)[1].split(",").map((x) => {return x.trim()});
+    const matches = hslString.match(inParentheses);
+    const [hue, saturation, lightness] = matches[1].split(",").map((x) => {return x.trim()});
     return [hue, saturation, lightness];
 }
