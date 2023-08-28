@@ -166,6 +166,7 @@ function draw(ctx, lineColours) {
         const z = rand(0, a-1);
         for (let i = 0; i < numPerlinParticles; i++) {
             perlinParticles[i] = {x: rand(0, a-1), y: rand(0, a-1), z: z};
+            // not sure if this is actually uniform
             perlinParticleColours[i] = Math.floor(numColours * getParticleNoise(perlinParticles[i]));
         }
     }
