@@ -1,0 +1,15 @@
+#perlin-flow {
+	--line-colour-1: var(--primary-alt-1);
+	--line-colour-2: var(--primary);
+	--line-colour-3: var(--primary-alt-2);
+
+	position: absolute;
+    width: 500px;
+    height: 500px;
+
+    border: 1px solid var(--accent);
+
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
