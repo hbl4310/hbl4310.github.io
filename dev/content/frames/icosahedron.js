@@ -50,7 +50,7 @@ function setR(construct) {
     construct.style.setProperty("--R-nounit", R);
 }
 
-function icosahedronTrigger(e) {
+function triggerIcosahedron(e) {
     if (step < numSteps - 1) {
         // TODO pause animation?
         // nextStep(e);
@@ -63,7 +63,7 @@ function icosahedronTrigger(e) {
     setTimeout(animateSteps, 2.5 * stepAnimationMs, e);
 }
 
-function icosahedronRun() {
+function runIcosahedron() {
     for (const e of document.getElementsByClassName("construct")) {
         icosahedronSizeListeners.push(window.addEventListener("DOMContentLoaded", () => { setR(e) }));
         icosahedronSizeListeners.push(window.addEventListener("resize", () => { setR(e) }));
