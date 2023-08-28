@@ -1,6 +1,6 @@
 // TODO put consts in some config
 const framesPath = "/frames";
-const frames = ["shapes", "icosahedron"];
+const frames = ["shapes", "icosahedron", "perlinflow"];
 const numFrames = frames.length;
 let frameIndex = 0;
 

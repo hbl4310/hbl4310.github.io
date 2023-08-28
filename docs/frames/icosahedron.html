@@ -6,7 +6,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Mono&family=Cedarville+Cursive&family=Noto+Sans+SC&family=ZCOOL+QingKe+HuangYou&family=Ma+Shan+Zheng&display=swap"> 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
     <link rel="stylesheet" href="/resources/styles/core.css">
     <link rel="stylesheet" href="/resources/styles/icosahedron.css">
     <script src="/resources/scripts/utilities.js"></script>
@@ -17,7 +17,7 @@
     <title>Icosahedron</title>
 </head>
 <body class="theme-1 center-layout container-fullheight">
-<div data-step="0" class="construct" onclick="icosahedronTrigger(this)">
+<div data-step="0" class="construct" onclick="triggerIcosahedron(this)">
     <!--  Hirano's construction for regular pentagon  -->
     <div class="xy-plane [ step-0 step-8a step-9a-top step-13a step-15 ]">
         <div class="outer circle [ step-1 ] hidden">
@@ -116,7 +116,7 @@
 </div>
 <script>
     listenForTheme();
-    icosahedronRun();
+    runIcosahedron();
 </script>
 </body>
 </html>

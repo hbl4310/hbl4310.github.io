@@ -89,15 +89,9 @@ function attachAttrMutationObserver(e, callback, attrName) {
 }
 
 
-// replace hsl property value with hsla
-function addHSLAlpha(e, propertyNameRead, propertyNameSet, alpha) {
-    const style = getComputedStyle(e);
-    const hsl = style.getPropertyValue(propertyNameRead).toString();
-    let hsla = hsl;
-    if (hsl.startsWith("hsl")) {
-        const [hue, saturation, lightness] = hsl.match(/\d+/g).map(Number);
-        hsla = `hsla(${hue}, ${saturation}%, ${lightness}%, ${alpha})`;
-        e.style.setProperty(propertyNameSet, hsla)
-    }
-    return hsla;
+// extract hsl values for manipulation in js 
+const inParentheses = /\(([^)]+)\)/;
+function extractHSL(hslString) {
+    const [hue, saturation, lightness] = hslString.match(inParentheses)[1].split(",").map((x) => {return x.trim()});
+    return [hue, saturation, lightness];
 }

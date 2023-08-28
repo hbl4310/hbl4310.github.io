@@ -17,11 +17,8 @@
     --colour1: var(--secondary-alt-2);
     --colour2: var(--primary-alt-2);
     --edge-colour: var(--accent);
-    /* Ideally would use this and not JS: https://www.w3.org/TR/css-color-5/#relative-colors */
-    /* --face-color: hsl(from var(--primary) h s l / 40%); */
-    --face-colour-solid: var(--primary);
-    --face-colour: var(--primary);
-    --face-colour-alpha: 0.5;
+    /* add transparency via color-mix: if weights add to < 100%, remainder is assumed transparent */
+    --face-colour: color-mix(in oklab, var(--primary) 50%, white 0%);
     
     /* calculated lengths and angles */
     --unit: 1rem;

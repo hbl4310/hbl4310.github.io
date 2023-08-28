@@ -45,16 +45,12 @@ function animateSteps(construct) {
     }
 }
 
-function setFaceColour(construct) {
-    addHSLAlpha(construct, "--face-colour-solid", "--face-colour", getComputedStyle(construct).getPropertyValue("--face-colour-alpha"));
-}
-
 function setR(construct) {
     const R = clamp(vmin() / scaleR, minR, maxR);
     construct.style.setProperty("--R-nounit", R);
 }
 
-function icosahedronTrigger(e) {
+function triggerIcosahedron(e) {
     if (step < numSteps - 1) {
         // TODO pause animation?
         // nextStep(e);
@@ -67,12 +63,8 @@ function icosahedronTrigger(e) {
     setTimeout(animateSteps, 2.5 * stepAnimationMs, e);
 }
 
-function icosahedronRun() {
+function runIcosahedron() {
     for (const e of document.getElementsByClassName("construct")) {
-        setFaceColour(e);
-        faceColourObservers.push(attachAttrMutationObserver(document.body, (mutation) => {
-            setFaceColour(e);
-        }, "class"));
         icosahedronSizeListeners.push(window.addEventListener("DOMContentLoaded", () => { setR(e) }));
         icosahedronSizeListeners.push(window.addEventListener("resize", () => { setR(e) }));
         setTimeout(animateSteps, stepAnimationMs, e);
