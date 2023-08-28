@@ -24,3 +24,4 @@ TODO
 
 Notes: 
 `pipreqs --force .`
+`livereload ./docs/`
