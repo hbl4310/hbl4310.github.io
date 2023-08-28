@@ -154,17 +154,17 @@ def build(files, template, src="", dst=None, common_src=False, style_src=styles_
 def compare_output_files(old, new):
     oldset = set(old)
     newset = set(new)
-    unchanged = oldset.difference(newset)
-    logger.info(f"{len(unchanged)} unchanged files")
-    for f in unchanged: 
+    untouched = oldset.difference(newset)
+    logger.info(f"{len(untouched)} untouched files")
+    for f in untouched: 
         logger.debug(f)
     newfiles = newset.difference(oldset)
     logger.info(f"{len(newfiles)} new files")
     for f in newfiles: 
         logger.debug(f)
-    modified = newset.intersection(oldset)
-    logger.info(f"{len(modified)} modified files")
-    for f in modified: 
+    overwritten = newset.intersection(oldset)
+    logger.info(f"{len(overwritten)} overwritten files")
+    for f in overwritten: 
         logger.debug(f)
 
 
@@ -186,7 +186,7 @@ if __name__=="__main__":
         new_output_files.extend(build(config=config, **args))
 
     compare_output_files(existing_output_files, new_output_files)
+
     # nav = templates.get_template('header/nav_basic.html')
     # render = nav.render(config=config)
     # write_page(render, "test")
-
