@@ -59,7 +59,7 @@ function perlinCosineInterpolation(xi, yi, zi, xf, yf, zf) {
 // smoothing
 function perlinHarmonicSmoothing(perlinInterpolation, amplitude, numOctaves, amplitudeFalloff) {
     // double values and increment 
-    increment = (vi, vf) => {
+    const increment = (vi, vf) => {
         vi <<= 1; 
         vf *= 2;
         if (vf >= 1.0) {
@@ -83,7 +83,7 @@ function perlinHarmonicSmoothing(perlinInterpolation, amplitude, numOctaves, amp
     return f;
 }
 
-splitValue = (v) => {
+const splitValue = (v) => {
     if (v < 0) {
         v = -v; 
     }
@@ -120,16 +120,15 @@ function clearCanvas(canvas) {
     }
 }
 
-function refillCanvas(canvas) {
-    const lineColour = getPerlinColour(canvas);
-}
 
 
 let perlinParticles = [];
+let perlinParticleColours = [];
 const numPerlinParticles = 8000;
 // let a = 800;
 let a = 500;
 let frame = 0;
+const canvasMarginPct = 0.05;
 const maxFrames = 100;
 const frameRefreshMs = 150;
 
@@ -141,8 +140,17 @@ function getPerlinTransparency(f) {
     return 0.3 + 0.7 * f/maxFrames;
 }
 
-function getPerlinColour(canvas) {
-    return extractHSL(window.getComputedStyle(canvas).getPropertyValue("--line-colour"));
+function getPerlinColours(canvas) {
+    const style = window.getComputedStyle(canvas);
+    return [
+        extractHSL(style.getPropertyValue("--line-colour-1")),
+        extractHSL(style.getPropertyValue("--line-colour-2")),
+        extractHSL(style.getPropertyValue("--line-colour-3")),
+    ];
+}
+
+function getParticleNoise(p) {
+    return perlinNoise(p.x/99, p.y/99);
 }
 
 function setup(canvas) {
@@ -150,31 +158,35 @@ function setup(canvas) {
     canvas.height = a;
 }
 
-function draw(ctx, lineColour) {
+function draw(ctx, lineColours) {
+    const numColours = lineColours.length;
     if (frame == 0) {
         for (let i = 0; i < numPerlinParticles; i++) {
             perlinParticles[i] = {x: rand(0, a-1), y: rand(0, a-1)};
+            perlinParticleColours[i] = Math.floor(numColours * getParticleNoise(perlinParticles[i]));
         }
     }
-    const fill = `hsla(${lineColour[0]},${lineColour[1]},${lineColour[2]},${getPerlinTransparency(frame)})`
-    for (p of perlinParticles){
-        d = perlinNoise(p.x/99, p.y/99) * TAU;
+    for (let i=0; i < numPerlinParticles; i++) {
+        p = perlinParticles[i];
+        d = getParticleNoise(p) * TAU;
         p.x += Math.cos(d);
         p.y += Math.sin(d);
-        l = 0.05*a;  // margin
+        l = canvasMarginPct * a;
         u = a - l;
+        c = lineColours[perlinParticleColours[i]];
+        fill = `hsla(${c[0]},${c[1]},${c[2]},${getPerlinTransparency(frame)})`
         drawPixel(ctx, clamp(p.x,l,u), clamp(p.y,l,u), fill);
     }
     if (frame < maxFrames) {
         frame++;
-        flowTimeout = setTimeout(draw, frameRefreshMs, ctx, lineColour);
+        flowTimeout = setTimeout(draw, frameRefreshMs, ctx, lineColours);
     }
 } 
 
 function _runFlow(canvas) {
-    const lineColour = getPerlinColour(canvas);
+    const lineColours = getPerlinColours(canvas);
     const ctx = canvas.getContext("2d");
-    draw(ctx, lineColour);
+    draw(ctx, lineColours);
 }
 
 function runFlow() {
@@ -185,6 +197,13 @@ function runFlow() {
             // wait a bit after load to run
             flowTimeout = setTimeout(_runFlow, 1000, canvas);
         });
+
+        // window.addEventListener("resize", () => { setR(e) });
+
+        attachAttrMutationObserver(document.body, (mutation) => {
+            refreshFlow(canvas);
+        }, "class");
+
     } else {
         // canvas-unsupported code here
     }
@@ -194,7 +213,9 @@ function refreshFlow(canvas) {
     clearTimeout(flowTimeout);
     clearCanvas(canvas);
     frame = 0;
+    perlinParticles = [];
+    perlinParticleColours = [];
     _runFlow(canvas);
 }
 
-// TODO: handle resize, randomise colours?, handle theme change
+// TODO: handle resize --> change a, numParticles, .css height/width
