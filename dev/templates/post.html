@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{# template for posts #}
+
+{% block head %}
+{{- head.styles.append("nav") | default("", True) }}
+{{- head.styles.append("footer") | default("", True) }}
+{{- super() }}
+{%- endblock %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block body %}
+<body class="theme-1 column-layout">
+
+{% include 'header/nav_basic.html' %}
+
+<main class="container-wide">
+    <article>
+        <div class="title">
+            <h1 class="text-3xl tight-layout">{{ title }}</h1>
+            <p class="text-lg subtitle">posted on {{ date }}</p>
+            <br>
+        </div>
+        <div class="content | text-body">
+            {% filter indent(width=12) %}{{ content }}{% endfilter %}
+        </div>
+    </article>
+</main>
+
+{% include "footer.html" %}
+
+<script>
+    applyThemes();
+    listenForTheme();
+</script>
+</body>
+{%- endblock %}

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Mono&family=Cedarville+Cursive&family=Noto+Sans+SC&family=ZCOOL+QingKe+HuangYou&family=Ma+Shan+Zheng&display=swap"> 
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+    <link rel="stylesheet" href="/resources/styles/core.css">
+    <link rel="stylesheet" href="/resources/styles/nav.css">
+    <script src="/resources/scripts/utilities.js"></script>
+    <script src="/resources/scripts/themes.js"></script>
+    <script src="/resources/scripts/texteffects.js"></script>
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+    <title>Eminent Domains</title>
+</head>
+<body class="theme-1 column-layout">
+<nav>
+    <div class="top-left-nav">
+        <h1 class="sitename | text-3xl tight-layout">
+            <a href="#" class="text-hacker">hanbo.li</a>
+            <!-- <a href="#" class="text-hacker" style="font-family:var(--ff-mono-chinese);">栗瀚博</a> -->
+        </h1>
+        <button type="button" class="clickable" onclick="switchTheme()">
+            Switch Theme
+            <!-- https://www.svgrepo.com/svg/10005/light-bulb -->
+            <svg height="100%" width="100%" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+                xmlns:xlink="http://www.w3.org/1999/xlink">
+                <!-- lightbulb glowing animation applied as an animated svg filter -->
+                <filter id="lightbulb-glow-filter" x="-50%" y="-50%" width="200%" height="200%">
+                    <feGaussianBlur result="blurOut" stdDeviation="20" >
+                        <animate attributeName="stdDeviation" calcMode="paced" begin="0s" dur="2s" values="0;50;0;" repeatCount="indefinite"/>
+                    </feGaussianBlur>
+                    <feBlend in="SourceGraphic" in2="blurOut" />
+                </filter>
+                <g class="lightbulb-glow">
+                    <path
+                        d="m363.9,54.2c-31.2-29.8-72.3-45.1-115.4-43-77.6,3.6-141.3,64.6-148.1,141.9-3.7,41.3 8.8,81.6 35,113.4 26.4,32.1 48,89 48,126.9 0,0-2.1,13.8 10.4,14.4h124.7c13.6-1 10.4-17 10.4-17 0-37 21.1-92.3 47.1-123.3 23.5-28 36.4-63.6 36.4-100.1-0.1-43.2-17.3-83.4-48.5-113.2zm-116.1,332.7l-24-145.9h64.5l-24,145.9h-16.5zm112.1-132.9c-28.3,33.7-50.6,91.2-51.9,132.8h-22.6l25.5-154.6c0.7-3.2-0.7-11.6-10.3-12.1h-89c-9.2,0.3-11,9-10.3,12.1l25.5,154.6h-22.7c-2.1-42.3-24.5-99.6-52.6-133.7-22.7-27.5-33.5-62.4-30.3-98.3 5.8-66.8 61-119.6 128.2-122.8 37.5-1.8 73,11.5 100,37.3 27.1,25.8 42,60.6 42,98 0.1,31.7-11.1,62.5-31.5,86.7z" 
+                        filter="url(#lightbulb-glow-filter)"
+                        >
+                    </path>
+                </g>
+                <g class="lightbulb">
+                    <path
+                        d="m363.9,54.2c-31.2-29.8-72.3-45.1-115.4-43-77.6,3.6-141.3,64.6-148.1,141.9-3.7,41.3 8.8,81.6 35,113.4 26.4,32.1 48,89 48,126.9 0,0-2.1,13.8 10.4,14.4h124.7c13.6-1 10.4-17 10.4-17 0-37 21.1-92.3 47.1-123.3 23.5-28 36.4-63.6 36.4-100.1-0.1-43.2-17.3-83.4-48.5-113.2zm-116.1,332.7l-24-145.9h64.5l-24,145.9h-16.5zm112.1-132.9c-28.3,33.7-50.6,91.2-51.9,132.8h-22.6l25.5-154.6c0.7-3.2-0.7-11.6-10.3-12.1h-89c-9.2,0.3-11,9-10.3,12.1l25.5,154.6h-22.7c-2.1-42.3-24.5-99.6-52.6-133.7-22.7-27.5-33.5-62.4-30.3-98.3 5.8-66.8 61-119.6 128.2-122.8 37.5-1.8 73,11.5 100,37.3 27.1,25.8 42,60.6 42,98 0.1,31.7-11.1,62.5-31.5,86.7z"
+                        >
+                    </path>
+                    <path
+                        d="m319.7,433.9h-127.4c-5.8,0-10.4,4.7-10.4,10.4 0,5.8 4.7,10.4 10.4,10.4h9.7c4.1,26.1 26.7,46.2 54,46.2 27.3,0 49.9-20.1 54-46.2h9.7c5.8,0 10.4-4.7 10.4-10.4 5.68434e-14-5.7-4.6-10.4-10.4-10.4zm-63.7,46.2c-15,0-27.7-9.8-32.1-23.3h64.2c-4.4,13.5-17.1,23.3-32.1,23.3z"
+                        >
+                    </path>
+                </g>
+            </svg>
+        </button>
+    </div>
+    <div class="hamburger-menu">
+        <input class="visually-hidden" id="hamburger-accordion-input" type="checkbox" name="burger-menu">
+        <label for="hamburger-accordion-input" class="clickable">
+            Navigation Menu
+            <!-- https://www.svgrepo.com/svg/352109/hamburger -->
+            <svg class="hamburger-icon" width="100%" height="100%" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                <g class="hamburger-top">
+                    <path d="M58.64 224 h394.72c34.57 0 54.62-43.9 34.82-75.88C448 83.2 359.55 32.1 256 32c-103.54.1-192 51.2-232.18 116.11C4 180.09 24.07 224 58.64 224z M384 112a16 16 0 1 1-16 16 16 16 0 0 1 16-16z M256 80a16 16 0 1 1-16 16 16 16 0 0 1 16-16z m-128 32a16 16 0 1 1-16 16 16 16 0 0 1 16-16z"></path>
+                </g>
+                <g class="hamburger-mid-1">
+                    <path d="M464 256H48a48 48 0 0 0 0 96h416a48 48 0 0 0 0-96z"></path>
+                </g>
+                <g class="hamburger-mid-2">
+                    <path d="M464 256H48a48 48 0 0 0 0 96h416a48 48 0 0 0 0-96z"></path>
+                </g>
+                <g class="hamburger-bot">
+                    <path d="M16 386 H32a16 16 0 0 0-16 16v16a64 64 0 0 0 64 64h352a64 64 0 0 0 64-64v-16a16 16 0 0 0-16-16z"></path>
+                </g>
+            </svg>
+        </label>
+        <!-- If adding new items, check media query screen width still makes sense in nav.css -->
+        <ul>
+            <li style="transition-delay:100ms;">
+                <h2 class="text-xl tight-layout">
+                    <a href="/writing" class="button-fade-text clickable text-strikethrough">
+                        Writing
+                    </a>
+                </h2>
+            </li>
+            <li style="transition-delay:200ms;">
+                <h2 class="text-xl tight-layout">
+                    <a href="/projects" class="button-fade-text clickable text-strikethrough">
+                        Projects
+                    </a>
+                </h2>
+            </li>
+            <li style="transition-delay:300ms;">
+                <h2 class="text-xl tight-layout">
+                    <a href="/photos" class="button-fade-text clickable text-strikethrough">
+                        Photos
+                    </a>
+                </h2>
+            </li>
+            <li style="transition-delay:400ms;">
+                <h2 class="text-xl tight-layout">
+                    <a href="/about" class="button-fade-text clickable text-strikethrough">
+                        About
+                    </a>
+                </h2>
+            </li>
+        </ul>
+    </div>
+</nav>
+<main class="container-wide">
+    <article>
+        <div class="title">
+            <h1 class="text-3xl tight-layout">Eminent Domains</h1>
+            <p class="text-lg subtitle">written: 2023-08-31</p>
+            <br>
+        </div>
+        <div class="content | text-body">
+            Just as in a dream, supposedly, or like that plot point in the movie Inception, I don't know how I found myself looking at a [Wikipedia list](https://en.wikipedia.org/wiki/Country_code_top-level_domain) of country domains. These are the top-level domain suffixes such as '.us' which represent a country or sovereign state. They began in 1985, and the US, UK and Israel were the first to register theirs -- respectively: '.us', '.uk' and '.il'. Interestingly, there are 308 delegated domain codes but only 195 countries or recognised independent states. This may be because there are many domains which represent sovereign states which are not countries, like Ascension Island (.ac) which is part of the UK. Some interesting notes on some domains: 
+- '.ai', which is seen a lot on AI firms, belongs to Anguilla, a part of the UK. 
+- '.aq' is designated for Antarctica. 
+- Benin seems like it was late to the party, as it was allocated '.bj' because .be, .bi and .bn were taken. Unfortunate. 
+- '.cx' refers to the Christmas Islands, an Australian territory not known for their goats. 
+- DJs are from Djibouti ('.dj') and resumes are from Cape Verde ('.cv'). 
+- North Korea has '.kp' despite the internet being censored there. 
+- The Soviet Union's domain, '.su', is still in use. 
+- '.tv' belongs to Tuvalu and income from licensing their domain forms a not insubstantial part of their GDP. 
+
+Many coutnries' domains are restricted for use by their citizens or local businesses (or business with a local presence). This makes sense, since the country domain might lend some credibility to the site, and governments may be wary of bad actors abusing this trust. It is an interesting list describing the intersection of geopolitics and the internet. Of greater interest than this though, was Liechtenstein's domain, '.li'. The small excitement of a new idea was swiftly and thoroughly dashed by the accompanying note: "Also unofficially used by ... people with the last name Li". How come Nigeria's, '.ng', didn't have a similar note about Nguyen's?
+
+After some searching on the usual domain registration market places, I found two things. That the '.li' domains are controlled by Supranet AG, and that the range of prices for registering such a domain varied wildly from around $15 to $99 per year. GoDaddy was the most egregious offender. So, now I have an internet vanity plate for a Chinese surname, paid for in Swiss Francs, to a German-speaking telecommunications provider, who manage the country-level domain for the [doubly-landlocked](https://en.wikipedia.org/wiki/Landlocked_country#Doubly_landlocked) microstate of Liechtenstein, which I still cannot spell in one pass. That's globalisation, baby. The process was relatively painless but heavily involved Google Translate (MVP) and a seamless currency conversion provided by the bank (secondary MVP). I knew nothing about registering a domain, let alone setting up a website, before this side-quest. I now know nothing + \epsilon. From what I gathered, domain name registrars are the entities which ultimately control and maintain addresses which use their domains. The **Internet**, though needs a way to find these addresses, so relies on Domain Name Systems (DNS) and Name Servers (NS) to direct traffic to their destination. Analogies about DNS, NS, phone books, postal routes etc were less helpful than not. It seems like DNS acts like a postal or courier service such as FedEx or UPS. They are internet systems which eventually find the NS to look up the correct IP addresses. It took a while for me to realise that domain registrars are different from DNS providers. And even longer for me to realise the NS in DNS does not stand for name server. After revealing some of the sausage-making details, it's amazing that the internet works as well as it does. 
+
+Some interesting facts about my newly adopted (web) nationality: 
+- It is only 160 square kms, which is only around 99 times the floor space of the largest building by this measure, the New Century Global Complex in China. 
+- It has the highest GDP, adjusted for [PPP](https://en.wikipedia.org/wiki/Purchasing_power_parity), per capita in the world, and more registered companies than citizens.
+- It became a sovereign member state of the Holy Roman Empire on January 23rd, 1719, gaining full(er?) sovereignty after the Napoleonic wars, bounced between French, German, Austrian and Austro-Hungarian allegiances before wisely copying their Swiss neighbours and declaring neutrality in WWII. 
+It seems like Liechtenstein is an appendix of complex European history, but has cleverly managed to find and maintain relevance and independence through turbulent events. A place worth visiting, for sure!
+        </div>
+    </article>
+</main>
+<script>
+    listenForTheme();
+</script>
+</body>
+</html>

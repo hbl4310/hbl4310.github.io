@@ -28,6 +28,13 @@
             "files": "*.html", 
             "template": "frame",
             "common_src": true
+        }, 
+        {
+            "src": "projects", 
+            "files": [
+                "this/*.md"
+            ],
+            "template": "post"
         }
     ]
 }

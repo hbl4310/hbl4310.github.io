@@ -58,7 +58,11 @@ handlers = {
 }
 
 def get_filenames(files, src):
-    return glob(os.path.join(src, files))
+    if isinstance(files, str): 
+        return glob(os.path.join(src, files))
+    elif isinstance(files, list): 
+        return [fn for f in files for fn in get_filenames(f, src)]
+    raise TypeError(f"Can only get file names from strings or lists. Received: {files}")
 
 def walk_output_dir():
     files = []
@@ -68,13 +72,12 @@ def walk_output_dir():
 
 def check_path(path, throw_error = False): 
     dir = os.path.dirname(path)
-    if os.path.exists(path): 
-        return True
-    if throw_error: 
-        raise NotADirectoryError(path)
-    logger.debug("creating directory: "+dir)
-    os.makedirs(dir)
-    return False
+    if not os.path.exists(dir): 
+        if throw_error: 
+            raise NotADirectoryError(dir)
+        logger.info("creating directory: "+dir)
+        os.makedirs(dir)
+    return path
 
 # all src paths should be subpaths of dev_dir
 def check_src_path(src):
@@ -83,7 +86,8 @@ def check_src_path(src):
     return src
 
 def write_page(page, name, subdir=""):
-    page_path = os.path.join(output_dir, subdir, f"{name}.html")
+    page_path = check_path(os.path.join(output_dir, subdir, f"{name}.html"))
+    print('writing', page_path)
     with open(page_path, "w") as f: 
         f.write(page)
     logger.debug("generated page: "+page_path)
@@ -130,11 +134,15 @@ def copy_includes(includes):
         outputs.append(copy_script(os.path.join(scripts_dir, script)))
     return outputs
 
+def render_content(file, page): 
+    if file.endswith(".md"):
+        return cmarkgfm.markdown_to_html(page.content)
+    return page.content
+
 # build pages from frontmatter objects and copy resources to docs
 # TODO may want to template .css or .js to inject config variables
 def build(files, template, src="", dst=None, common_src=False, style_src=styles_dir, script_src=scripts_dir, config={}):
     template = templates.get_template(f"{template}.html")
-    dst = src if dst is None else dst
     src = check_src_path(src)
     if common_src:
         style_src = src
@@ -146,7 +154,8 @@ def build(files, template, src="", dst=None, common_src=False, style_src=styles_
     for file in get_filenames(files, src): 
         name, ext = os.path.splitext(os.path.basename(file))
         page = frontmatter.load(file, handler=handlers[ext], name=name)
-        render = template.render(content=page.content, config=config, **page.metadata)
+        render = template.render(content=render_content(file, page), config=config, **page.metadata)
+        dst = os.path.relpath(os.path.dirname(file), content_dir) if dst is None else dst
         outputs.append(write_page(render, name, dst))
         outputs.extend(copy_page_resources(page, style_src, script_src))
     return outputs
