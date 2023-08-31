@@ -8,6 +8,7 @@ import frontmatter
 from frontmatter.default_handlers import YAMLHandler
 import re
 import cmarkgfm
+from cmarkgfm.cmark import Options as cmarkgfmOptions
 
 logger = logging.getLogger(__file__)
 
@@ -135,7 +136,10 @@ def copy_includes(includes):
 
 def render_content(file, page): 
     if file.endswith(".md"):
-        return cmarkgfm.markdown_to_html(page.content)
+        return cmarkgfm.markdown_to_html(page.content, options=(
+            cmarkgfmOptions.CMARK_OPT_FOOTNOTES | 
+            cmarkgfmOptions.CMARK_OPT_SMART
+        ))
     return page.content
 
 # build pages from frontmatter objects and copy resources to docs
@@ -169,7 +173,7 @@ def compare_output_files(old, new):
     newfiles = newset.difference(oldset)
     logger.info(f"{len(newfiles)} new files")
     for f in newfiles: 
-        logger.debug(f)
+        logger.info(f)
     overwritten = newset.intersection(oldset)
     logger.info(f"{len(overwritten)} overwritten files")
     for f in overwritten: 

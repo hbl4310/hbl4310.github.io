@@ -5,6 +5,7 @@
 {% block head %}
 {{- head.styles.append("nav") | default("", True) }}
 {{- head.styles.append("footer") | default("", True) }}
+{{- head.styles.append(style) | default("", True) }}
 {{- super() }}
 {%- endblock %}
 
