@@ -87,7 +87,6 @@ def check_src_path(src):
 
 def write_page(page, name, subdir=""):
     page_path = check_path(os.path.join(output_dir, subdir, f"{name}.html"))
-    print('writing', page_path)
     with open(page_path, "w") as f: 
         f.write(page)
     logger.debug("generated page: "+page_path)
