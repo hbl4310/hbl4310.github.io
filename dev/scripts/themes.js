@@ -31,15 +31,16 @@ function initTheme() {
     } else {
         randomiseTheme();
     }
+    // add listener to change to random light mode theme if color scheme preference changes from dark
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+        // light mode defaults are theme-2 and theme-4
+        Math.random() > 0.5 ? switchTheme(1) : switchTheme(3);
+    });
 }
 
 function applyThemes() {
     maxThemes = getComputedStyle(document.body).getPropertyValue("--num-themes");
     window.addEventListener("DOMContentLoaded", initTheme);
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-        // light mode defaults are theme-2 and theme-4
-        Math.random() > 0.5 ? switchTheme(1) : switchTheme(3);
-    });
 }
 
 
