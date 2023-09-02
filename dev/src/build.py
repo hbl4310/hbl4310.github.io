@@ -4,7 +4,8 @@ import json
 import logging
 from datetime import datetime, timezone
 import argparse
-from jinja2 import Environment, FileSystemLoader
+from jinja2 import Environment, FileSystemLoader, pass_context
+from markupsafe import Markup
 import frontmatter
 from frontmatter.default_handlers import YAMLHandler
 import re
@@ -23,8 +24,6 @@ styles_dir = os.path.join(dev_dir, "styles")
 scripts_dir = os.path.join(dev_dir, "scripts")
 templates_dir = os.path.join(dev_dir, "templates")
 components_dir = os.path.join(dev_dir, "components")
-templates = Environment(loader=FileSystemLoader([templates_dir, components_dir]))
-templates.globals["nowutc"] = lambda: datetime.now(timezone.utc).strftime("%Y%m%dT%H:%M:%SZ%z")
 config_filename = "build_config.json"
 config_file = os.path.join(dev_dir, config_filename)
 
@@ -40,8 +39,22 @@ def get_config():
         builds = build_config["builds"]
     return config, includes, builds
 
+# template environment 
+templates = Environment(loader=FileSystemLoader([templates_dir, components_dir]))
+templates.globals["nowutc"] = lambda: datetime.now(timezone.utc).strftime("%Y%m%dT%H:%M:%SZ%z")
+
+@pass_context
+def subrender(context, value): 
+    template = context.environment.from_string(value)
+    render = template.render(**context)
+    if context.eval_ctx.autoescape:
+        # https://jinja.palletsprojects.com/en/3.1.x/api/#evaluation-context
+        render = Markup(render)
+    return render
+
+templates.filters["subrender"] = subrender
+
 # utilities
-# https://betterstack.com/community/guides/logging/how-to-start-logging-with-python/
 def logger_setup(logger):
     stdout = logging.StreamHandler(stream=sys.stdout)
     fmt = logging.Formatter("%(asctime)s [%(levelname)s] %(filename)s:%(lineno)s >> %(message)s")
@@ -136,6 +149,7 @@ def copy_includes(includes):
         outputs.append(copy_script(os.path.join(scripts_dir, script)))
     return outputs
 
+# TODO maybe put this into the frontmatter handler, or make custom Post object with content processing
 def render_content(file, page): 
     if file.endswith(".md"):
         return cmarkgfm.markdown_to_html(page.content, options=(
@@ -145,7 +159,6 @@ def render_content(file, page):
     return page.content
 
 # build pages from frontmatter objects and copy resources to docs
-# TODO may want to template .css or .js to inject config variables
 def build(files, template, src="", dst=None, common_src=False, style_src=styles_dir, script_src=scripts_dir, config={}):
     template = templates.get_template(f"{template}.html")
     src = check_src_path(src)
@@ -181,10 +194,35 @@ def compare_output_files(old, new):
     for f in overwritten: 
         logger.debug(f)
 
+# https://docs.python.org/3/library/argparse.html#action
+class LoggingAction(argparse.Action):
+    levels = {"notset", "debug", "info", "warn", "error", "critical"}
+    def __init__(self, option_strings, dest, nargs=None, **kwargs):
+        if nargs is not None:
+            raise ValueError("nargs not allowed")
+        super().__init__(option_strings, dest, **kwargs)
+
+    def __call__(self, parser, namespace, values, option_string=None):
+        if values.isnumeric():
+            v = float(values)
+            l = min(max(int(v/10)*10, logging.NOTSET), logging.CRITICAL)
+        else: 
+            if values.lower() in self.levels: 
+                l = getattr(logging, values.upper())
+            else:
+                raise ValueError(f"Logging level '{values}' not recognised.")
+        setattr(namespace, self.dest, l)
 
 if __name__=="__main__":
+    parser = argparse.ArgumentParser(
+        prog="Static Site Builder",
+        description="Builds Static Site"
+    )
+    parser.add_argument("-l", "--log-level", action=LoggingAction, default=logging.INFO, help="logging level; int or str")
+    args = parser.parse_args()
+
     logger_setup(logger)
-    logger.setLevel(logging.INFO)
+    logger.setLevel(args.log_level)
     # logger.setLevel(logging.DEBUG)
 
     config, includes, builds = get_config()
