@@ -39,10 +39,12 @@ def get_config():
         builds = build_config["builds"]
     return config, includes, builds
 
-# template environment 
-templates = Environment(loader=FileSystemLoader([templates_dir, components_dir]))
-templates.globals["nowutc"] = lambda: datetime.now(timezone.utc).strftime("%Y%m%dT%H:%M:%SZ%z")
+def get_dirs(src):
+    files = list(filter(os.path.isfile, glob.glob(search_dir + "*")))
+    files.sort(key=lambda x: os.path.getmtime(x))
 
+
+# template environment 
 @pass_context
 def subrender(context, value): 
     template = context.environment.from_string(value)
@@ -51,8 +53,6 @@ def subrender(context, value):
         # https://jinja.palletsprojects.com/en/3.1.x/api/#evaluation-context
         render = Markup(render)
     return render
-
-templates.filters["subrender"] = subrender
 
 # utilities
 def logger_setup(logger, level=logging.INFO):
@@ -101,11 +101,13 @@ def get_filenames(files, src):
         return [fn for f in files for fn in get_filenames(f, src)]
     raise TypeError(f"Can only get file names from strings or lists. Received: {files}")
 
-def walk_output_dir():
+def walk_dir(src):
     files = []
-    for (dirpath, dirnames, filenames) in os.walk(output_dir):
+    subdirs = []
+    for (dirpath, dirnames, filenames) in os.walk(src):
         files.extend([os.path.join(dirpath, x) for x in filenames])
-    return files
+        subdirs.extend(dirnames)
+    return files, subdirs
 
 def check_path(path, throw_error = False): 
     dir = os.path.dirname(path)
@@ -196,11 +198,10 @@ def build(files, template,
     outputs = []
     for file in get_filenames(files, src): 
         name, ext = os.path.splitext(os.path.basename(file))
-        # TODO optionally load local page metadata/variables from json file
         page = frontmatter.load(file, handler=handlers[ext], name=name)
         render = template.render(content=render_content(file, page), config=config, **page.metadata)
-        dst = os.path.relpath(os.path.dirname(file), content_dir) if dst is None else dst
-        outputs.append(write_page(render, name, dst))
+        _dst = os.path.relpath(os.path.dirname(file), content_dir) if dst is None else dst
+        outputs.append(write_page(render, name, _dst))
         outputs.extend(copy_page_resources(page, style_src, script_src))
     return outputs
 
@@ -221,6 +222,13 @@ def compare_output_files(old, new):
         logger.debug(f)
 
 
+templates = Environment(loader=FileSystemLoader([templates_dir, components_dir]))
+templates.globals["nowutc"] = lambda: datetime.now(timezone.utc).strftime("%Y%m%dT%H:%M:%SZ%z")
+# TODO put config into globals instead?
+templates.globals["projects"] = walk_dir(os.path.join(content_dir, "projects"))[1]
+# TODO use globals for aggregations?: get_projects, get_posts, etc
+templates.filters["subrender"] = subrender
+
 if __name__=="__main__":
     parser = argparse.ArgumentParser(
         prog="Static Site Builder",
@@ -233,7 +241,7 @@ if __name__=="__main__":
 
     config, includes, builds = get_config()
 
-    existing_output_files = walk_output_dir()
+    existing_output_files, _ = walk_dir(output_dir)
     new_output_files = []
     
     logger.debug("moving global resources")

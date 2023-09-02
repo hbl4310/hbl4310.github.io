@@ -20,7 +20,10 @@
     },
     "builds": [
         {
-            "files": "index.html",
+            "files": [
+                "index.html",
+                "projects/index.html"
+            ],
             "template": "index"
         },
         {
@@ -31,9 +34,7 @@
         }, 
         {
             "src": "projects", 
-            "files": [
-                "this/*.md"
-            ],
+            "files": "*/*.md",
             "template": "post"
         }
     ]
