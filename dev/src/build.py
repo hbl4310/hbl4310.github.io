@@ -2,6 +2,7 @@ import os, sys, shutil
 from glob import glob
 import json
 import logging
+from datetime import datetime, timezone
 import argparse
 from jinja2 import Environment, FileSystemLoader
 import frontmatter
@@ -23,6 +24,7 @@ scripts_dir = os.path.join(dev_dir, "scripts")
 templates_dir = os.path.join(dev_dir, "templates")
 components_dir = os.path.join(dev_dir, "components")
 templates = Environment(loader=FileSystemLoader([templates_dir, components_dir]))
+templates.globals["nowutc"] = lambda: datetime.now(timezone.utc).strftime("%Y%m%dT%H:%M:%SZ%z")
 config_filename = "build_config.json"
 config_file = os.path.join(dev_dir, config_filename)
 
@@ -78,7 +80,7 @@ def check_path(path, throw_error = False):
             raise NotADirectoryError(dir)
         logger.info("creating directory: "+dir)
         os.makedirs(dir)
-    return path
+    return path.replace(os.sep+"."+os.sep, os.sep)
 
 # all src paths should be subpaths of dev_dir
 def check_src_path(src):
