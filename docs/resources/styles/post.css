@@ -1,0 +1,7 @@
+p a:link {
+    color: var(--primary);
+}
+
+p a:visited {
+    color: var(--secondary-alt-2);
+}
