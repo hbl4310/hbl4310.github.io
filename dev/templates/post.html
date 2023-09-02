@@ -24,7 +24,7 @@
             <br>
         </div>
         <div class="content | text-body">
-            {% filter indent(width=12) %}{{ content }}{% endfilter %}
+            {% filter indent(width=12) %}{{ content | subrender }}{% endfilter %}
         </div>
     </article>
 </main>
