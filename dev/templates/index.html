@@ -11,7 +11,7 @@
 {% block body %}
 <body class="theme-1 column-layout">
 <header class="container-wide">
-    {% filter indent(width=4) %}{% include "header/nav_index.html" %}{% endfilter %}
+    {% filter indent(width=4) %}{% include "header/nav_"+nav_interaction|default(0, true)|string+".html" %}{% endfilter %}
 </header>
 
 <main class="container-wide">
