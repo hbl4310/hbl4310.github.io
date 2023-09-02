@@ -1,5 +1,5 @@
 # python static site generation
-
+Example usage: `python src/build.py -l debug`
 
 ## structure: 
 
@@ -15,13 +15,15 @@ components/
 content/ 
     content to fill templates
 
-
-TODO
-- markdown to html parser
-
+### TODO
+- make posts/projects index page
+- this content 
+- md to html packages like https://github.com/trentm/python-markdown2 ? better documentation on extra options
+- link anchors target="_blank" to open in new tab?
 
 
 
 Notes: 
-`pipreqs --force .`
-`livereload ./docs/`
+- Generate requirements.txt: `pipreqs --force .`
+- Run development server: `livereload ./docs/`
+- Markdown syntax: <https://www.markdownguide.org/basic-syntax/>
