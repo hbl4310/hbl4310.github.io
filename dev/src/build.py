@@ -55,12 +55,33 @@ def subrender(context, value):
 templates.filters["subrender"] = subrender
 
 # utilities
-def logger_setup(logger):
+def logger_setup(logger, level=logging.INFO):
     stdout = logging.StreamHandler(stream=sys.stdout)
     fmt = logging.Formatter("%(asctime)s [%(levelname)s] %(filename)s:%(lineno)s >> %(message)s")
     stdout.setFormatter(fmt)
     logger.addHandler(stdout)
+    logger.setLevel(level)
     return logger
+
+# https://docs.python.org/3/library/argparse.html#action
+class LoggingAction(argparse.Action):
+    levels = {"notset", "debug", "info", "warn", "error", "critical"}
+    def __init__(self, option_strings, dest, nargs=None, **kwargs):
+        if nargs is not None:
+            raise ValueError("nargs not allowed")
+        super().__init__(option_strings, dest, **kwargs)
+
+    def __call__(self, parser, namespace, values, option_string=None):
+        if values.isnumeric():
+            v = float(values)
+            l = min(max(int(v/10)*10, logging.NOTSET), logging.CRITICAL)
+        else: 
+            if values.lower() in self.levels: 
+                l = getattr(logging, values.upper())
+            else:
+                raise ValueError(f"Logging level '{values}' not recognised.")
+        setattr(namespace, self.dest, l)
+
 
 # map file type of frontmatter parser
 handlers = {
@@ -159,7 +180,11 @@ def render_content(file, page):
     return page.content
 
 # build pages from frontmatter objects and copy resources to docs
-def build(files, template, src="", dst=None, common_src=False, style_src=styles_dir, script_src=scripts_dir, config={}):
+def build(files, template, 
+        src="", dst=None, common_src=False, 
+        style_src=styles_dir, script_src=scripts_dir, 
+        config=dict(),
+    ):
     template = templates.get_template(f"{template}.html")
     src = check_src_path(src)
     if common_src:
@@ -171,6 +196,7 @@ def build(files, template, src="", dst=None, common_src=False, style_src=styles_
     outputs = []
     for file in get_filenames(files, src): 
         name, ext = os.path.splitext(os.path.basename(file))
+        # TODO optionally load local page metadata/variables from json file
         page = frontmatter.load(file, handler=handlers[ext], name=name)
         render = template.render(content=render_content(file, page), config=config, **page.metadata)
         dst = os.path.relpath(os.path.dirname(file), content_dir) if dst is None else dst
@@ -194,24 +220,6 @@ def compare_output_files(old, new):
     for f in overwritten: 
         logger.debug(f)
 
-# https://docs.python.org/3/library/argparse.html#action
-class LoggingAction(argparse.Action):
-    levels = {"notset", "debug", "info", "warn", "error", "critical"}
-    def __init__(self, option_strings, dest, nargs=None, **kwargs):
-        if nargs is not None:
-            raise ValueError("nargs not allowed")
-        super().__init__(option_strings, dest, **kwargs)
-
-    def __call__(self, parser, namespace, values, option_string=None):
-        if values.isnumeric():
-            v = float(values)
-            l = min(max(int(v/10)*10, logging.NOTSET), logging.CRITICAL)
-        else: 
-            if values.lower() in self.levels: 
-                l = getattr(logging, values.upper())
-            else:
-                raise ValueError(f"Logging level '{values}' not recognised.")
-        setattr(namespace, self.dest, l)
 
 if __name__=="__main__":
     parser = argparse.ArgumentParser(
@@ -221,9 +229,7 @@ if __name__=="__main__":
     parser.add_argument("-l", "--log-level", action=LoggingAction, default=logging.INFO, help="logging level; int or str")
     args = parser.parse_args()
 
-    logger_setup(logger)
-    logger.setLevel(args.log_level)
-    # logger.setLevel(logging.DEBUG)
+    logger_setup(logger, args.log_level)
 
     config, includes, builds = get_config()
 
