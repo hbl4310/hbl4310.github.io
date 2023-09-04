@@ -38,6 +38,29 @@
     display: none;
 }
 
+@keyframes fade-in-out {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.2; }
+}
+
+.loading-chev {
+    --animation-delay: 0.1s;
+    animation: fade-in-out 0.6s infinite;
+}
+.loading-chev:nth-of-type(1) {
+    animation-delay: calc(2 * var(--animation-delay));
+}
+.loading-chev:nth-of-type(2) {
+    animation-delay: var(--animation-delay);
+}
+.loading-chev:nth-last-of-type(1) {
+    animation-delay: calc(2 * var(--animation-delay));
+}
+.loading-chev:nth-last-of-type(2) {
+    animation-delay: var(--animation-delay)
+}
+
+
 #left-box {
     grid-area: left;
 }
