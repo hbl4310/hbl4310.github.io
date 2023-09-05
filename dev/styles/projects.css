@@ -1,0 +1,146 @@
+/* conflicts with index.css  ok? */
+.heading {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.project-table {
+    display: grid;
+    gap: 4em; 
+    width: 100%;
+    height: 75dvh;
+    grid-template-areas: 'select flare';
+    grid-auto-columns: 42% 1fr;
+    margin-top: 4em;
+}
+
+/* @media screen {
+    
+} */
+
+.select-col {
+    grid-area: select; 
+}
+
+.flare-col {
+    grid-area: flare; 
+    --border-width: 1px; 
+    position: relative;
+    background-color: var(--accent);
+    isolation: isolate;
+}
+
+.project-list {
+    padding-left: 0px; /* controls space for ::marker */
+}
+
+.project-item {
+    border-bottom: 1px solid var(--secondary);
+}
+.project-item:first-of-type {
+    border-top: 1px solid var(--secondary);
+}
+
+.project-item::marker {}
+
+.project-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
+}
+a.project-link:hover {
+    text-decoration: underline;
+}
+
+.project-title {
+    align-items: center;
+}
+
+.project-link-button {
+    justify-content: flex-end;
+    align-items: center;
+    display: flex;
+}
+
+.project-link-select {
+    text-align: left;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: var(--ff-mono);
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.project-link-dot {
+    width: 10px; 
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 1px solid var(--text);
+    margin-left: 1em;
+}
+
+
+.flare-col-cutout {
+    --corner-length: 2em;
+    /* position: sticky; how does this work? */
+    position: absolute; 
+    clip-path: polygon(
+        -1% var(--corner-length), 
+        var(--border-width) var(--corner-length), 
+        var(--border-width) var(--border-width), 
+        var(--corner-length) var(--border-width), 
+        var(--corner-length) -1%,
+        calc(100% - var(--corner-length)) -1%, 
+        calc(100% - var(--corner-length)) var(--border-width), 
+        calc(100% - var(--border-width)) var(--border-width), 
+        calc(100% - var(--border-width)) var(--corner-length), 
+        101% var(--corner-length),         
+        101% calc(100% - var(--corner-length)), 
+        calc(100% - var(--border-width)) calc(100% - var(--corner-length)),
+        calc(100% - var(--border-width)) calc(100% - var(--border-width)),
+        calc(100% - var(--corner-length)) calc(100% - var(--border-width)),
+        calc(100% - var(--corner-length)) 101%,
+        var(--corner-length) 101%, 
+        var(--corner-length) calc(100% - var(--border-width)),
+        var(--border-width) calc(100% - var(--border-width)), 
+        var(--border-width) calc(100% - var(--corner-length)), 
+        -1% calc(100% - var(--corner-length))
+    );
+    background-color: var(--background);
+}
+
+.project-flare {
+    display: none;
+    flex-direction: column;
+    z-index: 1;
+    width: calc(100% - 2 * var(--border-width));
+    height: calc(100% - 2 * var(--border-width));
+}
+
+.project-icon {
+    width: 100%;
+    height: 60%;
+}
+
+.project-blerb {
+    width: 100%;
+    height: 40%;
+}
+
+
+/* active class toggled on mouseover via js */
+.active {}
+.active .project-link-select {
+    opacity: 1;
+}
+.active .project-link-dot {
+    border: none;
+    background-color: var(--accent);
+}
+.active.project-flare {
+    display: flex;
+}
