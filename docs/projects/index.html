@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--
 This site was created by hand.
-Last built: 20230904T14:36:14Z+0000
+Last built: 20230910T20:44:35Z+0000
 -->
 <html lang="en">
 <head>
@@ -14,6 +14,7 @@ Last built: 20230904T14:36:14Z+0000
     <link rel="stylesheet" href="/resources/styles/core.css">
     <link rel="stylesheet" href="/resources/styles/nav.css">
     <link rel="stylesheet" href="/resources/styles/footer.css">
+    <link rel="stylesheet" href="/resources/styles/projects.css">
     <script src="/resources/scripts/utilities.js"></script>
     <script src="/resources/scripts/themes.js"></script>
     <script src="/resources/scripts/texteffects.js"></script>
@@ -188,39 +189,73 @@ Last built: 20230904T14:36:14Z+0000
 </header>
 
 <main class="container-wide">
-<!-- https://www.scanofthemonth.com/scans -->
-<div>
+<!-- 
+    inspired by https://www.scanofthemonth.com/scans 
+    should feel like a game menu
+-->
+<div class="container-wide">
     <section>
         <div class="heading">
-            <h1 class="text-4xl tight-layout">
-                <span class="text-switch text-face-cursor">Projects</span>
+            <h1 class="text-3xl tight-layout">
+                <span class="text-switch text-glitch">Projects</span>
             </h1>
+            <div class="project-filters"></div>
         </div>
     </section>
     <section>
-        <div class="projects-table">
-            <div class="pad-col select-col">
+        <div class="project-table">
+            <div class="select-col">
                 <ol class="project-list">
                     <li class="project-item">
-                        <a href="/projects/this" class="clickable">
-                            <div class="project-title">this</div>
+                        <a href="/projects/this" class="project-link clickable">
+                            <div class="project-title | text-2xl">this</div>
                             <div class="project-link-button">
-                                <div class="project-link-select">select</div>
+                                <div class="project-link-select | text-body">view</div>
                                 <div class="project-link-dot"></div>
                             </div>
                         </a>
+                        <!-- submenu of project pages or put in flare-col -->
+                    </li>
+                    <li class="project-item">
+                        <a href="/projects/dadventures" class="project-link clickable">
+                            <div class="project-title | text-2xl">dadventures</div>
+                            <div class="project-link-button">
+                                <div class="project-link-select | text-body">view</div>
+                                <div class="project-link-dot"></div>
+                            </div>
+                        </a>
+                        <!-- submenu of project pages or put in flare-col -->
                     </li>
                 </ol>
             </div>
-            <div class="pad-col flare-col"> 
-                <div class="project-flare inactive">
-                    <div class="project-icon">this</div>
-                    <div class="project-blerb">More about this</div>
+            <div class="flare-col center-layout">
+                <div class="flare-col-cutout container-full"></div> 
+                <div class="project-flare center-layout">
+                    <div class="project-icon center-layout">this</div>
+                    <!-- TODO move blerb to submenu? -->
+                    <div class="project-blerb | text-body">More about this</div>
+                </div> 
+                <div class="project-flare center-layout">
+                    <div class="project-icon center-layout">dadventures</div>
+                    <!-- TODO move blerb to submenu? -->
+                    <div class="project-blerb | text-body">More about dadventures</div>
                 </div>
             </div>
         </div>
     </section>
 </div>
+<script>
+    // TODO put this in utilities.js?
+    // toggleClassOnHover("project-item", "active");
+    for (const item of document.getElementsByClassName("project-item")) {
+        item.addEventListener("mouseover", e => {
+            item.classList.add("active");
+        });
+        item.addEventListener("mouseleave", e => {
+            item.classList.remove("active");
+        })
+    }
+</script>
 </main>
 
 <footer class="container-wide">
@@ -245,7 +280,6 @@ Last built: 20230904T14:36:14Z+0000
 <script>
     applyThemes();
     applyTextEffects();
-    handleFrames();
 </script>
 
 </body>
