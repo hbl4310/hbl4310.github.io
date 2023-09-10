@@ -9,6 +9,8 @@
 
     /* standardise buttons, cards, etc */
     --border-radius: 6px;
+    
+    --transparent: rgba(0,0,0,0);
 
     --ff-body: "Roboto", sans-serif; 
     --ff-mono: "Roboto Mono", monospace;
