@@ -30,3 +30,7 @@ blockquote::after {
 blockquote p {
     display: inline;
 }
+
+blockquote cite {
+
+}
