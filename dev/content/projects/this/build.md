@@ -6,7 +6,8 @@ style: post
 
 ## The What
 
-> "What I cannot create, I do not understand" -- Richard Feynman
+> What I cannot create, I do not understand
+> -- <cite>Richard Feynman</cite>
 
 I do not understand web technologies, so I am trying to build a website. No frameworks, no templates, only tools I build myself. We're doing this raw, as our ancestors did. Within reason of course. This website is a continuous project for my self-learning HTML, CSS, Javascript and, to a small extent, the way the internet works. 
 
@@ -22,6 +23,7 @@ I don't have much of a structure to how I'm going about learning these things. I
 
 ## The End
 
-> "Building websites is fun" -- also Richard Feynman
+> Building websites is fun
+> -- <cite>Richard Feynman</cite>
 
 It will be fun to see where this goes. 

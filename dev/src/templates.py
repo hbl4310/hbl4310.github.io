@@ -36,6 +36,7 @@ class Page:
     def render_content(file, page): 
         if file.endswith(".md"):
             return cmarkgfm.markdown_to_html(page.content, options=(
+                cmarkgfmOptions.CMARK_OPT_UNSAFE | 
                 cmarkgfmOptions.CMARK_OPT_FOOTNOTES | 
                 cmarkgfmOptions.CMARK_OPT_SMART
             ))
