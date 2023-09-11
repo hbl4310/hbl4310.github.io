@@ -27,6 +27,10 @@
             "template": "index"
         },
         {
+            "files": "404.html", 
+            "template": "frame"
+        },
+        {
             "src": "frames",
             "files": "*.html", 
             "template": "frame",
