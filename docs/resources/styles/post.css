@@ -8,11 +8,11 @@ p a:visited {
 
 blockquote {
     font-size: var(--fs-400);
-  /* background: #f9f9f9; */
-  border-left: 10px solid var(--secondary);
-  margin: 1.5em 10px;
-  padding: 0.5em 10px;
-  quotes: "\201C""\201D""\2018""\2019";
+    /* background: #f9f9f9; */
+    border-left: 10px solid var(--secondary);
+    margin: 1.5em 10px;
+    padding: 0.5em 10px;
+    quotes: "\201C""\201D""\2018""\2019";
 }
 blockquote::before {
     color: var(--accent);
@@ -29,8 +29,4 @@ blockquote::after {
 
 blockquote p {
     display: inline;
-}
-
-blockquote cite {
-
 }

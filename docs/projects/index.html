@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--
 This site was created by hand.
-Last built: 20230910T20:52:59Z+0000
+Last built: 20230911T20:52:39Z+0000
 -->
 <html lang="en">
 <head>
@@ -189,10 +189,7 @@ Last built: 20230910T20:52:59Z+0000
 </header>
 
 <main class="container-wide">
-<!-- 
-    inspired by https://www.scanofthemonth.com/scans 
-    should feel like a game menu
--->
+<!-- inspired by https://www.scanofthemonth.com/scans -->
 <div class="container-wide">
     <section>
         <div class="heading">
@@ -231,29 +228,41 @@ Last built: 20230910T20:52:59Z+0000
             <div class="flare-col center-layout">
                 <div class="flare-col-cutout container-full"></div> 
                 <div class="project-flare center-layout">
-                    <div class="project-icon center-layout">this</div>
-                    <!-- TODO move blerb to submenu? -->
-                    <div class="project-blerb | text-body">More about this</div>
+                    <div class="project-icon center-layout">TODO: some nice graphic/icon</div>
+                    <div class="project-blerb | text-body">
+                        <p><b>Status:</b> Active</p>
+                        <p><b>About:</b> About the ongoing development of this website.</p>
+                    </div>
                 </div> 
                 <div class="project-flare center-layout">
-                    <div class="project-icon center-layout">dadventures</div>
-                    <!-- TODO move blerb to submenu? -->
-                    <div class="project-blerb | text-body">More about dadventures</div>
+                    <div class="project-icon center-layout">TODO: some nice graphic/icon</div>
+                    <div class="project-blerb | text-body">
+                        <p><b>Status:</b> ???</p>
+                        <p><b>About:</b> ???</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 </div>
 <script>
+    const projectItems = document.getElementsByClassName("project-item");
+    const projectFlares = document.getElementsByClassName("project-flare");
+    let active_project = -1;
     // TODO put this in utilities.js?
-    // toggleClassOnHover("project-item", "active");
-    for (const item of document.getElementsByClassName("project-item")) {
+    for (const item of projectItems) {
         item.addEventListener("mouseover", e => {
+            if (active_project >= 0) {
+                projectItems[active_project].classList.remove("active");
+                projectFlares[active_project].classList.remove("active");
+            };
             item.classList.add("active");
+            active_project = [...item.parentNode.children].indexOf(item);
+            projectFlares[active_project].classList.add("active");
         });
-        item.addEventListener("mouseleave", e => {
-            item.classList.remove("active");
-        })
+        // item.addEventListener("mouseleave", e => {
+        //     item.classList.remove("active");
+        // })
     }
 </script>
 </main>

@@ -17,7 +17,7 @@
 }
 
 /* @media screen {
-    
+    set up flare above list? 
 } */
 
 .select-col {
@@ -33,7 +33,7 @@
 }
 
 .project-list {
-    padding-left: 0px; /* controls space for ::marker */
+    padding-left: 0px; /* controls space for ol ::marker */
 }
 
 .project-item {
