@@ -1,12 +1,12 @@
 import os
 import json
 
-from interface import get_args
-from templates import Page, get_template_environment
 from filesystem import \
-    dev_dir, styles_dir, scripts_dir, templates_dir, components_dir, output_dir, \
+    dev_dir, content_dir, styles_dir, scripts_dir, templates_dir, components_dir, output_dir, \
     walk_dir, check_src_path, get_filenames, get_relpath_content, \
     copy_includes, write_page, copy_page_resources
+from templates import Page, get_template_environment
+from interface import get_args
 
 
 config_filename = "build_config.json"
@@ -65,7 +65,7 @@ def compare_output_files(old, new):
 if __name__=="__main__":
     args, logger = get_args()
     config, includes, builds = get_config()
-    templates = get_template_environment([templates_dir, components_dir], config=config)
+    templates = get_template_environment([templates_dir, components_dir], content_dir, config=config)
 
     existing_output_files, _ = walk_dir(output_dir)
     new_output_files = []

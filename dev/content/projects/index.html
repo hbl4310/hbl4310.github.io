@@ -3,10 +3,7 @@ styles: ["nav", "footer", "projects"]
 nav_interaction: 2
 postscripts: ["applyThemes", "applyTextEffects"]
 --->
-<!-- 
-    inspired by https://www.scanofthemonth.com/scans 
-    should feel like a game menu
--->
+<!-- inspired by https://www.scanofthemonth.com/scans -->
 <div class="container-wide">
     <section>
         <div class="heading">
@@ -22,8 +19,8 @@ postscripts: ["applyThemes", "applyTextEffects"]
                 <ol class="project-list">
                     {%- for project in projects %}
                     <li class="project-item">
-                        <a href="/projects/{{ project }}" class="project-link clickable">
-                            <div class="project-title | text-2xl">{{ project }}</div>
+                        <a href="/projects/{{ project['title'] }}" class="project-link clickable">
+                            <div class="project-title | text-2xl">{{ project['title'] }}</div>
                             <div class="project-link-button">
                                 <div class="project-link-select | text-body">view</div>
                                 <div class="project-link-dot"></div>
@@ -38,9 +35,11 @@ postscripts: ["applyThemes", "applyTextEffects"]
                 <div class="flare-col-cutout container-full"></div>
                 {%- for project in projects %} 
                 <div class="project-flare center-layout">
-                    <div class="project-icon center-layout">{{ project }}</div>
-                    <!-- TODO move blerb to submenu? -->
-                    <div class="project-blerb | text-body">More about {{ project }}</div>
+                    <div class="project-icon center-layout">TODO: some nice graphic/icon</div>
+                    <div class="project-blerb | text-body">
+                        <p><b>Status:</b> {{ project['status'] | capitalize }}</p>
+                        <p><b>About:</b> {{ project['description'] }}</p>
+                    </div>
                 </div>
                 {%- endfor %}
             </div>
@@ -48,14 +47,22 @@ postscripts: ["applyThemes", "applyTextEffects"]
     </section>
 </div>
 <script>
+    const projectItems = document.getElementsByClassName("project-item");
+    const projectFlares = document.getElementsByClassName("project-flare");
+    let active_project = -1;
     // TODO put this in utilities.js?
-    // toggleClassOnHover("project-item", "active");
-    for (const item of document.getElementsByClassName("project-item")) {
+    for (const item of projectItems) {
         item.addEventListener("mouseover", e => {
+            if (active_project >= 0) {
+                projectItems[active_project].classList.remove("active");
+                projectFlares[active_project].classList.remove("active");
+            }
             item.classList.add("active");
+            active_project = [...item.parentNode.children].indexOf(item);
+            projectFlares[active_project].classList.add("active");
         });
-        item.addEventListener("mouseleave", e => {
-            item.classList.remove("active");
-        })
+        // item.addEventListener("mouseleave", e => {
+        //     item.classList.remove("active");
+        // })
     }
 </script>
