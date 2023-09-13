@@ -22,10 +22,10 @@ class DvdBounce {
     
     async animateY(newY) {
         const anim = this.elem.animate([
-        { top: `${this.y}px` },
-        { top: `${newY}px` },
+            { top: `${this.y}px` },
+            { top: `${newY}px` },
         ], {
-        duration: this.getDuration(Math.abs(newY - this.y)),
+            duration: this.getDuration(Math.abs(newY - this.y)),
         });
         await anim.finished;
         this.onBump();
@@ -44,10 +44,10 @@ class DvdBounce {
     
     async animateX(newX) {
         const anim = this.elem.animate([
-        { left: `${this.x}px` },
-        { left: `${newX}px` },
+            { left: `${this.x}px` },
+            { left: `${newX}px` },
         ], {
-        duration: this.getDuration(Math.abs(newX - this.x)),
+            duration: this.getDuration(Math.abs(newX - this.x)),
         });
         await anim.finished;
         this.onBump();
@@ -72,17 +72,17 @@ function initBounce() {
     const bounce = document.querySelector('.bounce');
     const dvd = new DvdBounce(bounce.parentNode, bounce, 100);
     dvd.onBump = () => {
-      let hue = currentHue;
-      while (hue === currentHue) {
-        const index = Math.floor(Math.random() * hueRotations.length);
-        hue = hueRotations[index];
-      }
+        let hue = currentHue;
+        while (hue === currentHue) {
+            const index = Math.floor(Math.random() * hueRotations.length);
+            hue = hueRotations[index];
+        }
 
-      bounce.style.filter = `hue-rotate(${hue}deg)`;
+        bounce.style.filter = `hue-rotate(${hue}deg)`;
     };
 
     window.addEventListener('resize', () => {
-      dvd.updateRects();
+        dvd.updateRects();
     });
 
     dvd.down();
