@@ -56,7 +56,7 @@ postscripts: ["applyThemes", "applyTextEffects"]
             if (active_project >= 0) {
                 projectItems[active_project].classList.remove("active");
                 projectFlares[active_project].classList.remove("active");
-            }
+            };
             item.classList.add("active");
             active_project = [...item.parentNode.children].indexOf(item);
             projectFlares[active_project].classList.add("active");
