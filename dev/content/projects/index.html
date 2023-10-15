@@ -39,6 +39,8 @@ postscripts: ["applyThemes", "applyTextEffects"]
                     <div class="project-blerb | text-body">
                         <p><b>Status:</b> {{ project['status'] | capitalize }}</p>
                         <p><b>About:</b> {{ project['description'] }}</p>
+                        <p><b>Posts:</b> {{ project['pages'] | length }}</p>
+                        <p><b>Tags:</b> {{ project['tags'] | join(', ') }}</p>
                     </div>
                 </div>
                 {%- endfor %}
