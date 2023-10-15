@@ -1,6 +1,6 @@
 <!-- https://www.svgrepo.com/svg/10005/light-bulb -->
 <svg height="100%" width="100%" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
-    xmlns:xlink="http://www.w3.org/1999/xlink">
+    xmlns:xlink="http://www.w3.org/1999/xlink" style="overflow:visible;">
     <!-- lightbulb glowing animation applied as an animated svg filter -->
     <filter id="lightbulb-glow-filter" x="-50%" y="-50%" width="200%" height="200%">
         <feGaussianBlur result="blurOut" stdDeviation="20" >
