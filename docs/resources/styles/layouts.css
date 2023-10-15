@@ -34,6 +34,12 @@ body {
     align-items: center;
 }
 
+.center-block {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+} 
+
 main {
     display: flex;
     flex-direction: column; 
