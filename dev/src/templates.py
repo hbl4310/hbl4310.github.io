@@ -87,7 +87,6 @@ def get_template_environment(templates_dirs, content_dir, **gvars):
     # attach globals and filters for use in templates
     templates.globals["nowutc"] = lambda: datetime.now(timezone.utc).strftime("%Y%m%dT%H:%M:%SZ%z")
     # TODO use globals for aggregations?: get_projects, get_posts, etc
-    # TODO replace walk_dir with get_projects
     templates.globals["projects"] = get_projects(content_dir)
     for k,v in gvars.items(): 
         templates.globals[k] = v
