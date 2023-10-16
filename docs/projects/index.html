@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--
 This site was created by hand.
-Last built: 20231016T14:07:28Z+0000
+Last built: 20231016T18:56:24Z+0000
 -->
 <html lang="en">
 <head>
@@ -203,44 +203,51 @@ Last built: 20231016T14:07:28Z+0000
         <div class="project-table">
             <div class="select-col">
                 <ol class="project-list">
-                    <li class="project-item">
-                        <a href="/projects/this" class="project-link clickable">
+                    <li class="project-item" onclick="this.classList.toggle('expanded')">
+                        <!-- remove anchor to project index; onclick expand/collapse sub-list of project pages -->
+                        <!-- <a href="/projects/this" class="project-row project-title-row clickable"> -->
+                        <div class="project-row project-title-row clickable">
                             <div class="project-title | text-2xl">this</div>
-                            <div class="project-link-button">
+                            <div class="project-right-col">
                                 <div class="project-link-select | text-body">view</div>
                                 <div class="project-link-dot"></div>
                             </div>
-                        </a>
-                        <ul class="project-pages">
-                            <li>
-                                <a href="/projects/this/domain.html" class="clickable">
-                                    <span class="| text-lg">Eminent Domains [2023-08-31]</span>
+                        <!-- </a> -->
+                        </div>
+                        <ol class="project-pages">
+                            <li class="text-lg">
+                                <a href="/projects/this/domain.html" class="project-row clickable">
+                                    <div class="project-title">Eminent Domains</div>
+                                    <div class="project-right-col">2023-08-31</div>
                                 </a>
                             </li>
-                            <li>
-                                <a href="/projects/this/build.html" class="clickable">
-                                    <span class="| text-lg">Just Build It [2023-09-05]</span>
+                            <li class="text-lg">
+                                <a href="/projects/this/build.html" class="project-row clickable">
+                                    <div class="project-title">Just Build It</div>
+                                    <div class="project-right-col">2023-09-05</div>
                                 </a>
                             </li>
-                            <li>
-                                <a href="/projects/this/svg.html" class="clickable">
-                                    <span class="| text-lg">SVGs - Super Versatile Graphics [2023-10-13]</span>
+                            <li class="text-lg">
+                                <a href="/projects/this/svg.html" class="project-row clickable">
+                                    <div class="project-title">SVGs - Super Versatile Graphics</div>
+                                    <div class="project-right-col">2023-10-13</div>
                                 </a>
                             </li>
-                        </ul>
-                        <!-- TODO submenu of project pages expanding on click or hover? -->
+                        </ol>
                     </li>
-                    <li class="project-item">
-                        <a href="/projects/dadventures" class="project-link clickable">
+                    <li class="project-item" onclick="this.classList.toggle('expanded')">
+                        <!-- remove anchor to project index; onclick expand/collapse sub-list of project pages -->
+                        <!-- <a href="/projects/dadventures" class="project-row project-title-row clickable"> -->
+                        <div class="project-row project-title-row clickable">
                             <div class="project-title | text-2xl">dadventures</div>
-                            <div class="project-link-button">
+                            <div class="project-right-col">
                                 <div class="project-link-select | text-body">view</div>
                                 <div class="project-link-dot"></div>
                             </div>
-                        </a>
-                        <ul class="project-pages">
-                        </ul>
-                        <!-- TODO submenu of project pages expanding on click or hover? -->
+                        <!-- </a> -->
+                        </div>
+                        <ol class="project-pages">
+                        </ol>
                     </li>
                 </ol>
             </div>
