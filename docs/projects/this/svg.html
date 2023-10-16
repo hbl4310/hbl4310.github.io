@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<!--
+This site was created by hand.
+Last built: 20231016T14:07:29Z+0000
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Mono&family=Cedarville+Cursive&family=Noto+Sans+SC&family=ZCOOL+QingKe+HuangYou&family=Ma+Shan+Zheng&display=swap"> 
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+    <link rel="stylesheet" href="/resources/styles/core.css">
+    <link rel="stylesheet" href="/resources/styles/nav.css">
+    <link rel="stylesheet" href="/resources/styles/footer.css">
+    <link rel="stylesheet" href="/resources/styles/post.css">
+    <script src="/resources/scripts/utilities.js"></script>
+    <script src="/resources/scripts/themes.js"></script>
+    <script src="/resources/scripts/texteffects.js"></script>
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+    <title>SVGs - Super Versatile Graphics</title>
+</head>
+<body class="theme-1 column-layout">
+
+<nav>
+    <div class="top-left-nav">
+        <h1 class="sitename | text-3xl tight-layout">
+            <a href="/" class="text-hacker">hanbo.li</a>
+            <!-- <a href="#" class="text-hacker" style="font-family:var(--ff-mono-chinese);">栗瀚博</a> -->
+        </h1>
+        <button type="button" class="clickable" onclick="switchTheme()">
+            Switch Theme
+            <!-- https://www.svgrepo.com/svg/10005/light-bulb -->
+            <svg height="100%" width="100%" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+                xmlns:xlink="http://www.w3.org/1999/xlink" style="overflow:visible;">
+                <!-- lightbulb glowing animation applied as an animated svg filter -->
+                <filter id="lightbulb-glow-filter" x="-50%" y="-50%" width="200%" height="200%">
+                    <feGaussianBlur result="blurOut" stdDeviation="20" >
+                        <animate attributeName="stdDeviation" calcMode="paced" begin="0s" dur="2s" values="0;50;0;" repeatCount="indefinite"/>
+                    </feGaussianBlur>
+                    <feBlend in="SourceGraphic" in2="blurOut" />
+                </filter>
+                <g class="lightbulb-glow">
+                    <path
+                        d="m363.9,54.2c-31.2-29.8-72.3-45.1-115.4-43-77.6,3.6-141.3,64.6-148.1,141.9-3.7,41.3 8.8,81.6 35,113.4 26.4,32.1 48,89 48,126.9 0,0-2.1,13.8 10.4,14.4h124.7c13.6-1 10.4-17 10.4-17 0-37 21.1-92.3 47.1-123.3 23.5-28 36.4-63.6 36.4-100.1-0.1-43.2-17.3-83.4-48.5-113.2zm-116.1,332.7l-24-145.9h64.5l-24,145.9h-16.5zm112.1-132.9c-28.3,33.7-50.6,91.2-51.9,132.8h-22.6l25.5-154.6c0.7-3.2-0.7-11.6-10.3-12.1h-89c-9.2,0.3-11,9-10.3,12.1l25.5,154.6h-22.7c-2.1-42.3-24.5-99.6-52.6-133.7-22.7-27.5-33.5-62.4-30.3-98.3 5.8-66.8 61-119.6 128.2-122.8 37.5-1.8 73,11.5 100,37.3 27.1,25.8 42,60.6 42,98 0.1,31.7-11.1,62.5-31.5,86.7z" 
+                        filter="url(#lightbulb-glow-filter)"
+                        >
+                    </path>
+                </g>
+                <g class="lightbulb">
+                    <path
+                        d="m363.9,54.2c-31.2-29.8-72.3-45.1-115.4-43-77.6,3.6-141.3,64.6-148.1,141.9-3.7,41.3 8.8,81.6 35,113.4 26.4,32.1 48,89 48,126.9 0,0-2.1,13.8 10.4,14.4h124.7c13.6-1 10.4-17 10.4-17 0-37 21.1-92.3 47.1-123.3 23.5-28 36.4-63.6 36.4-100.1-0.1-43.2-17.3-83.4-48.5-113.2zm-116.1,332.7l-24-145.9h64.5l-24,145.9h-16.5zm112.1-132.9c-28.3,33.7-50.6,91.2-51.9,132.8h-22.6l25.5-154.6c0.7-3.2-0.7-11.6-10.3-12.1h-89c-9.2,0.3-11,9-10.3,12.1l25.5,154.6h-22.7c-2.1-42.3-24.5-99.6-52.6-133.7-22.7-27.5-33.5-62.4-30.3-98.3 5.8-66.8 61-119.6 128.2-122.8 37.5-1.8 73,11.5 100,37.3 27.1,25.8 42,60.6 42,98 0.1,31.7-11.1,62.5-31.5,86.7z"
+                        >
+                    </path>
+                    <path
+                        d="m319.7,433.9h-127.4c-5.8,0-10.4,4.7-10.4,10.4 0,5.8 4.7,10.4 10.4,10.4h9.7c4.1,26.1 26.7,46.2 54,46.2 27.3,0 49.9-20.1 54-46.2h9.7c5.8,0 10.4-4.7 10.4-10.4 5.68434e-14-5.7-4.6-10.4-10.4-10.4zm-63.7,46.2c-15,0-27.7-9.8-32.1-23.3h64.2c-4.4,13.5-17.1,23.3-32.1,23.3z"
+                        >
+                    </path>
+                </g>
+            </svg>
+        </button>
+    </div>
+    <div class="hamburger-menu">
+        <input class="visually-hidden" id="hamburger-accordion-input" type="checkbox" name="burger-menu">
+        <label for="hamburger-accordion-input" class="clickable">
+            Navigation Menu
+            <!-- https://www.svgrepo.com/svg/352109/hamburger -->
+            <svg class="hamburger-icon" width="100%" height="100%" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                <g class="hamburger-top">
+                    <path d="M58.64 224 h394.72c34.57 0 54.62-43.9 34.82-75.88C448 83.2 359.55 32.1 256 32c-103.54.1-192 51.2-232.18 116.11C4 180.09 24.07 224 58.64 224z M384 112a16 16 0 1 1-16 16 16 16 0 0 1 16-16z M256 80a16 16 0 1 1-16 16 16 16 0 0 1 16-16z m-128 32a16 16 0 1 1-16 16 16 16 0 0 1 16-16z"></path>
+                </g>
+                <g class="hamburger-mid-1">
+                    <path d="M464 256H48a48 48 0 0 0 0 96h416a48 48 0 0 0 0-96z"></path>
+                </g>
+                <g class="hamburger-mid-2">
+                    <path d="M464 256H48a48 48 0 0 0 0 96h416a48 48 0 0 0 0-96z"></path>
+                </g>
+                <g class="hamburger-bot">
+                    <path d="M16 386 H32a16 16 0 0 0-16 16v16a64 64 0 0 0 64 64h352a64 64 0 0 0 64-64v-16a16 16 0 0 0-16-16z"></path>
+                </g>
+            </svg>
+        </label>
+        <!-- If adding new items, check media query screen width still makes sense in nav.css -->
+        <ul>
+            <li style="transition-delay:100ms;">
+                <h2 class="text-xl tight-layout">
+                    <a href="/writing" class="button-fade-text clickable text-strikethrough">
+                        Writing
+                    </a>
+                </h2>
+            </li>
+            <li style="transition-delay:200ms;">
+                <h2 class="text-xl tight-layout">
+                    <a href="/projects" class="button-fade-text clickable text-strikethrough">
+                        Projects
+                    </a>
+                </h2>
+            </li>
+            <li style="transition-delay:300ms;">
+                <h2 class="text-xl tight-layout">
+                    <a href="/photos" class="button-fade-text clickable text-strikethrough">
+                        Photos
+                    </a>
+                </h2>
+            </li>
+            <li style="transition-delay:400ms;">
+                <h2 class="text-xl tight-layout">
+                    <a href="/about" class="button-fade-text clickable text-strikethrough">
+                        About
+                    </a>
+                </h2>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<main class="container-wide">
+    <article>
+        <div class="title">
+            <h1 class="text-3xl tight-layout">SVGs - Super Versatile Graphics</h1>
+            <p class="text-lg subtitle">posted on 2023-10-13</p>
+            <br>
+        </div>
+        <div class="content | text-body">
+            <p>Images are an important part of modern websites. <strong>Scalable Vector Graphics</strong> (SVGs) are recipes for computers to create graphics. Unlike other static graphics formats like .jpg’s, SVGs can scale to different sizes because the recipes can be scaled. You can double the ingredients in a recipe, right? There is plenty of documentation on the web covering how they work, like this <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial">tutorial</a>. This post explains SVGs used on the website, and as such, my tinkering with them.
+            Let’s look at some of our website components (as of posting).</p>
+            <h2>Mmmmm Hamburger</h2>
+            <div style="width:30vmin;">
+                <!-- https://www.svgrepo.com/svg/352109/hamburger -->
+                <svg class="hamburger-icon" width="100%" height="100%" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                    <g class="hamburger-top">
+                        <path d="M58.64 224 h394.72c34.57 0 54.62-43.9 34.82-75.88C448 83.2 359.55 32.1 256 32c-103.54.1-192 51.2-232.18 116.11C4 180.09 24.07 224 58.64 224z M384 112a16 16 0 1 1-16 16 16 16 0 0 1 16-16z M256 80a16 16 0 1 1-16 16 16 16 0 0 1 16-16z m-128 32a16 16 0 1 1-16 16 16 16 0 0 1 16-16z"></path>
+                    </g>
+                    <g class="hamburger-mid-1">
+                        <path d="M464 256H48a48 48 0 0 0 0 96h416a48 48 0 0 0 0-96z"></path>
+                    </g>
+                    <g class="hamburger-mid-2">
+                        <path d="M464 256H48a48 48 0 0 0 0 96h416a48 48 0 0 0 0-96z"></path>
+                    </g>
+                    <g class="hamburger-bot">
+                        <path d="M16 386 H32a16 16 0 0 0-16 16v16a64 64 0 0 0 64 64h352a64 64 0 0 0 64-64v-16a16 16 0 0 0-16-16z"></path>
+                    </g>
+                </svg>
+            </div>
+            <p>The simple hamburger. A staple of healthy website navigation menus, though usually more abstractly minimalist. This one comes from <a href="https://www.svgrepo.com/svg/352109/hamburger">here</a>. I’ve modified it animate on click (try it).</p>
+            <h3>Paths</h3>
+            <p>One of the basic ways to draw an image in SVGs is with paths. Given a canvas size, this tells the computer where to put down and move its pen to create a stroke. A system of x-, y-coordinates are used together with codes for types of lines.
+            The command <pre><code>M 0 0</code></pre> means “Move to position x=0 y=0”.
+            Recognised commands are:</p>
+            <ul>
+            <li>M: Move to</li>
+            <li>L: Line to</li>
+            <li>H: Horizontal line to</li>
+            <li>V: Vertical line to</li>
+            <li>C: Curve to</li>
+            <li>S: Smooth curve to</li>
+            <li>Q: Quadratic Bézier curve to</li>
+            <li>T: smooth quadratic Bézier curve to</li>
+            <li>A: ellipical Arc</li>
+            <li>Z: close path</li>
+            </ul>
+            <p>Most of these are straightforward to understand, though some of the curves (Smooth, Bézier, smooth Bézier) may need further explanation. Bézier curves in particular are interesting, and ubiquitous amongst graphics software.
+            Each command has an equivalent lowercase version which takes relative coordinates, rather than absolute. I.e. <pre><code>m 3 2</code></pre> means “move by dx=3 dy=2”.
+            In the hamburger image, this snippet draws the patty:</p>
+            <pre><code class="language-html">&lt;path d="M464 256H48a48 48 0 0 0 0 96h416a48 48 0 0 0 0-96z">&lt;/path></code></pre>
+            <p>Having the elements of an image defined in the HTML like this means you can apply CSS styles and animations to them. In the hamburger icon, there are two identically drawn patties, in group tags &lt;g&gt;, which have different animate to the strokes of the “X” when the menu button is clicked.
+            Neato.</p>
+            <p>Note that paths are not the only way to draw basic shapes in SVGs, and other commands exist to draw standard shapes,</p>
+            <ul>
+            <li>rect: rectangle</li>
+            <li>circle</li>
+            <li>ellipse</li>
+            <li>line</li>
+            <li>polyline: a group of connected straight lines</li>
+            <li>polygon</li>
+            </ul>
+            <h2>If it Fits</h2>
+            <div style="width:30vmin;">
+                <!-- https://www.svgrepo.com/svg/95443/puzzle -->
+                <svg height="100%" width="100%" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" 
+                    xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <g class="puzzle">
+                        <path 
+                            d="m308.6,433.9h77.4v-99.7c0-4.2 2.7-7.9 6.7-9.2 4-1.3 8.4,0.2 10.8,3.6 8.1,11.5 21.2,18.3 35.2,18.3 23.7,0 43.1-19.3 43.1-43.1 0-23.7-19.3-43.1-43.1-43.1-14,0-27.1,6.8-35.2,18.3-2.4,3.4-6.8,4.9-10.8,3.6-4-1.3-6.7-5-6.7-9.2v-99.7h-99.7c-4.2,0-7.9-2.7-9.2-6.7-1.3-4 0.2-8.4 3.6-10.8 11.5-8.1 18.3-21.2 18.3-35.2 0-23.7-19.3-43.1-43.1-43.1-23.7,0-43.1,19.3-43.1,43.1 0,14 6.8,27.1 18.3,35.2 3.4,2.4 4.9,6.8 3.6,10.8-1.3,4-5,6.7-9.2,6.7h-99.5v99.7c0,4.2-2.7,7.9-6.7,9.2-4,1.3-8.4-0.2-10.8-3.6-8.1-11.5-21.2-18.3-35.2-18.3-23.7,0-43.1,19.3-43.1,43.1 0,23.7 19.3,43.1 43.1,43.1 14,0 27.1-6.8 35.2-18.3 2.4-3.4 6.8-4.9 10.8-3.6 4,1.3 6.7,5 6.7,9.2v99.7h77.4c-6.3-9.9-9.8-21.5-9.8-33.4 0-34.4 28-62.3 62.3-62.3 34.4,0 62.3,28 62.3,62.3 0.1,11.9-3.4,23.5-9.6,33.4zm87,19.2h-109.3c-4.2,0-7.9-2.7-9.2-6.7-1.3-4 0.2-8.4 3.6-10.8 11.5-8.1 18.3-21.2 18.3-35.2 0-23.7-19.3-43.1-43.1-43.1-23.7,0-43.1,19.3-43.1,43.1 0,14 6.8,27.1 18.3,35.2 3.4,2.4 4.9,6.8 3.6,10.8-1.3,4-5,6.7-9.2,6.7h-109.1c-5.3,0-9.6-4.3-9.6-9.6v-87.1c-9.9,6.3-21.4,9.8-33.4,9.8-34.4,0-62.3-28-62.3-62.3 0-34.4 28-62.3 62.3-62.3 12,0 23.6,3.5 33.4,9.8v-87.1c0-5.3 4.3-9.6 9.6-9.6h87.1c-6.3-9.9-9.8-21.5-9.8-33.4 0-34.4 28-62.3 62.3-62.3 34.4,0 62.3,28 62.3,62.3 0,12-3.5,23.6-9.8,33.4h87.1c5.3,0 9.6,4.3 9.6,9.6v87.1c9.9-6.3 21.4-9.8 33.4-9.8 34.4,0 62.3,28 62.3,62.3 0,34.4-28,62.3-62.3,62.3-12,0-23.6-3.5-33.4-9.8v87.1c-5.68434e-14,5.3-4.3,9.6-9.6,9.6z">
+                        </path>
+                        <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 256 256" to="360 256 256" dur="10s" repeatCount="indefinite" />
+                    </g>
+                </svg>
+            </div>
+            <p>On the <a href="/">home page</a>, there is this puzzle icon, borrowed shamelessly from <a href="https://www.svgrepo.com/svg/95443/puzzle">here</a>. Try clicking it :).</p>
+            <h3>Animations</h3>
+            <p>You can do more than just draw paths and shapes in SVGs. You can animate different parts of your SVG with the <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/animate">animate</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/animateMotion">animateMotion</a> and <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/animateTransform">animateTransform</a> tags.
+            It seems like there is some overlap in functionality with animations in SVG HTML code and animations in CSS. Purists would probably argue that all styling and animations should be in the CSS. However, having self-contained SVGs, with image content as well as styling and animations, means that they are more readily portable and reusable.</p>
+            <p>The rotation animation in the puzzle piece looks like:</p>
+            <pre><code class="language-html">
+            &lt;animateTransform 
+                attributeName="transform" 
+                attributeType="XML" 
+                type="rotate" 
+                from="0 256 256" 
+                to="360 256 256" 
+                dur="10s" 
+                repeatCount="indefinite"
+            />
+            </code></pre>
+            <p>The transform types for this tag are similar to those available in CSS: translate, scale, rotate, skewX, skewY. See <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/type#for_the_animatetransform_elements">reference</a>.
+            The “from” and “to” fields are formatted as (degrees, centre x, centre y) which defines a starting and ending rotation in degrees around a certain point.
+            The “dur” tag defines the duration between the “from” and “to” states and the “repeatCount” specifies how many times the transformation happens.
+            Nifty.</p>
+            <h2>Let there be Light</h2>
+            <div style="width:30vmin;">
+                <!-- https://www.svgrepo.com/svg/10005/light-bulb -->
+                <svg height="100%" width="100%" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+                    xmlns:xlink="http://www.w3.org/1999/xlink" style="overflow:visible;">
+                    <!-- lightbulb glowing animation applied as an animated svg filter -->
+                    <filter id="lightbulb-glow-filter" x="-50%" y="-50%" width="200%" height="200%">
+                        <feGaussianBlur result="blurOut" stdDeviation="20" >
+                            <animate attributeName="stdDeviation" calcMode="paced" begin="0s" dur="2s" values="0;50;0;" repeatCount="indefinite"/>
+                        </feGaussianBlur>
+                        <feBlend in="SourceGraphic" in2="blurOut" />
+                    </filter>
+                    <g class="lightbulb-glow">
+                        <path
+                            d="m363.9,54.2c-31.2-29.8-72.3-45.1-115.4-43-77.6,3.6-141.3,64.6-148.1,141.9-3.7,41.3 8.8,81.6 35,113.4 26.4,32.1 48,89 48,126.9 0,0-2.1,13.8 10.4,14.4h124.7c13.6-1 10.4-17 10.4-17 0-37 21.1-92.3 47.1-123.3 23.5-28 36.4-63.6 36.4-100.1-0.1-43.2-17.3-83.4-48.5-113.2zm-116.1,332.7l-24-145.9h64.5l-24,145.9h-16.5zm112.1-132.9c-28.3,33.7-50.6,91.2-51.9,132.8h-22.6l25.5-154.6c0.7-3.2-0.7-11.6-10.3-12.1h-89c-9.2,0.3-11,9-10.3,12.1l25.5,154.6h-22.7c-2.1-42.3-24.5-99.6-52.6-133.7-22.7-27.5-33.5-62.4-30.3-98.3 5.8-66.8 61-119.6 128.2-122.8 37.5-1.8 73,11.5 100,37.3 27.1,25.8 42,60.6 42,98 0.1,31.7-11.1,62.5-31.5,86.7z" 
+                            filter="url(#lightbulb-glow-filter)"
+                            >
+                        </path>
+                    </g>
+                    <g class="lightbulb">
+                        <path
+                            d="m363.9,54.2c-31.2-29.8-72.3-45.1-115.4-43-77.6,3.6-141.3,64.6-148.1,141.9-3.7,41.3 8.8,81.6 35,113.4 26.4,32.1 48,89 48,126.9 0,0-2.1,13.8 10.4,14.4h124.7c13.6-1 10.4-17 10.4-17 0-37 21.1-92.3 47.1-123.3 23.5-28 36.4-63.6 36.4-100.1-0.1-43.2-17.3-83.4-48.5-113.2zm-116.1,332.7l-24-145.9h64.5l-24,145.9h-16.5zm112.1-132.9c-28.3,33.7-50.6,91.2-51.9,132.8h-22.6l25.5-154.6c0.7-3.2-0.7-11.6-10.3-12.1h-89c-9.2,0.3-11,9-10.3,12.1l25.5,154.6h-22.7c-2.1-42.3-24.5-99.6-52.6-133.7-22.7-27.5-33.5-62.4-30.3-98.3 5.8-66.8 61-119.6 128.2-122.8 37.5-1.8 73,11.5 100,37.3 27.1,25.8 42,60.6 42,98 0.1,31.7-11.1,62.5-31.5,86.7z"
+                            >
+                        </path>
+                        <path
+                            d="m319.7,433.9h-127.4c-5.8,0-10.4,4.7-10.4,10.4 0,5.8 4.7,10.4 10.4,10.4h9.7c4.1,26.1 26.7,46.2 54,46.2 27.3,0 49.9-20.1 54-46.2h9.7c5.8,0 10.4-4.7 10.4-10.4 5.68434e-14-5.7-4.6-10.4-10.4-10.4zm-63.7,46.2c-15,0-27.7-9.8-32.1-23.3h64.2c-4.4,13.5-17.1,23.3-32.1,23.3z"
+                            >
+                        </path>
+                    </g>
+                </svg>
+            </div>
+            <p>What else can SVGs do? Turns out, a lot. Filters have entered the chat. These modify the whole, or parts of the image.
+            Witness my lightbulb, remorselessly thieved from <a href="https://www.svgrepo.com/svg/10005/light-bulb">here</a>.
+            The glow is a filter effect with an animation to get the pulsing.</p>
+            <h3>Effect Filters</h3>
+            <p>Let’s look at this filter.</p>
+            <pre><code class="language-html">
+            &lt;filter id="lightbulb-glow-filter" x="-50%" y="-50%" width="200%" height="200%">
+                &lt;feGaussianBlur result="blurOut" stdDeviation="20">
+                    &lt;animate 
+                        attributeName="stdDeviation" 
+                        calcMode="paced" 
+                        begin="0s" 
+                        dur="2s" 
+                        values="0;50;0;" 
+                        repeatCount="indefinite"
+                    />
+                &lt;/feGaussianBlur>
+                &lt;feBlend in="SourceGraphic" in2="blurOut"/>
+            &lt;/filter>
+            </code></pre>
+            <p>We first define the filter’s size in the opening tag. The “-50%” values for x and y just re-centre to the top left (I think).
+            The first inner tag is “feGaussianBlur” which blurs the filter’s input. The amount of blur is controlled by “stdDeviation”.
+            Within this, we can define an “animate” tag to slide the “stdDeviation” value between values 0 to 50 and back to 0 again to get the pulsing effect.
+            The final inner tag in the filter, “feBlend”, controls how the filter is applied: it blends the “SourceGraphic”, i.e. the input image, with the Gaussian blur effect we labelled as “blurOut”.
+            To apply this filter to a part of the SVG, we simply add <pre>filter=“url(#lightbulb-glow-filter)”</pre> to the path tag which draws the outline of the lightbulb.
+            Et voilà.</p>
+            <p>There are many more filters, and most can be animated and stacked to create complex effects.
+            <a href="https://sean.brunnock.com/SVG/filter.html">This</a> is a very useful tool for experimenting with filters.</p>
+            <h2>To the Moon</h2>
+            <div style="width:30vmin;">
+                <!-- https://www.svgrepo.com/svg/51643/rocket-launch -->
+                <svg height="100%" width="100%" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+                    xmlns:xlink="http://www.w3.org/1999/xlink" style="overflow:visible;">
+                    <!-- flames from https://codepen.io/PaulLeBeau/pen/EQoraz -->
+                    <defs>
+                        <filter id="flames" filterUnits="objectBoundingBox" x="0%" y="-100%" width="100%" height="300%">
+                            <feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="1" result="noise" stitchTiles="stitch"/>
+                            <feOffset dy="0" result="off1">
+                                <animate attributeType="XML" attributeName="dy" from="-300" to="0" dur="3s" repeatCount="indefinite" /> 
+                            </feOffset>
+                            <feOffset in="noise" dy="60" result="off2">
+                                <animate attributeType="XML" attributeName="dy" from="0" to="300" dur="3s" repeatCount="indefinite" /> 
+                            </feOffset>
+                            <feMerge result="scrolling-noise">
+                                <feMergeNode in="off1"/>
+                                <feMergeNode in="off2"/>
+                            </feMerge>
+                            <feComponentTransfer result="brighter-noise">
+                                <feFuncA type="gamma" amplitude="1" exponent="1"/>
+                            </feComponentTransfer>
+                            <feComposite in="SourceGraphic" in2="brighter-noise" operator="in" result="gradient-noise"/>
+                            <feComponentTransfer result="threshhold">
+                                <feFuncA type="discrete" tableValues="0 1"/>
+                            </feComponentTransfer>
+                            <feFlood flood-color="var(--accent)" result="flood1"/>
+                            <feComposite in2="threshhold" in="flood1" operator="in" result="flood1-threshhold"/>
+                            <feFlood flood-color="var(--primary)" result="flood2"/>
+                            <feComponentTransfer in="SourceGraphic" result="exponent-gradient">
+                                <feFuncA type="gamma" exponent="3"/>
+                            </feComponentTransfer>
+                            <feComposite in="flood2" in2="exponent-gradient" operator="in" result="flood2-gradient"/>
+                            <feComposite in2="threshhold" in="flood2-gradient" operator="in" result="flood2-gradient-threshhold"/>
+                            <feMerge>
+                                <feMergeNode in="flood1-threshhold"/>
+                                <feMergeNode in="flood2-gradient-threshhold"/>
+                            </feMerge>
+                        </filter>
+                        <!-- too processor heavy -->
+                        <filter id="flame-blur">
+                            <feGaussianBlur in="SourceGraphic" stdDeviation="7" />
+                            <feMerge>
+                            <feMergeNode/>
+                            <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+                        <linearGradient id="flame-grad" x1="0" y1="0" x2="0" y2="1" color-interpolation="linearRGB">
+                            <stop offset="0" stop-color="#fff" stop-opacity="1"/>
+                            <stop offset="1" stop-color="#fff" stop-opacity="0.4"/>
+                        </linearGradient>
+                        <radialGradient id="fade" cx="0.5" cy="0" r="1" color-interpolation="sRGB">
+                            <stop offset="0.5" stop-color="#fff"/>
+                            <stop offset="0.7" stop-color="#000"/>
+                        </radialGradient>
+                        <mask id="flame-shape" maskContentUnits = "objectBoundingBox">
+                            <circle cx="0.5" cy="0.28" r="0.28" fill="white"/>
+                            <!-- <polygon points="0.22,0.70, 0.35,0, 0.65,0, 0.78,0.70" fill="url(#fade)"/> -->
+                            <!-- <polygon points="0.22,0.70, 0.2,0, 0.8,0, 0.78,0.70" fill="url(#fade)"/> -->
+                            <polygon points="0.22,0.3, 0.26,1, 0.74,1, 0.78,0.3" fill="url(#fade)"/>
+                        </mask>
+                    </defs>
+                    <g class="rocket-flames">
+                        <rect x="76" y="375" width="360" height="300" fill="url(#flame-grad)" filter="url(#flames)" mask="url(#flame-shape)"/>
+                    </g>
+                    <g class="rocket">
+                        <path
+                            d="m350.3,255.1c7.9-87.6-22.7-176.9-86.9-241.1-3.9-3.9-10.8-3.9-14.7,0-64.2,64.2-94.8,153.4-86.9,241.1-22.2,23.9-34.4,54.7-34.4,87.5 0,33.1 12.6,64.6 35.5,88.6 5.6,5.9 19.9,3.2 17.6-9.8-1.2-6.8-2.7-13.4-2.7-19.9 0-16.2 4.9-31.6 14-44.6 1.5,0.8 3.2,1.3 5,1.3h118.5c1.8,0 3.5-0.5 5-1.3 9.1,13 14,28.4 14,44.6 0,6.5-1.7,13-2.7,19.9-2.1,14.4 12.9,14.9 17.6,9.8 22.8-24.1 35.5-55.5 35.5-88.6-0.1-32.8-12.2-63.7-34.4-87.5zm-94.3-218.7c18.6,20 33.8,42.5 45.6,66.4h-91.1c11.7-24 26.9-46.4 45.5-66.4zm-98,351c-6.4-13.9-9.7-29.1-9.7-44.8 0-21.2 6.1-41.5 17.5-58.9 0.1,0.8 11,42.5 15.2,53.2-12.5,14.4-20.4,31.8-23,50.5zm150.4-50.1h-104.8c-29.4-69-29.1-146.1-2.4-213.8h109.6c26.7,67.7 27,144.8-2.4,213.8zm22.7-.4c5.8-14.9 15.1-52.6 15.2-53.2 11.4,17.3 17.5,37.6 17.5,58.9 0,15.7-3.4,30.9-9.7,44.8-2.7-18.7-10.6-36.1-23-50.5z">
+                        </path>
+                    </g>
+                </svg>
+            </div>
+            <p>We will go to the moon, not because it is easy, but because it is hard. A quote from Abraham Lincoln.
+            This rocket is assembled <a href="https://www.svgrepo.com/svg/51643/rocket-launch">here</a> and the propulsion was engineered from <a href="https://codepen.io/PaulLeBeau/pen/EQoraz">here</a>.
+            Let’s break it down.</p>
+            <h3>Stacking Filters and Effects</h3>
+            <p>In the defs tag, we define a fill effect, filter effect and masking effect to apply to a simple rectangle positioned at the base of the rocket. This creates our flames.</p>
+            <pre><code class="language-html">
+            &lt;radialGradient id="fade" cx="0.5" cy="0" r="1" color-interpolation="sRGB">
+                &lt;stop offset="0.5" stop-color="#fff"/>
+                &lt;stop offset="0.7" stop-color="#000"/>
+            &lt;/radialGradient>
+            &lt;mask id="flame-shape" maskContentUnits = "objectBoundingBox">
+                &lt;circle cx="0.5" cy="0.28" r="0.28" fill="white"/>
+                &lt;polygon points="0.22,0.3, 0.26,1, 0.74,1, 0.78,0.3" fill="url(#fade)"/>
+            &lt;/mask>
+            </code></pre>
+            <p>Let’s start with the simplest def, the mask. This will define the shape of the flame. We draw some shapes and fill with white and everything outside that shape is hidden.
+            An extra sophistication is the “radialGradient” which is applied to a polygon and used to get the transparent fall-off at the bottom of the flames.</p>
+            <p>This is what the flame mask looks like.</p>
+            <div style="width:30vmin;">
+                <svg height="100%" width="100%" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 360" xmlns:xlink="http://www.w3.org/1999/xlink" style="overflow:visible;">
+                    <g class="rocket-flames">
+                        <rect x="76" y="10" width="360" height="300" mask="url(#flame-shape)"/>
+                    </g>
+                </svg>
+            </div>
+            <p>Next let’s look at the flame filter effect. There are a lot of layers here.<br />
+            The idea here is a kind of treadmill effect, where the surface has some squashed noise.
+            If you stare at it for a bit, you’ll notice the pattern repeats.
+            Here it is in gory detail.</p>
+            <pre><code class="language-html">
+            &lt;filter id="flames" filterUnits="objectBoundingBox" x="0%" y="-100%" width="100%" height="300%">
+                &lt;feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="1" result="noise" stitchTiles="stitch"/>
+                &lt;feOffset dy="0" result="off1">
+                    &lt;animate attributeType="XML" attributeName="dy" from="-300" to="0" dur="3s" repeatCount="indefinite" /> 
+                &lt;/feOffset>
+                &lt;feOffset in="noise" dy="60" result="off2">
+                    &lt;animate attributeType="XML" attributeName="dy" from="0" to="300" dur="3s" repeatCount="indefinite" /> 
+                &lt;/feOffset>
+                &lt;feMerge result="scrolling-noise">
+                    &lt;feMergeNode in="off1"/>
+                    &lt;feMergeNode in="off2"/>
+                &lt;/feMerge>
+                &lt;feComponentTransfer result="brighter-noise">
+                    &lt;feFuncA type="gamma" amplitude="1" exponent="1"/>
+                &lt;/feComponentTransfer>
+                &lt;feComposite in="SourceGraphic" in2="brighter-noise" operator="in" result="gradient-noise"/>
+                &lt;feComponentTransfer result="threshhold">
+                    &lt;feFuncA type="discrete" tableValues="0 1"/>
+                &lt;/feComponentTransfer>
+                &lt;feFlood flood-color="var(--accent)" result="flood1"/>
+                &lt;feComposite in2="threshhold" in="flood1" operator="in" result="flood1-threshhold"/>
+                &lt;feFlood flood-color="var(--primary)" result="flood2"/>
+                &lt;feComponentTransfer in="SourceGraphic" result="exponent-gradient">
+                    &lt;feFuncA type="gamma" exponent="3"/>
+                &lt;/feComponentTransfer>
+                &lt;feComposite in="flood2" in2="exponent-gradient" operator="in" result="flood2-gradient"/>
+                &lt;feComposite in2="threshhold" in="flood2-gradient" operator="in" result="flood2-gradient-threshhold"/>
+                &lt;feMerge>
+                    &lt;feMergeNode in="flood1-threshhold"/>
+                    &lt;feMergeNode in="flood2-gradient-threshhold"/>
+                &lt;/feMerge>
+            &lt;/filter>
+            </code></pre>
+            <p>Step by step:</p>
+            <ol>
+            <li>feTurbulence: This defines the noise pattern.</li>
+            <li>feOffset: Two copies of this noise pattern are created, labelled “off1” and “off2”, which are shifted and animated to move downwards. This creates the treadmill effect, and any jerkiness is caused by these copies not lining up with each other.</li>
+            <li>feMerge: Joins the two noise pattern copies.</li>
+            <li>feComponentTransfer and feComposite: Define and apply a gamma function to the noise to create some “hot spots”.</li>
+            <li>feComponentTransfer: Flatten the noise map by binning the alpha channel values to 0 and 1. This creates the holes in the flames.</li>
+            <li>feFlood and feComposite: Fills in the base colour of the flames.</li>
+            <li>feFlood, feComponentTransfer, feComposites: Make another copy of the flames from step 5 and add a gradient fill.</li>
+            <li>feMerge: Merge the solid base colour flame with the gradient filled copy.</li>
+            </ol>
+            <p>Here’s the flame with the mask and filter. If the flame is one colour, try switching the colour theme (lightbulb at the top of the page).</p>
+            <div style="width:30vmin;">
+                <svg height="100%" width="100%" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 360" xmlns:xlink="http://www.w3.org/1999/xlink" style="overflow:visible;">
+                    <g class="rocket-flames">
+                        <rect x="76" y="10" width="360" height="300" fill="url(#flame-grad)" filter="url(#flames)" mask="url(#flame-shape)"/>
+                    </g>
+                </svg>
+            </div>
+            <p>Boom, lift off.
+            SVGs are neat.</p>
+        </div>
+    </article>
+</main>
+
+<footer class="container-wide">
+    <div class="footer-absolute">
+        <svg class="waves" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 50" preserveAspectRatio="none" shape-rendering="auto">
+            <defs>
+                <path id="wave1" d="M-240 25 c 40 20 80 20 120 0 s 80 -20 120 0 s 80 20 120 0 s 80 -20 120 0 v25h-480z"></path>
+                <path id="wave2" d="M-240 25 c 20 -12 40 -12 60 0 s 40 12 60 0 s 40 -12 60 0 s 40 12 60 0 s 40 -12 60 0 s 40 12 60 0 s 40 -12 60 0 s 40 12 60 0 v25h-480z"></path>
+                <path id="wave3" d="M-240 25 c 8 -6 20 -12 24 0 s 16 6 24 0 s 20 -12 24 0 s 16 6 24 0 s 20 -12 24 0 s 16 6 24 0 s 20 -12 24 0 s 16 6 24 0 s 20 -12 24 0 s 16 6 24 0 s 20 -12 24 0 16 6 24 0 s 20 -12 24 0 s 16 6 24 0 s 20 -12 24 0 s 16 6 24 0 s 20 -12 24 0 s 16 6 24 0 s 20 -12 24 0 s 16 6 24 0 v25h-480z"></path>
+                <path id="wave4" d="M-240 22 c 5 0  10  11 15  11 c 5 0  10 -16 15 -16c 5 0  10  21 15  21c 5 0  10 -26 15 -26c 5 0  10  31 15  31c 5 0  10 -36 15 -36c 5 0  10  41 15  41c 5 0  10 -46 15 -46c 5 0  10  46 15  46c 5 0  10 -41 15 -41c 5 0  10  36 15  36c 5 0  10 -31 15 -31c 5 0  10  26 15  26c 5 0  10 -21 15 -21c 5 0  10  16 15  16c 5 0  10 -11 15 -11c 5 0  10  11 15  11c 5 0  10 -16 15 -16c 5 0  10  21 15  21c 5 0  10 -26 15 -26c 5 0  10  31 15  31c 5 0  10 -36 15 -36c 5 0  10  41 15  41c 5 0  10 -46 15 -46c 5 0  10  46 15  46c 5 0  10 -41 15 -41c 5 0  10  36 15  36c 5 0  10 -31 15 -31c 5 0  10  26 15  26c 5 0  10 -21 15 -21c 5 0  10  16 15  16c 5 0  10 -11 15 -11"></path>
+            </defs>
+            <g class="waves-parallax">
+                <use xlink:href="#wave1" y="0"/>
+                <use xlink:href="#wave2" y="4"/>
+                <use xlink:href="#wave3" y="12"/>
+                <use xlink:href="#wave4" y="0" vector-effect="non-scaling-stroke" fill="none" stroke-width="1"/>
+            </g>
+        </svg>
+    </div>
+</footer>
+
+<script>
+    applyThemes();
+    listenForTheme();
+</script>
+</body>
+</html>
