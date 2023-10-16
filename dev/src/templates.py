@@ -64,12 +64,10 @@ def get_projects(content_dir):
     for project in project_dirs: 
         # default values
         variables = {
-            "title": project, 
             "index": default_index,
             "status": "???", 
             "description": "???",
             "tags": [], 
-            "pages": [Page(f) for f in walk_dir(os.path.join(projects_dir, project))[0] if f.endswith(".md")],
         }
         variables_file = os.path.join(projects_dir, project, "variables.json")
         if os.path.isfile(variables_file):
@@ -77,6 +75,12 @@ def get_projects(content_dir):
                 variables.update(json.load(f))
         else: 
             default_index += 1
+        # these variables cannot be overwritten by file contents
+        variables["title"] = project
+        variables["pages"] = sorted(
+            [Page(f) for f in walk_dir(os.path.join(projects_dir, project))[0] if f.endswith(".md")], \
+            key=lambda p: p.metadata["date"]
+        )
         projects.append(variables)
     return sorted(projects, key=lambda i: i["index"])
 
