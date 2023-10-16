@@ -26,7 +26,16 @@ postscripts: ["applyThemes", "applyTextEffects"]
                                 <div class="project-link-dot"></div>
                             </div>
                         </a>
-                        <!-- submenu of project pages or put in flare-col -->
+                        <ul class="project-pages">
+                            {%- for page in project['pages'] %}
+                            <li>
+                                <a href="/projects/{{ project['title'] }}/{{ page.name }}.html" class="clickable">
+                                    <span class="| text-lg">{{ page.metadata['title'] }} [{{ page.metadata['date']}}]</span>
+                                </a>
+                            </li>
+                            {%- endfor %}
+                        </ul>
+                        <!-- TODO submenu of project pages expanding on click or hover? -->
                     </li>
                     {%- endfor %}
                 </ol>

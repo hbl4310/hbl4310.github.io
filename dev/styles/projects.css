@@ -83,6 +83,14 @@ a.project-link:hover {
     margin-left: 1em;
 }
 
+.project-pages {
+    display: none;
+}
+
+.active > .project-pages {
+    display: block;
+}
+
 
 .flare-col-cutout {
     --corner-length: 2em;
