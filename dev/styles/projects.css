@@ -43,24 +43,30 @@
     border-top: 1px solid var(--secondary);
 }
 
-.project-item::marker {}
+li.project-item::marker {
+    content: '';
+}
 
-.project-link {
+.project-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.project-row:hover {
+    text-decoration: underline;
+}
+
+.project-title-row {
     padding-top: 1.5em;
     padding-bottom: 1.5em;
-}
-a.project-link:hover {
-    text-decoration: underline;
 }
 
 .project-title {
     align-items: center;
 }
 
-.project-link-button {
+.project-right-col {
     justify-content: flex-end;
     align-items: center;
     display: flex;
@@ -87,10 +93,15 @@ a.project-link:hover {
     display: none;
 }
 
-.active > .project-pages {
+.expanded > .project-pages {
     display: block;
+    padding-bottom: 1em;
 }
 
+.project-pages > li::marker {
+    content: '+  ';
+    color: var(--accent);
+}
 
 .flare-col-cutout {
     --corner-length: 2em;

@@ -18,24 +18,26 @@ postscripts: ["applyThemes", "applyTextEffects"]
             <div class="select-col">
                 <ol class="project-list">
                     {%- for project in projects %}
-                    <li class="project-item">
-                        <a href="/projects/{{ project['title'] }}" class="project-link clickable">
+                    <li class="project-item" onclick="this.classList.toggle('expanded')">
+                        <!-- <a href="/projects/{{ project['title'] }}" class="project-row project-title-row clickable"> -->
+                        <div class="project-row project-title-row clickable">
                             <div class="project-title | text-2xl">{{ project['title'] }}</div>
-                            <div class="project-link-button">
+                            <div class="project-right-col">
                                 <div class="project-link-select | text-body">view</div>
                                 <div class="project-link-dot"></div>
                             </div>
-                        </a>
-                        <ul class="project-pages">
+                        <!-- </a> -->
+                        </div>
+                        <ol class="project-pages">
                             {%- for page in project['pages'] %}
-                            <li>
-                                <a href="/projects/{{ project['title'] }}/{{ page.name }}.html" class="clickable">
-                                    <span class="| text-lg">{{ page.metadata['title'] }} [{{ page.metadata['date']}}]</span>
+                            <li class="text-lg">
+                                <a href="/projects/{{ project['title'] }}/{{ page.name }}.html" class="project-row clickable">
+                                    <div class="project-title">{{ page.metadata['title'] }}</div>
+                                    <div class="project-right-col">{{ page.metadata['date']}}</div>
                                 </a>
                             </li>
                             {%- endfor %}
-                        </ul>
-                        <!-- TODO submenu of project pages expanding on click or hover? -->
+                        </ol>
                     </li>
                     {%- endfor %}
                 </ol>
