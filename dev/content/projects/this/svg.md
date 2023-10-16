@@ -69,8 +69,8 @@ The rotation animation in the puzzle piece looks like:
 </code></pre>
 
 The transform types for this tag are similar to those available in CSS: translate, scale, rotate, skewX, skewY. See [reference](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/type#for_the_animatetransform_elements). 
-The from and to fields are formatted as (degrees, centre x, centre y) which defines a starting and ending rotation in degrees around a certain point. 
-The dur tag defines the duration between the from and to states and the repeatCount specifies how many times the transformation happens. 
+The "from" and "to" fields are formatted as (degrees, centre x, centre y) which defines a starting and ending rotation in degrees around a certain point. 
+The "dur" tag defines the duration between the "from" and "to" states and the "repeatCount" specifies how many times the transformation happens. 
 Nifty. 
 
 ## Let there be Light
@@ -78,7 +78,7 @@ Nifty.
     {% filter indent(width=4) %}{% include "lightbulb.svg" %}{% endfilter %}
 </div>
 
-What else can SVGs do? Turns out, a lot. Filters have entered the chat. These modify the whole, or parts of, the image. 
+What else can SVGs do? Turns out, a lot. Filters have entered the chat. These modify the whole, or parts of the image. 
 Witness my lightbulb, remorselessly thieved from [here](https://www.svgrepo.com/svg/10005/light-bulb). 
 The glow is a filter effect with an animation to get the pulsing. 
 
@@ -103,8 +103,8 @@ Let's look at this filter.
 
 We first define the filter's size in the opening tag. The "-50%" values for x and y just re-centre to the top left (I think). 
 The first inner tag is "feGaussianBlur" which blurs the filter's input. The amount of blur is controlled by "stdDeviation". 
-Within this, we can define an animate tag to slide the "stdDeviation" value between values 0 to 50 and back to 0 again to get the pulsing effect. 
-The final inner tag in the filter, "feBlend" controls how the filter is applied: it blends the "SourceGraphic" with the Gaussian blur effect we defined as "blurOut". 
+Within this, we can define an "animate" tag to slide the "stdDeviation" value between values 0 to 50 and back to 0 again to get the pulsing effect. 
+The final inner tag in the filter, "feBlend", controls how the filter is applied: it blends the "SourceGraphic", i.e. the input image, with the Gaussian blur effect we labelled as "blurOut". 
 To apply this filter to a part of the SVG, we simply add <pre>filter="url(#lightbulb-glow-filter)"</pre> to the path tag which draws the outline of the lightbulb. 
 Et voilà.
 
